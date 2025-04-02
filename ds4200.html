@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>D3 Heatmap: Market vs Total Funding</title>
+  <script src="https://d3js.org/d3.v7.min.js"></script>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+    }
+    .tooltip {
+      position: absolute;
+      background-color: white;
+      border: 1px solid #ccc;
+      padding: 8px;
+      font-size: 12px;
+      pointer-events: none;
+      opacity: 0;
+    }
+    .cell {
+      stroke: #fff;
+      stroke-width: 1px;
+    }
+  </style>
+</head>
+<body>
+  <h2>Heatmap: Market vs Total Funding</h2>
+  <svg width="900" height="800"></svg>
+
+  <!-- Link to external JS file -->
+  <script src="main.js"></script>
+</body>
+</html>
