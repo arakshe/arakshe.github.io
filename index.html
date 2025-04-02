@@ -2,92 +2,74 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Startup Funding Visualizations</title>
+  <title>Startup Funding in SF Bay Area</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-  <!-- Google Font -->
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
-
   <style>
-    * {
-      box-sizing: border-box;
-    }
-
-    html, body {
-      margin: 0;
-      padding: 0;
-      font-family: 'Inter', sans-serif;
-      background: linear-gradient(to right, #e3f2fd, #fce4ec);
-      color: #2c2c2c;
-    }
-
-    header {
-      background-color: #ffffffcc;
-      padding: 40px 20px;
-      text-align: center;
-      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
-      backdrop-filter: blur(6px);
-    }
-
-    header h1 {
-      font-size: 2.2rem;
-      margin-bottom: 10px;
-      color: #004d99;
-    }
-
-    header p {
-      margin: 6px 0;
-      font-size: 1rem;
-    }
-
-    .highlight {
-      color: #007acc;
-      font-weight: 600;
-    }
-
-    iframe {
-      width: 90%;
-      height: 420px;
-      margin: 20px auto;
-      display: block;
-      border: none;
-    }
-
-    .description {
+    body {
+      font-family: Arial, sans-serif;
+      line-height: 1.6;
       max-width: 900px;
-      margin: 30px auto 60px;
-      padding: 0 20px;
-    }
-
-    .description h2 {
-      font-size: 1.5rem;
-      margin-bottom: 10px;
-      color: #003366;
-    }
-
-    .description p {
-      line-height: 1.7;
-      font-size: 1rem;
+      margin: auto;
+      padding: 20px;
+      background-color: #f8f9fa;
       color: #333;
     }
-
+    h1, h2 {
+      color: #000;
+      margin-bottom: 10px;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-bottom: 20px;
+    }
+    th, td {
+      border: 1px solid #ccc;
+      padding: 8px;
+      text-align: left;
+    }
+    section {
+      margin-bottom: 20px;
+    }
+    img {
+      max-width: 100%;
+      height: auto;
+      margin-bottom: 15px;
+    }
+    .highlight {
+      font-weight: bold;
+    }
     footer {
-      background-color: #ffffffcc;
-      padding: 15px;
       text-align: center;
       font-size: 0.9rem;
-      color: #555;
-      box-shadow: 0 -2px 8px rgba(0, 0, 0, 0.05);
+      color: #666;
+      margin-top: 30px;
     }
   </style>
 </head>
-
 <body>
-  <header>
-    <h1>Startup Funding Visualizations</h1>
-    <p><span class="highlight">Group Members:</span> Anvi Rakshe, Manika Sakulsureeyadej, Mehek Daga</p>
-    <p><span class="highlight">Project Description:</span> These visualizations explore funding round patterns and sources among startups using interactive diagrams and charts.</p>
-  </header>
+  <h1>Startup Funding in the SF Bay Area</h1>
+  <section>
+    <p>Startup funding is crucial for understanding business success and growth. Analyzing investment patterns and funding rounds provides insights valuable to entrepreneurs, investors, and policymakers. This project examines startup funding data in the SF Bay Area to uncover key trends and factors influencing startup outcomes.</p>
+  </section>
+
+  <h2>Reference Papers</h2>
+  <ul>
+    <li><a href="https://citeseerx.ist.psu.edu/document?repid=rep1&type=pdf&doi=5a39d6af3a27adda4b890886fc0b7a4894275577">It Ain’t Broke: The Past, Present, and Future of Venture Capital</a></li>
+    <li><a href="https://visible.vc/blog/startup-funding-stages/">The Ultimate Guide to Startup Funding Stages</a></li>
+  </ul>
+
+  <h2>Data Introduction</h2>
+  <p>Our dataset, sourced from Bloomberg, comprises around 7000 records of SF Bay Area startups with 38 attributes including company details, funding history, startup categories, and geographic data. Funding data covers various types, such as seed, venture capital, and equity crowdfunding.</p>
+
+  <h2>Analysis Plan</h2>
+  <p>Our analysis includes:</p>
+  <ul>
+    <li>Cleaning data for consistency (handling zeros and formatting).</li>
+    <li>Standardizing funding amounts.</li>
+    <li>Analyzing industry funding trends.</li>
+    <li>Comparing acquired vs operating startups.</li>
+    <li>Geographical analysis of startup funding intensity.</li>
 
   <!-- Sankey Diagram -->
   <iframe src="4200PROJECT/sankey_diagram.html" title="Sankey Diagram"></iframe>
