@@ -23,7 +23,7 @@
       margin: 0 auto;
     }
 
-    h1, h2, h3 {
+    h1, h2 {
       font-weight: 600;
       margin-bottom: 10px;
     }
@@ -39,11 +39,6 @@
     h2 {
       font-size: 1.5rem;
       margin-top: 40px;
-    }
-
-    h3 {
-      font-size: 1.2rem;
-      margin-top: 30px;
     }
 
     p {
@@ -109,6 +104,28 @@
       <iframe src="4200PROJECT/funding_rounds_by_market.html" title="Bar Chart - Funding Rounds"></iframe>
     </div>
 
+    <p>
+      <strong>Software</strong> is the highest-funded market, with total funding nearing $7 billion. It also has contributions from almost every round, especially rounds A to D. 
+      <strong>Biotechnology</strong> follows closely, with a slightly more balanced distribution across early (seed, round_a) and later rounds (round_b to round_d). 
+      Enterprise Software, Clean Technology, and Health Care round out the top five.
+    </p>
+
+    <p>
+      Early rounds (seed, round_a) are present across all markets, indicating strong investment activity at the early startup stage. 
+      Later rounds (round_e to round_h) are rare and only show up in top-funded sectors like Software, Biotech, and Semiconductors. 
+      Round_a and round_b are the most prevalent rounds across the board, showing that many startups are making it past the seed stage but fewer proceed to advanced rounds.
+    </p>
+
+    <p>
+      Some markets like “Games” and “Advertising” show a healthy range of round progression (from seed through round_d), suggesting sustained investor interest. 
+      Niche markets like File Sharing, Communities, and Big Data have significantly lower total funding and fewer funding rounds involved, possibly indicating limited scalability or investor appetite.
+    </p>
+
+    <p>
+      Markets like Social Media, Messaging, and Finance seem underfunded compared to Software and Biotech, which might suggest either market saturation or higher capital efficiency. 
+      Solar and Storage have moderate investment but lack late-stage funding, possibly due to long development timelines or hardware-heavy requirements.
+    </p>
+
     <h2>Box Plot – Funding Amount Distribution</h2>
     <p>
       This box plot presents statistical distribution of funding amounts across startup categories. It displays medians, interquartile ranges, and outliers to help identify funding variability. Outliers reveal unusually high or low investments.
@@ -132,40 +149,6 @@
     <div class="viz-container">
       <iframe src="4200PROJECT/ds4200.html" title="Scatter Plot - Age vs Funding"></iframe>
     </div>
-
-    <h2>Stacked Bar Chart – Funding by Market and Round</h2>
-    <p>
-      This stacked bar chart presents the distribution of funding rounds across different market sectors. Each bar represents a market, with segments indicating the contribution of individual funding rounds (e.g., seed, round_a, round_b, etc.).
-    </p>
-    <div class="viz-container">
-      <iframe src="4200PROJECT/stacked_bar_chart.html" title="Stacked Bar Chart - Funding by Market and Round"></iframe>
-    </div>
-
-    <h3>1. Top Funded Markets</h3>
-    <p>
-      <strong>Software</strong> is the highest-funded market, with total funding nearing $7 billion. It also has contributions from almost every round, especially rounds A to D. 
-      <strong>Biotechnology</strong> follows closely, with a slightly more balanced distribution across early (seed, round_a) and later rounds (round_b to round_d). 
-      Enterprise Software, Clean Technology, and Health Care round out the top five.
-    </p>
-
-    <h3>2. Funding Round Distribution</h3>
-    <p>
-      Early rounds (seed, round_a) are present across all markets, indicating strong investment activity at the early startup stage. 
-      Later rounds (round_e to round_h) are rare and only show up in top-funded sectors like Software, Biotech, and Semiconductors. 
-      Round_a and round_b are the most prevalent rounds across the board, showing that many startups are making it past the seed stage but fewer proceed to advanced rounds.
-    </p>
-
-    <h3>3. Diversity Across Markets</h3>
-    <p>
-      Some markets like “Games” and “Advertising” show a healthy range of round progression (from seed through round_d), suggesting sustained investor interest. 
-      Niche markets like File Sharing, Communities, and Big Data have significantly lower total funding and fewer funding rounds involved, possibly indicating limited scalability or investor appetite.
-    </p>
-
-    <h3>4. Funding Gaps</h3>
-    <p>
-      Markets like Social Media, Messaging, and Finance seem underfunded compared to Software and Biotech, which might suggest either market saturation or higher capital efficiency. 
-      Solar and Storage have moderate investment but lack late-stage funding, possibly due to long development timelines or hardware-heavy requirements.
-    </p>
 
   </div>
 </body>
