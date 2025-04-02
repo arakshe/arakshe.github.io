@@ -76,16 +76,32 @@
       font-weight: 600;
       color: #004d99;
     }
-  </style>
+    </style>
 </head>
-
 <body>
-  <div class="container">
-    <h1>Startup Funding Analysis Report</h1>
+   <h1>Startup Funding in the SF Bay Area</h1>
+  <section>
+    <p>Startup funding is crucial for understanding business success and growth. Analyzing investment patterns and funding rounds provides insights valuable to entrepreneurs, investors, and policymakers. This project examines startup funding data in the SF Bay Area to uncover key trends and factors influencing startup outcomes.</p>
+  </section>
 
-    <p><strong>Group Members:</strong> Anvi Rakshe, Manika Sakulsureeyadej, Mehek Daga</p>
-    <p>This report presents an analysis of startup funding rounds and behavior using several interactive visualizations developed in D3.js. We explore patterns in funding rounds, amounts, geography, and startup life cycle outcomes.</p>
+  <h2>Reference Papers</h2>
+  <ul>
+    <li><a href="https://citeseerx.ist.psu.edu/document?repid=rep1&type=pdf&doi=5a39d6af3a27adda4b890886fc0b7a4894275577">It Ain’t Broke: The Past, Present, and Future of Venture Capital</a></li>
+    <li><a href="https://visible.vc/blog/startup-funding-stages/">The Ultimate Guide to Startup Funding Stages</a></li>
+  </ul>
 
+  <h2>Data Introduction</h2>
+  <p>Our dataset, sourced from Bloomberg, comprises around 7000 records of SF Bay Area startups with 38 attributes including company details, funding history, startup categories, and geographic data. Funding data covers various types, such as seed, venture capital, and equity crowdfunding.</p>
+
+  <h2>Analysis Plan</h2>
+  <p>Our analysis includes:</p>
+  <ul>
+    <li>Cleaning data for consistency (handling zeros and formatting).</li>
+    <li>Standardizing funding amounts.</li>
+    <li>Analyzing industry funding trends.</li>
+    <li>Comparing acquired vs operating startups.</li>
+    <li>Geographical analysis of startup funding intensity.</li>
+  </ul>
     <div class="section-divider"></div>
 
     <h2>Sankey Diagram – Funding Flow</h2>
