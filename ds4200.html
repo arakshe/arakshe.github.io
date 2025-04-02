@@ -1,33 +1,50 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8">
-  <title>D3 Heatmap: Market vs Total Funding</title>
+  <meta charset="UTF-8" />
+  <title>Startup Age vs Funding</title>
   <script src="https://d3js.org/d3.v7.min.js"></script>
   <style>
     body {
       font-family: Arial, sans-serif;
     }
+
     .tooltip {
+      font-size: 13px;
       position: absolute;
-      background-color: white;
+      background: #fff;
       border: 1px solid #ccc;
       padding: 8px;
-      font-size: 12px;
       pointer-events: none;
       opacity: 0;
     }
-    .cell {
-      stroke: #fff;
-      stroke-width: 1px;
+
+    svg {
+      width: 100%;
+      height: auto;
+    }
+
+    .legend {
+      font-size: 13px;
+    }
+
+    .filter-container {
+      margin-bottom: 10px;
     }
   </style>
 </head>
 <body>
-  <h2>Heatmap: Market vs Total Funding</h2>
-  <svg width="900" height="800"></svg>
+  <h2>Startup Age vs Total Funding</h2>
 
-  <!-- Link to external JS file -->
+  <div class="filter-container">
+    <label for="statusFilter">Filter by Status:</label>
+    <select id="statusFilter">
+      <option value="all">All</option>
+    </select>
+  </div>
+
+  <svg width="960" height="600"></svg>
+
   <script src="main.js"></script>
 </body>
 </html>
