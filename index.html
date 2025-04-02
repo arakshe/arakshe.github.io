@@ -2,205 +2,135 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Startup Funding Visualizations</title>
+  <title>Startup Funding Analysis Report</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  
-  <!-- Google Font -->
+
+  <!-- Font -->
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
 
   <style>
-    * {
-      box-sizing: border-box;
-    }
-
-    html, body {
+    body {
       margin: 0;
-      padding: 0;
-      font-family: 'Inter', sans-serif;
-      background: linear-gradient(to right, #e3f2fd, #fce4ec);
-      color: #2c2c2c;
-    }
-
-    header {
-      background-color: #ffffffcc;
       padding: 40px 20px;
-      text-align: center;
-      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
-      backdrop-filter: blur(6px);
+      font-family: 'Inter', sans-serif;
+      background-color: #fff;
+      color: #111;
+      line-height: 1.6;
     }
 
-    header h1 {
-      font-size: 2.2rem;
-      margin-bottom: 10px;
-      color: #004d99;
+    .container {
+      max-width: 1000px;
+      margin: 0 auto;
     }
 
-    header p {
-      margin: 6px 0;
-      font-size: 1rem;
-    }
-
-    .highlight {
-      color: #007acc;
+    h1, h2 {
       font-weight: 600;
+      margin-bottom: 10px;
+    }
+
+    h1 {
+      font-size: 2.2rem;
+      text-align: center;
+      margin-top: 0;
+      padding-bottom: 10px;
+      border-bottom: 2px solid #000;
+    }
+
+    h2 {
+      font-size: 1.5rem;
+      margin-top: 40px;
+    }
+
+    p {
+      font-size: 1rem;
+      margin-bottom: 16px;
     }
 
     .viz-container {
-      width: 90%;
-      height: 600px;
-      margin: 20px auto;
-      border: 2px solid #cce0ff;
-      border-radius: 12px;
+      margin: 20px 0 40px;
+      border: 1px solid #ccc;
+      border-radius: 6px;
       overflow: hidden;
-      background-color: #fff;
-      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
     }
 
     iframe {
       width: 100%;
-      height: 100%;
+      height: 500px;
       border: none;
-    }
-
-    .description {
-      max-width: 900px;
-      margin: 40px auto;
-      padding: 0 20px;
-      background-color: #ffffffdd;
-      border-radius: 12px;
-      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
-    }
-
-    .description h2 {
-      font-size: 1.5rem;
-      margin-bottom: 10px;
-      color: #003366;
-    }
-
-    .description p {
-      line-height: 1.7;
-      font-size: 1rem;
-      color: #333;
+      display: block;
     }
 
     footer {
-      background-color: #ffffffcc;
-      padding: 15px;
+      margin-top: 60px;
       text-align: center;
       font-size: 0.9rem;
-      color: #555;
-      margin-top: 40px;
-      box-shadow: 0 -2px 8px rgba(0, 0, 0, 0.05);
+      color: #666;
+    }
+
+    .section-divider {
+      border-top: 1px solid #aaa;
+      margin: 40px 0;
+    }
+
+    .highlight {
+      font-weight: 600;
+      color: #004d99;
     }
   </style>
 </head>
 
 <body>
-  <header>
-    <h1>Startup Funding Visualizations</h1>
-    <p><span class="highlight">Group Members:</span> Anvi Rakshe, Manika Sakulsureeyadej, Mehek Daga</p>
-    <p><span class="highlight">Project Description:</span> These visualizations explore funding round patterns and sources among startups using interactive diagrams and charts.</p>
-  </header>
+  <div class="container">
+    <h1>Startup Funding Analysis Report</h1>
 
-  <!-- Sankey Diagram Section -->
-  <div class="viz-container">
-    <iframe 
-      title="Sankey Diagram"
-      sandbox="allow-scripts allow-same-origin" 
-      src="4200PROJECT/sankey_diagram.html">
-    </iframe>
+    <p><strong>Group Members:</strong> Anvi Rakshe, Manika Sakulsureeyadej, Mehek Daga</p>
+    <p>This report presents an analysis of startup funding rounds and behavior using several interactive visualizations developed in D3.js. We explore patterns in funding rounds, amounts, geography, and startup life cycle outcomes.</p>
+
+    <div class="section-divider"></div>
+
+    <h2>Sankey Diagram – Funding Flow</h2>
+    <p>
+      This Sankey diagram visualizes the flow of startups through different stages of funding rounds—grouped into 1–3 rounds, 4–6 rounds, and 7+ rounds—and how these stages connect to various funding sources. Venture capital dominates early funding, while mature startups diversify into private equity, post-IPO options, and debt financing.
+    </p>
+    <div class="viz-container">
+      <iframe src="4200PROJECT/sankey_diagram.html" title="Sankey Diagram"></iframe>
+    </div>
+
+    <h2>Bar Chart – Funding Rounds Distribution</h2>
+    <p>
+      This bar chart shows how many startups fall into each funding round group. The chart highlights the sharp drop-off after early funding rounds, illustrating both the challenge of continued growth and natural attrition in the startup ecosystem.
+    </p>
+    <div class="viz-container">
+      <iframe src="4200PROJECT/funding_rounds_by_market.html" title="Bar Chart - Funding Rounds"></iframe>
+    </div>
+
+    <h2>Box Plot – Funding Amount Distribution</h2>
+    <p>
+      This box plot presents statistical distribution of funding amounts across startup categories. It displays medians, interquartile ranges, and outliers to help identify funding variability. Outliers reveal unusually high or low investments.
+    </p>
+    <div class="viz-container">
+      <iframe src="4200PROJECT/boxplot.html" title="Box Plot"></iframe>
+    </div>
+
+    <h2>Map – SF Bay Area Startup Distribution</h2>
+    <p>
+      This interactive map shows where startups are located in the San Francisco Bay Area. It visualizes clusters of innovation and helps identify regional patterns in startup funding and activity, especially around San Francisco and Silicon Valley.
+    </p>
+    <div class="viz-container">
+      <iframe src="4200PROJECT/sf_startups_map_plot.html" title="Map - SF Startups"></iframe>
+    </div>
+
+    <h2>Scatter Plot – Startup Age vs. Total Funding</h2>
+    <p>
+      This scatter plot explores the relationship between startup age and total funding, segmented by company status (operating, acquired, closed). It helps us understand whether age correlates with funding success and startup outcomes.
+    </p>
+    <div class="viz-container">
+      <iframe src="4200PROJECT/ds4200.html" title="Scatter Plot - Age vs Funding"></iframe>
+    </div>
+
+    <footer>
+      © 2025 Startup Visualization Team — Final Project for DS4200. Built with D3.js & ❤️
+    </footer>
   </div>
-
-  <section class="description">
-    <h2>About the Sankey Diagram</h2>
-    <p>
-      This Sankey diagram visualizes the flow of startups through different stages of funding rounds—grouped into 1–3 rounds, 4–6 rounds, and 7+ rounds—and how these stages connect to various funding sources. The diagram reveals that venture capital is the dominant funding source across all stages, particularly in the early rounds.
-    </p>
-    <p>
-      Startups in their early phases often rely on angel investors, seed funding, and convertible notes. As companies mature through additional funding rounds, they begin to diversify their funding sources, increasingly turning to private equity, debt financing, grants, and post-IPO options.
-    </p>
-  </section>
-
-  <!-- Bar Chart Section -->
-  <div class="viz-container">
-    <iframe 
-      title="Bar Chart - Funding Rounds"
-      sandbox="allow-scripts allow-same-origin" 
-      src="4200PROJECT/funding_rounds_by_market.html">
-    </iframe>
-  </div>
-
-  <section class="description">
-    <h2>About the Bar Chart</h2>
-    <p>
-      This bar chart illustrates the number of startups falling into each category of funding rounds (1–3, 4–6, and 7+ rounds). It helps contextualize the Sankey diagram by showing the distribution of startups across different maturity stages.
-    </p>
-    <p>
-      From the chart, we can observe that the majority of startups receive funding within the first 3 rounds, with a steep drop-off as they move into mid- and late-stage funding. This reflects both the challenges of sustained fundraising and the natural attrition of startups over time.
-    </p>
-    <p>
-      The visualization provides a high-level overview of startup lifecycle progression, supporting deeper insights into how and when companies secure their capital.
-    </p>
-  </section>
-
-  <!-- Box Plot Section -->
-  <div class="viz-container">
-    <iframe 
-      title="Box Plot - Funding Amounts"
-      sandbox="allow-scripts allow-same-origin" 
-      src="4200PROJECT/boxplot.html">
-    </iframe>
-  </div>
-
-  <section class="description">
-    <h2>About the Box Plot</h2>
-    <p>
-      The box plot visualization uses D3.js to display the distribution of funding amounts across various rounds or categories. It includes medians, quartiles, and outliers to give a statistical overview of funding variability.
-    </p>
-    <p>
-      This chart provides insight into not just how many startups raise funds, but the scale and spread of funding they receive. Outliers reveal exceptionally high or low funding events, which can highlight unique opportunities or risks.
-    </p>
-  </section>
-
-  <!-- SF Startups Map Plot Section -->
-  <div class="viz-container">
-    <iframe 
-      title="SF Bay Area Startups Map"
-      sandbox="allow-scripts allow-same-origin" 
-      src="4200PROJECT/sf_startups_map_plot.html">
-    </iframe>
-  </div>
-
-  <section class="description">
-    <h2>About the SF Bay Area Startups Map</h2>
-    <p>
-      This interactive map shows the geographic distribution of startups across the San Francisco Bay Area. Each point represents a startup, with visual encodings for funding level or round where applicable.
-    </p>
-    <p>
-      The map highlights startup density in key tech hubs like San Francisco, Palo Alto, and Mountain View, providing spatial insights into regional funding patterns. It also helps identify emerging clusters that may indicate growing innovation ecosystems.
-    </p>
-  </section>
-
-   <div class="viz-container">
-    <iframe 
-      title="Scatter Plot - Startup Age vs Total Funding"
-      sandbox="allow-scripts allow-same-origin" 
-      src="4200PROJECT/ds4200.html">
-    </iframe>
-  </div>
-
-<section class="description">
-  <h2>About the Startup Age vs Total Funding Chart</h2>
-  <p>
-    This interactive chart displays the relationship between startup age and total funding amounts across different startup statuses—acquired, operating, or closed. Each data point represents a specific startup categorized by color, allowing viewers to compare funding trends based on the company's current status.
-  </p>
-  <p>
-    Insights from this visualization reveal how funding accumulation varies with startup longevity, highlighting key observations such as the typical funding peaks at certain ages and how age correlates with the likelihood of acquisition or closure.
-  </p>
-</section>
-
-  <footer>
-    © 2025 Startup Visualization Team. Built with ❤️ for our final project.
-  </footer>
 </body>
 </html>
