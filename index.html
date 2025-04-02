@@ -23,7 +23,7 @@
       margin: 0 auto;
     }
 
-    h1, h2 {
+    h1, h2, h3 {
       font-weight: 600;
       margin-bottom: 10px;
     }
@@ -39,6 +39,11 @@
     h2 {
       font-size: 1.5rem;
       margin-top: 40px;
+    }
+
+    h3 {
+      font-size: 1.2rem;
+      margin-top: 30px;
     }
 
     p {
@@ -76,32 +81,16 @@
       font-weight: 600;
       color: #004d99;
     }
-    </style>
+  </style>
 </head>
+
 <body>
-   <h1>Startup Funding in the SF Bay Area</h1>
-  <section>
-    <p>Startup funding is crucial for understanding business success and growth. Analyzing investment patterns and funding rounds provides insights valuable to entrepreneurs, investors, and policymakers. This project examines startup funding data in the SF Bay Area to uncover key trends and factors influencing startup outcomes.</p>
-  </section>
+  <div class="container">
+    <h1>Startup Funding Analysis Report</h1>
 
-  <h2>Reference Papers</h2>
-  <ul>
-    <li><a href="https://citeseerx.ist.psu.edu/document?repid=rep1&type=pdf&doi=5a39d6af3a27adda4b890886fc0b7a4894275577">It Ain’t Broke: The Past, Present, and Future of Venture Capital</a></li>
-    <li><a href="https://visible.vc/blog/startup-funding-stages/">The Ultimate Guide to Startup Funding Stages</a></li>
-  </ul>
+    <p><strong>Group Members:</strong> Anvi Rakshe, Manika Sakulsureeyadej, Mehek Daga</p>
+    <p>This report presents an analysis of startup funding rounds and behavior using several interactive visualizations developed in D3.js. We explore patterns in funding rounds, amounts, geography, and startup life cycle outcomes.</p>
 
-  <h2>Data Introduction</h2>
-  <p>Our dataset, sourced from Bloomberg, comprises around 7000 records of SF Bay Area startups with 38 attributes including company details, funding history, startup categories, and geographic data. Funding data covers various types, such as seed, venture capital, and equity crowdfunding.</p>
-
-  <h2>Analysis Plan</h2>
-  <p>Our analysis includes:</p>
-  <ul>
-    <li>Cleaning data for consistency (handling zeros and formatting).</li>
-    <li>Standardizing funding amounts.</li>
-    <li>Analyzing industry funding trends.</li>
-    <li>Comparing acquired vs operating startups.</li>
-    <li>Geographical analysis of startup funding intensity.</li>
-  </ul>
     <div class="section-divider"></div>
 
     <h2>Sankey Diagram – Funding Flow</h2>
@@ -143,6 +132,40 @@
     <div class="viz-container">
       <iframe src="4200PROJECT/ds4200.html" title="Scatter Plot - Age vs Funding"></iframe>
     </div>
+
+    <h2>Stacked Bar Chart – Funding by Market and Round</h2>
+    <p>
+      This stacked bar chart presents the distribution of funding rounds across different market sectors. Each bar represents a market, with segments indicating the contribution of individual funding rounds (e.g., seed, round_a, round_b, etc.).
+    </p>
+    <div class="viz-container">
+      <iframe src="4200PROJECT/stacked_bar_chart.html" title="Stacked Bar Chart - Funding by Market and Round"></iframe>
+    </div>
+
+    <h3>1. Top Funded Markets</h3>
+    <p>
+      <strong>Software</strong> is the highest-funded market, with total funding nearing $7 billion. It also has contributions from almost every round, especially rounds A to D. 
+      <strong>Biotechnology</strong> follows closely, with a slightly more balanced distribution across early (seed, round_a) and later rounds (round_b to round_d). 
+      Enterprise Software, Clean Technology, and Health Care round out the top five.
+    </p>
+
+    <h3>2. Funding Round Distribution</h3>
+    <p>
+      Early rounds (seed, round_a) are present across all markets, indicating strong investment activity at the early startup stage. 
+      Later rounds (round_e to round_h) are rare and only show up in top-funded sectors like Software, Biotech, and Semiconductors. 
+      Round_a and round_b are the most prevalent rounds across the board, showing that many startups are making it past the seed stage but fewer proceed to advanced rounds.
+    </p>
+
+    <h3>3. Diversity Across Markets</h3>
+    <p>
+      Some markets like “Games” and “Advertising” show a healthy range of round progression (from seed through round_d), suggesting sustained investor interest. 
+      Niche markets like File Sharing, Communities, and Big Data have significantly lower total funding and fewer funding rounds involved, possibly indicating limited scalability or investor appetite.
+    </p>
+
+    <h3>4. Funding Gaps</h3>
+    <p>
+      Markets like Social Media, Messaging, and Finance seem underfunded compared to Software and Biotech, which might suggest either market saturation or higher capital efficiency. 
+      Solar and Storage have moderate investment but lack late-stage funding, possibly due to long development timelines or hardware-heavy requirements.
+    </p>
 
   </div>
 </body>
