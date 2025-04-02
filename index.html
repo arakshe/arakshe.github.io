@@ -4,10 +4,7 @@
   <meta charset="UTF-8">
   <title>Startup Funding Analysis Report</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-  <!-- Font -->
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
-
   <style>
     body {
       margin: 0;
@@ -17,17 +14,14 @@
       color: #111;
       line-height: 1.6;
     }
-
     .container {
       max-width: 1000px;
       margin: 0 auto;
     }
-
     h1, h2 {
       font-weight: 600;
       margin-bottom: 10px;
     }
-
     h1 {
       font-size: 2.2rem;
       text-align: center;
@@ -35,122 +29,118 @@
       padding-bottom: 10px;
       border-bottom: 2px solid #000;
     }
-
     h2 {
       font-size: 1.5rem;
       margin-top: 40px;
     }
-
     p {
       font-size: 1rem;
       margin-bottom: 16px;
     }
-
     .viz-container {
       margin: 20px 0 40px;
       border: 1px solid #ccc;
       border-radius: 6px;
       overflow: hidden;
     }
-
     iframe {
       width: 100%;
       height: 500px;
       border: none;
       display: block;
     }
-
     footer {
       margin-top: 60px;
       text-align: center;
       font-size: 0.9rem;
       color: #666;
     }
-
     .section-divider {
       border-top: 1px solid #aaa;
       margin: 40px 0;
     }
-
     .highlight {
       font-weight: 600;
       color: #004d99;
     }
   </style>
 </head>
-
 <body>
   <div class="container">
     <h1>Startup Funding Analysis Report</h1>
-
     <p><strong>Group Members:</strong> Anvi Rakshe, Manika Sakulsureeyadej, Mehek Daga</p>
 
     <h2>Introduction</h2>
     <p>Startup funding is a key factor in how successful a business can be. It drives growth, supports innovation, and gives us a bigger picture of what’s happening in the market and economy. By looking at where the money is going, through different funding rounds, funding types, and company stages, we can learn a lot about what helps startups grow and what attracts investors. This kind of insight is valuable for entrepreneurs looking to grow their companies, for investors looking for the next big opportunity.</p>
-
     <p>In this project, we’re analyzing startup funding trends in the San Francisco Bay Area — one of the top places in the world for tech and innovation. We’re looking at how funding changes depending on the stage of the company, its location, and the type of funding it receives. Our goal is to spot patterns that show what makes startups successful and how funding affects the local economy. Some of the key things we’re digging into include how investors behave, what funding sources are most common (like venture capital or angel investors), and how funding ties into the overall journey of a startup.</p>
-
     <p>By looking at the visualizations, we can get a better sense of funding gaps or imbalances, whether by industry, location, or growth stage. That can tell us where investors are focusing their attention and where there might be overlooked opportunities. For example, areas with high average funding usually point to strong startup communities, while places with less funding might be facing challenges or just haven’t been fully tapped into yet.</p>
 
     <h2>Introduction to the Data</h2>
     <p>Our dataset for this project was sourced from GitHub and focuses on startups in the San Francisco Bay Area. It contains around 7,000 rows and 38 columns, with detailed information on each company’s name, website, industry category, market type, funding total (USD), status, and location.</p>
-
     <p>It also includes the number of funding rounds, key founding dates, and the timeline of funding activity (first and last funding dates). A major strength of the dataset is its breakdown of funding types—such as seed, venture capital, angel investment, private equity, convertible notes, debt financing, and more—as well as detailed columns for funding rounds A through H.</p>
-
     <p>This structure makes it possible to analyze startup growth stages, funding trends across the region, and how different types of capital support business development over time.</p>
 
     <div class="section-divider"></div>
 
     <h2>Line Plot – Funding Over Time</h2>
-    <p>This line plot shows the temporal trend of startup funding activity. It tracks total funding over time, allowing us to observe boom and bust cycles, identify peaks in investment activity, and examine how startup funding responded to broader economic trends or technological shifts.</p>
+    <p>This line plot presents the total amount of startup funding by first funding year, from 1985 to 2014. The chart reveals important trends in venture capital investment over the decades, showing periods of rapid growth, economic correction, and industry shifts.</p>
+    <p>In the early years (1985–1997), startup funding remained relatively low and stable. From 1998 to 2000, we observe a modest rise, possibly linked to the dot-com boom, with a peak around 2000 followed by a dip during the dot-com bust.</p>
+    <p>A notable surge begins in 2004 and peaks in 2007, likely reflecting Web 2.0 growth. The dramatic drop in 2008 aligns with the global financial crisis. A recovery appears in 2009, but from 2010 onward, there's a gradual decline—perhaps due to market saturation or changing investment strategies.</p>
     <div class="viz-container">
       <iframe src="4200PROJECT/funding_time_lineplot.html" title="Line Plot - Funding Over Time"></iframe>
     </div>
 
     <h2>Sankey Diagram – Funding Flow</h2>
-    <p>This Sankey diagram visualizes the flow of startups through different stages of funding rounds—grouped into 1–3 rounds, 4–6 rounds, and 7+ rounds—and how these stages connect to various funding sources. Venture capital dominates early funding, while mature startups diversify into private equity, post-IPO options, and debt financing.</p>
-    <p><strong>Sankey:</strong> This Sankey diagram shows how startups transition through different funding sources as they progress from early to later funding rounds. Companies are grouped by the number of funding rounds (1–3, 4–6, or 7+), and the flows represent the types of funding they receive, such as venture capital, private equity, debt financing, and others.</p>
-    <p>Venture capital stands out as the dominant funding source across all stages, especially in the early and mid rounds. In the 1–3 round range, startups mostly rely on venture, angel, seed, and convertible note funding — typical for early-stage growth. As companies move into 4–6 rounds, they continue to depend heavily on venture capital but also start accessing private equity, debt financing, and post-IPO options, indicating a shift toward more mature funding strategies.</p>
-    <p>By the 7+ round stage, funding becomes more diversified. While venture capital remains important, there’s increased reliance on private equity, debt instruments, and secondary markets. Early-stage funding types like angel and seed largely disappear at this point.</p>
-    <p>Overall, the diagram highlights how startups evolve their funding approach over time — starting with informal or early-risk capital and gradually moving toward institutional and structured financial sources as they scale.</p>
+    <p>This Sankey diagram visualizes how startups transition through different funding sources as they progress from early to later rounds. Companies are grouped by number of funding rounds (1–3, 4–6, or 7+), with flows representing funding types such as venture capital, private equity, and debt financing.</p>
+    <p>Venture capital dominates early and mid stages. Startups in the 1–3 round group mostly use venture, angel, seed, and convertible note funding. As they move to 4–6 rounds, they begin leveraging private equity and post-IPO routes. By 7+ rounds, funding becomes more diversified, shifting toward debt, private equity, and secondary markets.</p>
+    <p>Overall, this chart illustrates how startups evolve from risk-based capital to institutionalized funding strategies as they grow.</p>
     <div class="viz-container">
       <iframe src="4200PROJECT/sankey_diagram.html" title="Sankey Diagram"></iframe>
     </div>
 
     <h2>Bar Chart – Funding Rounds Distribution</h2>
-    <p>This bar chart shows how many startups fall into each funding round group. The chart highlights the sharp drop-off after early funding rounds, illustrating both the challenge of continued growth and natural attrition in the startup ecosystem.</p>
+    <p>This bar chart shows how many startups fall into each funding round group. Software leads with nearly $7 billion raised, and rounds A–D dominate. Biotech, Enterprise Software, and Clean Tech follow.</p>
+    <p>Most startups receive 1–3 rounds of funding; only a few survive into rounds E–H. Markets like Games and Advertising have a broad spread, while others like File Sharing and Big Data show lower funding and fewer rounds.</p>
     <div class="viz-container">
       <iframe src="4200PROJECT/funding_rounds_by_market.html" title="Bar Chart - Funding Rounds"></iframe>
     </div>
-    <p><strong>Software</strong> is the highest-funded market, with total funding nearing $7 billion. It also has contributions from almost every round, especially rounds A to D. <strong>Biotechnology</strong> follows closely, with a slightly more balanced distribution across early (seed, round_a) and later rounds (round_b to round_d). Enterprise Software, Clean Technology, and Health Care round out the top five.</p>
-    <p>Early rounds (seed, round_a) are present across all markets, indicating strong investment activity at the early startup stage. Later rounds (round_e to round_h) are rare and only show up in top-funded sectors like Software, Biotech, and Semiconductors. Round_a and round_b are the most prevalent rounds across the board, showing that many startups are making it past the seed stage but fewer proceed to advanced rounds.</p>
-    <p>Some markets like “Games” and “Advertising” show a healthy range of round progression (from seed through round_d), suggesting sustained investor interest. Niche markets like File Sharing, Communities, and Big Data have significantly lower total funding and fewer funding rounds involved, possibly indicating limited scalability or investor appetite.</p>
-    <p>Markets like Social Media, Messaging, and Finance seem underfunded compared to Software and Biotech, which might suggest either market saturation or higher capital efficiency. Solar and Storage have moderate investment but lack late-stage funding, possibly due to long development timelines or hardware-heavy requirements.</p>
 
     <h2>Box Plot – Funding Amount Distribution</h2>
-    <p>This box plot presents statistical distribution of funding amounts across startup categories. It displays medians, interquartile ranges, and outliers to help identify funding variability. Outliers reveal unusually high or low investments.</p>
+    <p>This enhanced box plot shows how funding amounts grow across rounds A to G. Round A shows low, tight distributions. Rounds B through E see gradual increases in funding and spread. Rounds F and G show the largest variation, with some companies raising over $100M.</p>
+    <p>It clearly shows that funding becomes both larger and more variable as startups scale, signaling late-stage investments and high-stakes capital injections.</p>
     <div class="viz-container">
       <iframe src="4200PROJECT/boxplot.html" title="Box Plot"></iframe>
     </div>
 
-    <h2>Map – SF Bay Area Startup Distribution</h2>
-    <p>This interactive map shows where startups are located in the San Francisco Bay Area. It visualizes clusters of innovation and helps identify regional patterns in startup funding and activity, especially around San Francisco and Silicon Valley.</p>
+    <h2>Interactive Map – Bay Area Startup Hotspots</h2>
+    <p>This map uses bubble size for startup count and color for average funding by city. San Francisco dominates in quantity but has modest average funding. Milpitas stands out with high average funding but fewer startups. Palo Alto, Mountain View, and Menlo Park show strong performance in both metrics.</p>
+    <p>Overall, it contrasts startup density with funding efficiency, revealing investor preferences and startup maturity across the Bay Area.</p>
     <div class="viz-container">
       <iframe src="4200PROJECT/sf_startups_map_plot.html" title="Map - SF Startups"></iframe>
     </div>
 
     <h2>Scatter Plot – Startup Age vs. Total Funding</h2>
-    <p>This scatter plot explores the relationship between startup age and total funding, segmented by company status (operating, acquired, closed). It helps us understand whether age correlates with funding success and startup outcomes.</p>
+    <p>This scatter plot compares total funding with startup age, grouped by company status (operating, acquired, closed). Patterns reveal that acquired companies often peaked in funding earlier, while still-operating startups show a wide spread.</p>
+    <p>It provides insight into the timing of funding relative to company success or exit strategies.</p>
     <div class="viz-container">
       <iframe src="4200PROJECT/ds4200.html" title="Scatter Plot - Age vs Funding"></iframe>
     </div>
 
     <h2>Treemap – Funding by Startup Name</h2>
-    <p>This treemap visualizes the distribution of total funding by individual startup names. Larger rectangles represent companies that raised more capital. The visualization highlights key players in the funding landscape and gives a sense of capital concentration across the startup ecosystem.</p>
+    <p>This treemap uses color intensity and size to show total funding by startup name and market. Sectors like Enterprise Software and Clean Technology dominate, especially for startups beginning with “S”, “G”, and “T”. Lighter areas show markets with generally lower funding (e.g., Games, Curated Web).</p>
+    <p>It provides insight into which sectors attract the most capital—and possibly how startup names (initials) play a subconscious role in visibility.</p>
     <div class="viz-container">
       <iframe src="4200PROJECT/name_treemap_plot.html" title="Treemap - Funding by Name"></iframe>
     </div>
 
+    <h2>Conclusion</h2>
+    <p>The analysis of startup funding in the San Francisco Bay Area revealed clear trends and patterns. Venture capital dominates early-stage funding, while mature startups diversify their capital sources. Software, Biotech, and Enterprise Software consistently attract the most funding.</p>
+    <p>Visualizations highlighted how funding has evolved over decades, influenced by macroeconomic trends, market shifts, and maturing capital strategies. Geographic and market-based disparities also suggest targeted investor preferences.</p>
+    <p>Future work could explore post-2014 funding trends, startup performance metrics, and compare Bay Area trends with other global innovation hubs for broader insights.</p>
+
+    <footer>
+      © 2025 Startup Visualization Team — Final Project for DS4200. Built with D3.js & ❤️
+    </footer>
   </div>
 </body>
 </html>
