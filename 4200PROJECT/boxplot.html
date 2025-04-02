@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Startup Funding by Round – Enhanced Box Plot</title>
+  <script src="https://d3js.org/d3.v7.min.js"></script>
+  <script src="boxplot.js" defer></script>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      padding: 20px;
+    }
+
+    h2 {
+      margin-bottom: 10px;
+    }
+
+    .tooltip {
+      font-size: 13px;
+      position: absolute;
+      background: #fff;
+      border: 1px solid #ccc;
+      padding: 8px;
+      pointer-events: none;
+      opacity: 0;
+      border-radius: 4px;
+      box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+      transition: opacity 0.3s ease;
+    }
+
+    .controls {
+      margin-bottom: 15px;
+    }
+
+    label {
+      font-weight: bold;
+      margin-right: 8px;
+    }
+
+    select {
+      padding: 4px 10px;
+      font-size: 14px;
+      margin-right: 10px;
+    }
+
+    svg {
+      width: 100%;
+      height: auto;
+    }
+
+    .box {
+      fill: steelblue;
+      fill-opacity: 0.6;
+      stroke: #333;
+      stroke-width: 1px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+
+    .box:hover {
+      fill: #1f77b4;
+      stroke-width: 2px;
+    }
+
+    .median-line {
+      stroke: black;
+      stroke-width: 2px;
+      transition: all 0.3s ease;
+    }
+
+    .outlier-dot {
+      fill: orangered;
+      opacity: 0.7;
+      stroke: black;
+      stroke-width: 0.5;
+      transition: transform 0.3s ease, opacity 0.3s ease;
+    }
+
+    .outlier-dot:hover {
+      transform: scale(1.4);
+      opacity: 1;
+    }
+
+    .legend {
+      font-size: 14px;
+      margin-top: 10px;
+    }
+  </style>
+</head>
+<body>
+  <h2>Startup Funding by Round (Enhanced Box Plot)</h2>
+
+  <div class="controls">
+    <label for="statusFilter">Filter by Status:</label>
+    <select id="statusFilter"><option value="all">All</option></select>
+  </div>
+
+  <svg width="960" height="600"></svg>
+  <div class="tooltip"></div>
+
+  <div id="legend" class="legend">
+    <p><strong>Legend:</strong></p>
+    <ul>
+      <li><span style="color: steelblue; font-weight: bold;">■</span> Box = Interquartile Range (Q1 to Q3)</li>
+      <li><span style="border-bottom: 2px solid black;">—</span> = Median line</li>
+      <li><span style="color: orangered; font-weight: bold;">●</span> = Outlier points</li>
+    </ul>
+  </div>
+
+</body>
+</html>
