@@ -4,8 +4,6 @@
   <meta charset="UTF-8">
   <title>Sankey Diagram Visualization</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-  <!-- Google Fonts for better typography -->
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
 
   <style>
@@ -16,14 +14,13 @@
     html, body {
       margin: 0;
       padding: 0;
-      height: 100%;
       font-family: 'Inter', sans-serif;
-      color: #333;
       background-color: #f9f9f9;
+      color: #333;
     }
 
     header {
-      background-color: #ffffff;
+      background-color: #fff;
       padding: 30px 20px;
       text-align: center;
       box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
@@ -31,7 +28,7 @@
 
     header h1 {
       font-size: 2rem;
-      margin: 0 0 10px;
+      margin-bottom: 10px;
     }
 
     header p {
@@ -40,8 +37,9 @@
     }
 
     #container {
-      height: calc(100% - 180px); /* Header (120px) + Footer (60px) */
-      padding: 0;
+      width: 100%;
+      height: 600px;
+      border-top: 1px solid #e0e0e0;
     }
 
     #iframe {
@@ -51,8 +49,26 @@
       background-color: #ffffff;
     }
 
+    #description {
+      max-width: 900px;
+      margin: 40px auto;
+      padding: 0 20px;
+    }
+
+    #description h2 {
+      font-size: 1.4rem;
+      margin-bottom: 10px;
+      color: #222;
+    }
+
+    #description p {
+      line-height: 1.6;
+      font-size: 1rem;
+      color: #444;
+    }
+
     footer {
-      background-color: #ffffff;
+      background-color: #fff;
       padding: 15px;
       text-align: center;
       font-size: 0.9rem;
@@ -69,7 +85,7 @@
 <body>
   <header>
     <h1>Sankey Flow Visualization</h1>
-    <p><span class="highlight">Group Members:</span> Alice, Bob, Charlie</p>
+    <p><span class="highlight">Group Members:</span> Anvi Rakshe, Manika Sakulsureeyadej, Mehek Daga</p>
     <p><span class="highlight">Project Description:</span> This Sankey diagram visualizes how resources flow across categories and helps identify key transitions and bottlenecks.</p>
   </header>
 
@@ -81,8 +97,21 @@
     </iframe>
   </div>
 
+  <section id="description">
+    <h2>About the Visualization</h2>
+    <p>
+      The Sankey diagram above represents the flow of resources from their origin points to their destinations. The width of each link is proportional to the quantity of the flow, allowing viewers to quickly identify major contributors, losses, or inefficiencies in the system.
+    </p>
+    <p>
+      Our visualization helps analyze complex processes by simplifying them into a readable flow chart. For example, this can be applied to energy systems, budget allocation, user journeys, or supply chains to spot trends and make data-driven decisions.
+    </p>
+    <p>
+      This project was created using <strong>D3.js</strong> and focuses on clarity, accessibility, and interactivity. Hovering over elements (if supported) reveals details about specific transitions.
+    </p>
+  </section>
+
   <footer>
-    © 2025 Sankey Visualization Group. Built with for our final project.
+    © 2025 Sankey Visualization Group. Built with ❤️ for our final project.
   </footer>
 </body>
 </html>
