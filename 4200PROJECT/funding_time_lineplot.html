@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <style>
+    #vis.vega-embed {
+      width: 100%;
+      display: flex;
+    }
+
+    #vis.vega-embed details,
+    #vis.vega-embed details summary {
+      position: relative;
+    }
+  </style>
+  <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/vega@5"></script>
+  <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/vega-lite@5.20.1"></script>
+  <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/vega-embed@6"></script>
+</head>
+<body>
+  <div id="vis"></div>
+  <script>
+    (function(vegaEmbed) {
+      var spec = {"config": {"view": {"continuousWidth": 300, "continuousHeight": 300}}, "data": {"name": "data-5c522312848f888275ee5ae8ab2bede8"}, "mark": {"type": "line", "point": true}, "encoding": {"tooltip": [{"field": "first_funding_year", "title": "Year", "type": "ordinal"}, {"field": "total_funding", "format": "$,.0f", "title": "Total Funding", "type": "quantitative"}, {"field": "startup_count", "title": "Startup Count", "type": "quantitative"}], "x": {"field": "first_funding_year", "title": "First Funding Year", "type": "ordinal"}, "y": {"axis": {"format": "$,.0f"}, "field": "total_funding", "title": "Total Funding ($)", "type": "quantitative"}}, "height": 400, "title": "Startup Funding Over Time", "width": 700, "$schema": "https://vega.github.io/schema/vega-lite/v5.20.1.json", "datasets": {"data-5c522312848f888275ee5ae8ab2bede8": [{"first_funding_year": 1985, "total_funding": 1158000, "startup_count": 1}, {"first_funding_year": 1987, "total_funding": 2500000, "startup_count": 3}, {"first_funding_year": 1995, "total_funding": 7800000, "startup_count": 5}, {"first_funding_year": 1996, "total_funding": 25000000, "startup_count": 3}, {"first_funding_year": 1997, "total_funding": 37500000, "startup_count": 6}, {"first_funding_year": 1998, "total_funding": 246100000, "startup_count": 7}, {"first_funding_year": 1999, "total_funding": 1583578138, "startup_count": 22}, {"first_funding_year": 2000, "total_funding": 686503196, "startup_count": 20}, {"first_funding_year": 2001, "total_funding": 984626280, "startup_count": 23}, {"first_funding_year": 2002, "total_funding": 521370877, "startup_count": 20}, {"first_funding_year": 2003, "total_funding": 1984803389, "startup_count": 35}, {"first_funding_year": 2004, "total_funding": 6155067572, "startup_count": 60}, {"first_funding_year": 2005, "total_funding": 15842299306, "startup_count": 360}, {"first_funding_year": 2006, "total_funding": 17798596063, "startup_count": 434}, {"first_funding_year": 2007, "total_funding": 20047421755, "startup_count": 537}, {"first_funding_year": 2008, "total_funding": 10549877033, "startup_count": 449}, {"first_funding_year": 2009, "total_funding": 18694472778, "startup_count": 576}, {"first_funding_year": 2010, "total_funding": 11537885699, "startup_count": 624}, {"first_funding_year": 2011, "total_funding": 10682141569, "startup_count": 874}, {"first_funding_year": 2012, "total_funding": 7252232836, "startup_count": 927}, {"first_funding_year": 2013, "total_funding": 5516638926, "startup_count": 998}, {"first_funding_year": 2014, "total_funding": 3744993800, "startup_count": 813}]}};
+      var embedOpt = {"mode": "vega-lite"};
+
+      function showError(el, error){
+          el.innerHTML = ('<div style="color:red;">'
+                          + '<p>JavaScript Error: ' + error.message + '</p>'
+                          + "<p>This usually means there's a typo in your chart specification. "
+                          + "See the javascript console for the full traceback.</p>"
+                          + '</div>');
+          throw error;
+      }
+      const el = document.getElementById('vis');
+      vegaEmbed("#vis", spec, embedOpt)
+        .catch(error => showError(el, error));
+    })(vegaEmbed);
+
+  </script>
+</body>
+</html>
