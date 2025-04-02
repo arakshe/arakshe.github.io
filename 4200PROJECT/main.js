@@ -14,7 +14,7 @@ const color = d3.scaleOrdinal(d3.schemeCategory10);
 d3.csv("data-2.csv").then(data => {
   const currentYear = 2025;
 
-  // ✅ Step 1: Trim all column headers and values
+  //  Step 1: Trim all column headers and values
   data = data.map(d => {
     const cleaned = {};
     Object.entries(d).forEach(([key, val]) => {
@@ -23,7 +23,7 @@ d3.csv("data-2.csv").then(data => {
     return cleaned;
   });
 
-  // ✅ Step 2: Extract & filter relevant data
+  //  Step 2: Extract & filter relevant data
   let cleaned = data.map(d => {
     const funding = +d["funding_total_usd"]?.replace(/[^0-9]/g, '') || 0;
     const founded = +d["founded_year"];
@@ -38,7 +38,7 @@ d3.csv("data-2.csv").then(data => {
     };
   }).filter(d => d.age && d.funding > 0 && d.status);
 
-  // ✅ Step 3: Dropdown & legend setup
+  //  Step 3: Dropdown & legend setup
   const allStatuses = [...new Set(cleaned.map(d => d.status))];
   color.domain(allStatuses);
 
@@ -49,7 +49,7 @@ d3.csv("data-2.csv").then(data => {
       .text(status.charAt(0).toUpperCase() + status.slice(1));
   });
 
-  // ✅ Step 4: Scales
+  //  Step 4: Scales
   const x = d3.scaleLinear()
     .domain([0, d3.max(cleaned, d => d.age)])
     .range([0, width]);
@@ -58,7 +58,7 @@ d3.csv("data-2.csv").then(data => {
     .domain([0, d3.max(cleaned, d => d.funding)])
     .range([height, 0]);
 
-  // ✅ Step 5: Axes
+  //  Step 5: Axes
   svg.append("g")
     .attr("transform", `translate(0, ${height})`)
     .call(d3.axisBottom(x).ticks(10));
@@ -115,10 +115,10 @@ d3.csv("data-2.csv").then(data => {
     circles.exit().remove();
   }
 
-  // ✅ Step 6: Initial plot
+  //  Step 6: Initial plot
   updateScatter(cleaned);
 
-  // ✅ Step 7: Dropdown filter
+  //  Step 7: Dropdown filter
   dropdown.on("change", function () {
     const selected = this.value;
     const filtered = selected === "all"
@@ -127,7 +127,7 @@ d3.csv("data-2.csv").then(data => {
     updateScatter(filtered);
   });
 
-  // ✅ Step 8: Legend
+  //  Step 8: Legend
   const legend = svg.append("g")
     .attr("class", "legend")
     .attr("transform", `translate(${width + 20}, 20)`);
