@@ -119,7 +119,25 @@ function update() {
     .attr("x1", d => x(d.round))
     .attr("x2", d => x(d.round) + x.bandwidth())
     .attr("y1", d => y(d.median))
-    .attr("y2", d => y(d.median));
+    .attr("y2", d => y(d.median));// Extract median positions for regression-like trend line
+const lineData = grouped.map(d => ({
+  x: x(d.round) + x.bandwidth() / 2,
+  y: y(d.median)
+}));
+
+const line = d3.line()
+  .x(d => d.x)
+  .y(d => d.y)
+  .curve(d3.curveMonotoneX); // Smooth curve
+
+
+svg.append("path")
+  .datum(lineData)
+  .attr("fill", "none")
+  .attr("stroke", "darkred")
+  .attr("stroke-width", 2)
+  .attr("d", line);
+
 
   svg.selectAll(".whisker")
     .data(grouped)
