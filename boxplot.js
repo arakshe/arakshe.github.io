@@ -83,6 +83,7 @@ function update() {
     .attr("text-anchor", "middle")
     .text("Amount Raised (USD)");
 
+  // Box rects
   svg.selectAll(".box")
     .data(grouped)
     .enter()
@@ -92,6 +93,7 @@ function update() {
     .attr("width", x.bandwidth())
     .attr("y", d => y(d.q3))
     .attr("height", d => y(d.q1) - y(d.q3))
+    .attr("fill", "steelblue")
     .on("mouseover", function (event, d) {
       d3.select(this).attr("fill", "#1f77b4");
       tooltip.transition().duration(200).style("opacity", 1);
@@ -111,34 +113,47 @@ function update() {
       tooltip.transition().duration(300).style("opacity", 0);
     });
 
+  // Median line
   svg.selectAll(".median-line")
     .data(grouped)
     .enter()
     .append("line")
-    .attr("class", "median-line")
     .attr("x1", d => x(d.round))
     .attr("x2", d => x(d.round) + x.bandwidth())
     .attr("y1", d => y(d.median))
-    .attr("y2", d => y(d.median));// Extract median positions for regression-like trend line
-const lineData = grouped.map(d => ({
-  x: x(d.round) + x.bandwidth() / 2,
-  y: y(d.median)
-}));
+    .attr("y2", d => y(d.median))
+    .attr("stroke", "black")
+    .attr("stroke-width", 2);
 
-const line = d3.line()
-  .x(d => d.x)
-  .y(d => d.y)
-  .curve(d3.curveMonotoneX); // Smooth curve
+  // Regression line through medians
+  const lineData = grouped.map(d => ({
+    x: x(d.round) + x.bandwidth() / 2,
+    y: y(d.median)
+  }));
 
+  const line = d3.line()
+    .x(d => d.x)
+    .y(d => d.y)
+    .curve(d3.curveMonotoneX);
 
-svg.append("path")
-  .datum(lineData)
-  .attr("fill", "none")
-  .attr("stroke", "darkred")
-  .attr("stroke-width", 2)
-  .attr("d", line);
+  svg.append("path")
+    .datum(lineData)
+    .attr("fill", "none")
+    .attr("stroke", "darkred")
+    .attr("stroke-width", 2)
+    .attr("d", line);
 
+  // Optional: dots on regression line
+  svg.selectAll(".median-circle")
+    .data(lineData)
+    .enter()
+    .append("circle")
+    .attr("cx", d => d.x)
+    .attr("cy", d => d.y)
+    .attr("r", 3)
+    .attr("fill", "darkred");
 
+  // Whiskers
   svg.selectAll(".whisker")
     .data(grouped)
     .enter()
@@ -179,6 +194,7 @@ svg.append("path")
     .attr("y2", d => y(d.max))
     .attr("stroke", "black");
 
+  // Outliers
   svg.selectAll(".outlier-dot")
     .data(grouped.flatMap(d => d.outliers.map(v => ({ round: d.round, value: v }))))
     .enter()
@@ -187,6 +203,7 @@ svg.append("path")
     .attr("cx", d => x(d.round) + x.bandwidth() / 2)
     .attr("cy", d => y(d.value))
     .attr("r", 4)
+    .attr("fill", "black")
     .on("mouseover", (event, d) => {
       tooltip.transition().duration(200).style("opacity", 1);
       tooltip.html(`<strong>Outlier</strong><br/>$${d.value.toLocaleString()}`)
