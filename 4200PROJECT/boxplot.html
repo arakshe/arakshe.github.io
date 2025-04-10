@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <title>Startup Funding by Round</title>
+  <title>Startup Funding Box Plot</title>
   <script src="https://d3js.org/d3.v7.min.js"></script>
   <script src="boxplot.js" defer></script>
   <style>
@@ -40,7 +40,6 @@
     select {
       padding: 6px 12px;
       font-size: 14px;
-      margin-right: 10px;
     }
 
     svg {
@@ -65,7 +64,6 @@
     .median-line {
       stroke: black;
       stroke-width: 2px;
-      transition: all 0.3s ease;
     }
 
     .outlier-dot {
@@ -89,13 +87,11 @@
     <label for="statusFilter">Filter by Status:</label>
     <select id="statusFilter">
       <option value="all">All</option>
-      <!-- More options added dynamically via D3 -->
     </select>
   </div>
 
   <svg width="960" height="600"></svg>
   <div class="tooltip"></div>
-
 </body>
 </html>
 
