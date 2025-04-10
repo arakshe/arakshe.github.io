@@ -2,15 +2,23 @@ const margin = { top: 50, right: 30, bottom: 60, left: 100 },
       width = 960 - margin.left - margin.right,
       height = 600 - margin.top - margin.bottom;
 
+// Create SVG and group element
 const svg = d3.select("svg")
+  .attr("width", width + margin.left + margin.right)
+  .attr("height", height + margin.top + margin.bottom)
   .append("g")
   .attr("transform", `translate(${margin.left},${margin.top})`);
 
+// Tooltip setup
 const tooltip = d3.select(".tooltip");
+
+// Rounds to visualize
 const rounds = ["round_A", "round_B", "round_C", "round_D", "round_E", "round_F", "round_G"];
+
 let fullData = [];
 
-d3.csv("funding_rounds_by_market.csv").then(data => {
+// Load data
+d3.csv("data-2.csv").then(data => {
   data = data.map(d => {
     const cleaned = {};
     Object.entries(d).forEach(([k, v]) => {
@@ -21,40 +29,39 @@ d3.csv("funding_rounds_by_market.csv").then(data => {
 
   fullData = data;
 
-  populateDropdown("industryFilter", [...new Set(data.map(d => d.industry).filter(Boolean))]);
-  update();
+  // Populate dropdown and set event listener
+  populateDropdown("statusFilter", [...new Set(data.map(d => d.status).filter(Boolean))]);
+  d3.select("#statusFilter").on("change", update);
 
-  d3.select("#industryFilter").on("change", update);
+  update();
 });
 
 function populateDropdown(id, values) {
   const dropdown = d3.select(`#${id}`);
+  dropdown.append("option").attr("value", "all").text("All");
   values.sort().forEach(v => {
     dropdown.append("option").attr("value", v).text(v);
   });
 }
 
-function getSelectedValues(selectId) {
-  const selectedOptions = d3.select(`#${selectId}`).node().selectedOptions;
-  return Array.from(selectedOptions).map(option => option.value);
-}
-
 function update() {
-  const selectedIndustries = getSelectedValues("industryFilter");
+  const selectedStatus = d3.select("#statusFilter").property("value");
 
+  // Transform data into long format
   let longData = [];
 
   fullData.forEach(d => {
-    if (selectedIndustries.length === 0 || selectedIndustries.includes(d.industry)) {
+    if (selectedStatus === "all" || d.status === selectedStatus) {
       rounds.forEach(round => {
         const value = +d[round];
-        if (value > 0) {
+        if (!isNaN(value) && value > 0) {
           longData.push({ round, funding: value });
         }
       });
     }
   });
 
+  // Group and compute box plot stats
   const grouped = d3.groups(longData, d => d.round).map(([key, values]) => {
     const fundings = values.map(d => d.funding).sort(d3.ascending);
     const q1 = d3.quantile(fundings, 0.25);
@@ -67,27 +74,34 @@ function update() {
     return { round: key, q1, median, q3, min, max, outliers };
   });
 
+  // Scales
   const x = d3.scaleBand().domain(rounds).range([0, width]).padding(0.4);
-  const y = d3.scaleLinear().domain([0, d3.max(grouped, d => d.max || 0)]).range([height, 0]);
+  const y = d3.scaleLinear().domain([0, d3.max(grouped, d => d.max || 0)]).nice().range([height, 0]);
 
+  // Clear SVG
   svg.selectAll("*").remove();
 
+  // Axes
   svg.append("g").attr("transform", `translate(0, ${height})`).call(d3.axisBottom(x));
   svg.append("g").call(d3.axisLeft(y).ticks(10).tickFormat(d3.format(".2s")));
 
+  // Axis labels
   svg.append("text")
     .attr("x", width / 2)
-    .attr("y", height + 40)
+    .attr("y", height + 50)
     .attr("text-anchor", "middle")
+    .attr("font-weight", "bold")
     .text("Funding Round");
 
   svg.append("text")
-    .attr("x", -height / 2)
-    .attr("y", -60)
     .attr("transform", "rotate(-90)")
+    .attr("x", -height / 2)
+    .attr("y", -70)
     .attr("text-anchor", "middle")
+    .attr("font-weight", "bold")
     .text("Amount Raised (USD)");
 
+  // Box plot rectangles
   svg.selectAll(".box")
     .data(grouped)
     .enter()
@@ -97,6 +111,7 @@ function update() {
     .attr("width", x.bandwidth())
     .attr("y", d => y(d.q3))
     .attr("height", d => y(d.q1) - y(d.q3))
+    .attr("fill", "steelblue")
     .on("mouseover", function (event, d) {
       d3.select(this).attr("fill", "#1f77b4");
       tooltip.transition().duration(200).style("opacity", 1);
@@ -116,16 +131,19 @@ function update() {
       tooltip.transition().duration(300).style("opacity", 0);
     });
 
+  // Median lines
   svg.selectAll(".median-line")
     .data(grouped)
     .enter()
     .append("line")
-    .attr("class", "median-line")
     .attr("x1", d => x(d.round))
     .attr("x2", d => x(d.round) + x.bandwidth())
     .attr("y1", d => y(d.median))
-    .attr("y2", d => y(d.median));
+    .attr("y2", d => y(d.median))
+    .attr("stroke", "black")
+    .attr("stroke-width", 2);
 
+  // Whiskers
   svg.selectAll(".whisker")
     .data(grouped)
     .enter()
@@ -146,6 +164,7 @@ function update() {
     .attr("y2", d => y(d.q3))
     .attr("stroke", "black");
 
+  // Caps
   svg.selectAll(".cap-min")
     .data(grouped)
     .enter()
@@ -166,14 +185,16 @@ function update() {
     .attr("y2", d => y(d.max))
     .attr("stroke", "black");
 
+  // Outliers
   svg.selectAll(".outlier-dot")
-    .data(grouped.flatMap(d => d.outliers.map(v => ({ round: d.round, value: v }))))
+    .data(grouped.flatMap(d => d.outliers.map(value => ({ round: d.round, value }))))
     .enter()
     .append("circle")
     .attr("class", "outlier-dot")
     .attr("cx", d => x(d.round) + x.bandwidth() / 2)
     .attr("cy", d => y(d.value))
     .attr("r", 4)
+    .attr("fill", "black")
     .on("mouseover", (event, d) => {
       tooltip.transition().duration(200).style("opacity", 1);
       tooltip.html(`<strong>Outlier</strong><br/>$${d.value.toLocaleString()}`)
@@ -183,4 +204,31 @@ function update() {
     .on("mouseout", () => {
       tooltip.transition().duration(300).style("opacity", 0);
     });
+
+  // Optional regression line through medians
+  const lineData = grouped.map(d => ({
+    x: x(d.round) + x.bandwidth() / 2,
+    y: y(d.median)
+  }));
+
+  const line = d3.line()
+    .x(d => d.x)
+    .y(d => d.y)
+    .curve(d3.curveMonotoneX);
+
+  svg.append("path")
+    .datum(lineData)
+    .attr("fill", "none")
+    .attr("stroke", "darkred")
+    .attr("stroke-width", 2)
+    .attr("d", line);
+
+  svg.selectAll(".median-circle")
+    .data(lineData)
+    .enter()
+    .append("circle")
+    .attr("cx", d => d.x)
+    .attr("cy", d => d.y)
+    .attr("r", 3)
+    .attr("fill", "darkred");
 }
