@@ -29,7 +29,7 @@
     }
 
     .controls {
-      margin-bottom: 15px;
+      margin-bottom: 20px;
     }
 
     label {
@@ -38,14 +38,9 @@
     }
 
     select {
-      padding: 4px 10px;
+      padding: 6px 12px;
       font-size: 14px;
       margin-right: 10px;
-    }
-
-    select[multiple] {
-      height: auto;
-      width: 300px;
     }
 
     svg {
@@ -91,8 +86,11 @@
   <h2>Startup Funding by Round</h2>
 
   <div class="controls">
-    <label for="industryFilter">Filter by Industry:</label>
-    <select id="industryFilter" multiple size="6"></select>
+    <label for="statusFilter">Filter by Status:</label>
+    <select id="statusFilter">
+      <option value="all">All</option>
+      <!-- More options added dynamically via D3 -->
+    </select>
   </div>
 
   <svg width="960" height="600"></svg>
@@ -100,4 +98,5 @@
 
 </body>
 </html>
+
 
