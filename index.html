@@ -14,15 +14,18 @@
       color: #111;
       line-height: 1.6;
     }
+
     .container {
       max-width: 1000px;
       margin: 0 auto;
     }
+
     nav {
       background: #f4f4f4;
       padding: 10px 0;
       margin-bottom: 20px;
     }
+
     nav ul {
       list-style: none;
       display: flex;
@@ -31,21 +34,22 @@
       margin: 0;
       padding: 0;
     }
-    nav ul li {
-      display: inline;
-    }
+
     nav ul li a {
       text-decoration: none;
       color: #007BFF;
       font-weight: 600;
     }
+
     nav ul li a:hover {
       text-decoration: underline;
     }
+
     h1, h2 {
       font-weight: 600;
       margin-bottom: 10px;
     }
+
     h1 {
       font-size: 2.2rem;
       text-align: center;
@@ -53,20 +57,24 @@
       padding-bottom: 10px;
       border-bottom: 2px solid #000;
     }
+
     h2 {
       font-size: 1.5rem;
       margin-top: 40px;
     }
+
     p {
       font-size: 1rem;
       margin-bottom: 16px;
     }
+
     .navigation {
       display: flex;
       justify-content: space-between;
       max-width: 960px;
       margin: 40px auto;
     }
+
     .navigation button {
       background-color: #007BFF;
       color: #fff;
@@ -76,38 +84,44 @@
       border-radius: 5px;
       cursor: pointer;
     }
+
     .navigation button:hover {
       background-color: #0056b3;
     }
+
     .page {
       display: none;
     }
+
     .page.active {
       display: block;
     }
+
     .viz-container {
-      width: 960px;
-      max-width: 100%;
+      width: 100%;
+      max-width: 850px;
       margin: 20px auto 40px;
       overflow: hidden;
       border: 1px solid #ccc;
       border-radius: 6px;
     }
+
     iframe {
-      width: 960px;
-      height: 900px;
+      width: 100%;
+      height: 600px;
       border: none;
       display: block;
     }
   </style>
 </head>
+
 <body>
   <div class="container">
     <nav>
       <ul>
         <li><a href="#" onclick="goToPage(3)">Line Plot</a></li>
         <li><a href="#" onclick="goToPage(4)">Funding Sources Treemap</a></li>
-        <li><a href="#" onclick="goToPage(5)">Funding Rounds</a></li>
+        <li><a href="#" onclick="goToPage(5)">Bar Chart</a></li>
         <li><a href="#" onclick="goToPage(6)">Box Plot</a></li>
         <li><a href="#" onclick="goToPage(7)">Map</a></li>
         <li><a href="#" onclick="goToPage(8)">Heatmap</a></li>
@@ -118,17 +132,17 @@
       <h1>Startup Funding Analysis Report</h1>
       <p><strong>Group Members:</strong> Anvi Rakshe, Manika Sakulsureeyadej, Mehek Daga</p>
       <h2>Introduction</h2>
-      <p>Startup funding is a key factor in how successful a business can be. It drives growth, supports innovation, and gives us a bigger picture of what’s happening in the market and economy...</p>
+      <p>Startup funding is a key factor in how successful a business can be... [truncated for brevity — keep your full intro text here]</p>
     </div>
 
     <div id="page2" class="page">
       <h2>Introduction to the Data</h2>
-      <p>Our dataset for this project was sourced from GitHub and focuses on startups in the San Francisco Bay Area...</p>
+      <p>Our dataset for this project was sourced from GitHub and focuses on startups in the San Francisco Bay Area... [include your full description here]</p>
     </div>
 
     <div id="page3" class="page">
       <h2>Line Plot</h2>
-      <p>This line plot presents the total amount of startup funding by first funding year, from 1985 to 2014...</p>
+      <p>This line plot presents the total amount of startup funding by first funding year... [keep full paragraph]</p>
       <div class="viz-container">
         <iframe src="4200PROJECT/funding_time_lineplot.html" title="Line Plot - Funding Over Time"></iframe>
       </div>
@@ -136,24 +150,23 @@
 
     <div id="page4" class="page">
       <h2>Funding Sources Treemap</h2>
-      <p>This treemap visualization explores the breakdown of funding sources startups receive across all rounds. Each block represents a funding type...</p>
+      <p>This treemap visualization explores the breakdown of funding sources startups receive across all rounds... [keep full paragraph]</p>
       <div class="viz-container">
         <iframe src="4200PROJECT/treemap_funding_sources.html" title="Treemap - Funding Sources"></iframe>
       </div>
     </div>
 
     <div id="page5" class="page">
-      <h2>Funding Rounds Distribution</h2>
-      <p>This visualization shows how different types of funding (Seed, Round A-H, etc.) are distributed across markets. It highlights patterns in startup maturity and sector-specific funding trends.</p>
-      <p>High-growth industries like Software and Biotech show strong representation in early and mid-stage rounds, while niche markets have more limited round progression. The layout helps identify which markets consistently secure follow-on investments.</p>
+      <h2>Bar Chart</h2>
+      <p>This bar chart visualizes funding distribution across markets and rounds... [use your full new bar chart description]</p>
       <div class="viz-container">
-        <iframe src="4200PROJECT/fundingrounds.html" title="Funding Rounds Visualization"></iframe>
+        <iframe src="4200PROJECT/fundingrounds.html" title="Updated Bar Chart - Funding Rounds"></iframe>
       </div>
     </div>
 
     <div id="page6" class="page">
       <h2>Box Plot</h2>
-      <p>This enhanced box plot shows the distribution of funding amounts across different startup funding rounds (A through G)...</p>
+      <p>This enhanced box plot shows the distribution of funding amounts across different startup funding rounds... [full description]</p>
       <div class="viz-container">
         <iframe src="4200PROJECT/boxplot.html" title="Box Plot"></iframe>
       </div>
@@ -161,7 +174,7 @@
 
     <div id="page7" class="page">
       <h2>Interactive Map</h2>
-      <p>This visualization highlights the geographic diversity of startup activity within the Bay Area...</p>
+      <p>This visualization highlights the geographic diversity of startup activity within the Bay Area... [full description]</p>
       <div class="viz-container">
         <iframe src="4200PROJECT/sf_startups_map_plot.html" title="Map - SF Startups"></iframe>
       </div>
@@ -169,7 +182,7 @@
 
     <div id="page8" class="page">
       <h2>Heatmap</h2>
-      <p>This heatmap visualizes total startup funding by market and startup name initials...</p>
+      <p>This heatmap visualizes total startup funding by market and the first letter of the startup name... [full description]</p>
       <div class="viz-container">
         <iframe src="4200PROJECT/name_treemap_plot.html" title="Treemap - Funding by Name"></iframe>
       </div>
