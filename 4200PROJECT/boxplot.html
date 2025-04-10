@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <title>Startup Funding by Round </title>
+  <title>Startup Funding by Round</title>
   <script src="https://d3js.org/d3.v7.min.js"></script>
   <script src="boxplot.js" defer></script>
   <style>
@@ -43,6 +43,11 @@
       margin-right: 10px;
     }
 
+    select[multiple] {
+      height: auto;
+      width: 300px;
+    }
+
     svg {
       width: 100%;
       height: auto;
@@ -80,22 +85,19 @@
       transform: scale(1.4);
       opacity: 1;
     }
-
-    
   </style>
 </head>
 <body>
-  <h2>Startup Funding by Round </h2>
+  <h2>Startup Funding by Round</h2>
 
   <div class="controls">
-    <label for="statusFilter">Filter by Market:</label>
-    <select id="statusFilter"><option value="all">All</option></select>
+    <label for="industryFilter">Filter by Industry:</label>
+    <select id="industryFilter" multiple size="6"></select>
   </div>
 
   <svg width="960" height="600"></svg>
   <div class="tooltip"></div>
 
- 
-
 </body>
 </html>
+
