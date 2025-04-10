@@ -10,7 +10,7 @@ const tooltip = d3.select(".tooltip");
 const rounds = ["round_A", "round_B", "round_C", "round_D", "round_E", "round_F", "round_G"];
 let fullData = [];
 
-d3.csv("data-2.csv").then(data => {
+d3.csv("funding_rounds_by_market.csv").then(data => {
   data = data.map(d => {
     const cleaned = {};
     Object.entries(d).forEach(([k, v]) => {
@@ -21,10 +21,10 @@ d3.csv("data-2.csv").then(data => {
 
   fullData = data;
 
-  populateDropdown("category_listFilter", [...new Set(data.map(d => d.category_list).filter(Boolean))]);
+  populateDropdown("industryFilter", [...new Set(data.map(d => d.industry).filter(Boolean))]);
   update();
 
-  d3.select("#category_listFilter").on("change", update);
+  d3.select("#industryFilter").on("change", update);
 });
 
 function populateDropdown(id, values) {
@@ -34,13 +34,18 @@ function populateDropdown(id, values) {
   });
 }
 
+function getSelectedValues(selectId) {
+  const selectedOptions = d3.select(`#${selectId}`).node().selectedOptions;
+  return Array.from(selectedOptions).map(option => option.value);
+}
+
 function update() {
-  const selectedStatus = d3.select("#category_listFilter").property("value");
+  const selectedIndustries = getSelectedValues("industryFilter");
 
   let longData = [];
 
   fullData.forEach(d => {
-    if (selectedStatus === "all" || d.status === selectedStatus) {
+    if (selectedIndustries.length === 0 || selectedIndustries.includes(d.industry)) {
       rounds.forEach(round => {
         const value = +d[round];
         if (value > 0) {
