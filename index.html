@@ -209,38 +209,7 @@
       </footer>
     </div>
 
-    <div class="navigation">
-      <button onclick="prevPage()">Previous</button>
-      <button onclick="nextPage()">Next</button>
-    </div>
-  </div>
-  <script>
-    let currentPage = 1;
-    const totalPages = 9;
-    function showPage(page) {
-      for (let i = 1; i <= totalPages; i++) {
-        const p = document.getElementById(`page${i}`);
-        p.classList.remove("active");
-        if (i === page) p.classList.add("active");
-      }
-    }
-    function nextPage() {
-      if (currentPage < totalPages) {
-        currentPage++;
-        showPage(currentPage);
-      }
-    }
-    function prevPage() {
-      if (currentPage > 1) {
-        currentPage--;
-        showPage(currentPage);
-      }
-    }
-    window.onload = () => showPage(currentPage);
-  </script>
-</body>
-</html>
-    <div class="navigation">
+   <div class="navigation">
       <button onclick="prevPage()">Previous</button>
       <button onclick="nextPage()">Next</button>
     </div>
