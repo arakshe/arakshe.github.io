@@ -18,6 +18,30 @@
       max-width: 1000px;
       margin: 0 auto;
     }
+    nav {
+      background: #f4f4f4;
+      padding: 10px 0;
+      margin-bottom: 20px;
+    }
+    nav ul {
+      list-style: none;
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+      margin: 0;
+      padding: 0;
+    }
+    nav ul li {
+      display: inline;
+    }
+    nav ul li a {
+      text-decoration: none;
+      color: #007BFF;
+      font-weight: 600;
+    }
+    nav ul li a:hover {
+      text-decoration: underline;
+    }
     h1, h2 {
       font-weight: 600;
       margin-bottom: 10px;
@@ -75,6 +99,22 @@
       border: none;
       display: block;
     }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <nav>
+      <ul>
+        <li><a href="#" onclick="goToPage(3)">Line Plot</a></li>
+        <li><a href="#" onclick="goToPage(4)">Sankey Diagram</a></li>
+        <li><a href="#" onclick="goToPage(5)">Bar Chart</a></li>
+        <li><a href="#" onclick="goToPage(6)">Box Plot</a></li>
+        <li><a href="#" onclick="goToPage(7)">Map</a></li>
+        <li><a href="#" onclick="goToPage(8)">Heatmap</a></li>
+      </ul>
+    </nav>
+     }
+  
   </style>
 </head>
 <body>
@@ -200,3 +240,40 @@
   </script>
 </body>
 </html>
+    <div class="navigation">
+      <button onclick="prevPage()">Previous</button>
+      <button onclick="nextPage()">Next</button>
+    </div>
+  </div>
+  <script>
+    let currentPage = 1;
+    const totalPages = 9;
+    function showPage(page) {
+      for (let i = 1; i <= totalPages; i++) {
+        const p = document.getElementById(`page${i}`);
+        p.classList.remove("active");
+        if (i === page) p.classList.add("active");
+      }
+    }
+    function nextPage() {
+      if (currentPage < totalPages) {
+        currentPage++;
+        showPage(currentPage);
+      }
+    }
+    function prevPage() {
+      if (currentPage > 1) {
+        currentPage--;
+        showPage(currentPage);
+      }
+    }
+    function goToPage(pageNumber) {
+      currentPage = pageNumber;
+      showPage(currentPage);
+    }
+    window.onload = () => showPage(currentPage);
+  </script>
+</body>
+</html>
+
+  
