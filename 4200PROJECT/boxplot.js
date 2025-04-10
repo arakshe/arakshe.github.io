@@ -21,10 +21,10 @@ d3.csv("data-2.csv").then(data => {
 
   fullData = data;
 
-  populateDropdown("statusFilter", [...new Set(data.map(d => d.status).filter(Boolean))]);
+  populateDropdown("category_listFilter", [...new Set(data.map(d => d.category_list).filter(Boolean))]);
   update();
 
-  d3.select("#statusFilter").on("change", update);
+  d3.select("#category_listFilter").on("change", update);
 });
 
 function populateDropdown(id, values) {
@@ -35,7 +35,7 @@ function populateDropdown(id, values) {
 }
 
 function update() {
-  const selectedStatus = d3.select("#statusFilter").property("value");
+  const selectedStatus = d3.select("#category_listFilter").property("value");
 
   let longData = [];
 
