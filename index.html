@@ -16,7 +16,7 @@
     }
 
     .container {
-      max-width: 1300px; /* widened for better content layout */
+      max-width: 1400px; /* Increased from 1000 */
       margin: 0 auto;
     }
 
@@ -29,7 +29,6 @@
     nav ul {
       list-style: none;
       display: flex;
-      flex-wrap: wrap;
       justify-content: center;
       gap: 20px;
       margin: 0;
@@ -65,15 +64,14 @@
     }
 
     p {
-      font-size: 1.1rem; /* slightly larger for readability */
+      font-size: 1rem;
       margin-bottom: 16px;
-      max-width: 1100px;
     }
 
     .navigation {
       display: flex;
       justify-content: space-between;
-      max-width: 1100px;
+      max-width: 1200px;
       margin: 40px auto;
     }
 
@@ -100,18 +98,16 @@
     }
 
     .viz-container {
-      width: 100%;
-      max-width: 1200px;
+      max-width: 100%;
       margin: 20px auto 40px;
-      overflow: hidden;
       border: 1px solid #ccc;
       border-radius: 6px;
-      box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+      overflow-x: auto;
     }
 
     iframe {
-      width: 100%;
-      height: 850px;
+      width: 1400px;  /* Match Plotly figure width */
+      height: 800px;
       border: none;
       display: block;
     }
@@ -135,19 +131,17 @@
       <h1>Startup Funding Analysis Report</h1>
       <p><strong>Group Members:</strong> Anvi Rakshe, Manika Sakulsureeyadej, Mehek Daga</p>
       <h2>Introduction</h2>
-      <p>Startup funding is a key factor in how successful a business can be. It drives growth, supports innovation, and gives us a bigger picture of what’s happening in the market and economy. By looking at where the money is going, through different funding rounds, funding types, and company stages, we can learn a lot about what helps startups grow and what attracts investors.</p>
-      <p>In this project, we’re analyzing startup funding trends in the San Francisco Bay Area — one of the top places in the world for tech and innovation. We’re looking at how funding changes depending on the stage of the company, its location, and the type of funding it receives. Our goal is to spot patterns that show what makes startups successful and how funding affects the local economy.</p>
+      <p>Startup funding is a key factor in how successful a business can be... [your full intro here]</p>
     </div>
 
     <div id="page2" class="page">
       <h2>Introduction to the Data</h2>
-      <p>Our dataset for this project was sourced from GitHub and focuses on startups in the San Francisco Bay Area. It contains around 7,000 rows and 38 columns, with detailed information on each company’s name, website, industry category, market type, funding total (USD), status, and location.</p>
-      <p>It also includes the number of funding rounds, key founding dates, and the timeline of funding activity (first and last funding dates). A major strength of the dataset is its breakdown of funding types—such as seed, venture capital, angel investment, private equity, convertible notes, debt financing, and more—as well as detailed columns for funding rounds A through H.</p>
+      <p>Our dataset for this project was sourced from GitHub and focuses on startups in the San Francisco Bay Area... [your full data intro here]</p>
     </div>
 
     <div id="page3" class="page">
       <h2>Line Plot</h2>
-      <p>This line plot presents the total amount of startup funding by first funding year, from 1985 to 2014. It shows the growth, peaks, and dips over time, including the dot-com boom, the 2008 financial crisis, and post-crisis funding behavior.</p>
+      <p>This line plot presents the total amount of startup funding by first funding year... [your full paragraph here]</p>
       <div class="viz-container">
         <iframe src="4200PROJECT/funding_time_lineplot.html" title="Line Plot - Funding Over Time"></iframe>
       </div>
@@ -155,7 +149,7 @@
 
     <div id="page4" class="page">
       <h2>Funding Sources Treemap</h2>
-      <p>This treemap shows how startups shift their funding strategies over time. Early-stage startups mostly rely on venture, seed, and angel investors, while mature ones show a broader mix including private equity, debt, and post-IPO equity.</p>
+      <p>This treemap visualization explores the breakdown of funding sources startups receive across all rounds... [your full paragraph here]</p>
       <div class="viz-container">
         <iframe src="4200PROJECT/treemap_funding_sources.html" title="Treemap - Funding Sources"></iframe>
       </div>
@@ -163,7 +157,7 @@
 
     <div id="page5" class="page">
       <h2>Bar Chart</h2>
-      <p>Market-level stacked bar chart showing how different startup markets receive funding across rounds. Software dominates, followed by Biotech, Enterprise Software, and Clean Tech. Later-stage rounds are sparse across most markets.</p>
+      <p>This bar chart visualizes funding distribution across markets and rounds... [your full paragraph here]</p>
       <div class="viz-container">
         <iframe src="4200PROJECT/fundingrounds.html" title="Bar Chart - Funding Rounds"></iframe>
       </div>
@@ -171,7 +165,7 @@
 
     <div id="page6" class="page">
       <h2>Box Plot</h2>
-      <p>Funding amount distributions by round. Later rounds (F, G) show greater variability and higher medians, reflecting the scale of late-stage funding and capital intensity required to scale.</p>
+      <p>This box plot shows the distribution of funding amounts by round... [your full paragraph here]</p>
       <div class="viz-container">
         <iframe src="4200PROJECT/boxplot.html" title="Box Plot"></iframe>
       </div>
@@ -179,7 +173,7 @@
 
     <div id="page7" class="page">
       <h2>Interactive Map</h2>
-      <p>Shows startup density and average funding by city in the Bay Area. San Francisco has the most startups; Milpitas, Palo Alto, and Mountain View show higher average funding levels.</p>
+      <p>This map highlights startup locations and average funding... [your full paragraph here]</p>
       <div class="viz-container">
         <iframe src="4200PROJECT/sf_startups_map_plot.html" title="Map - SF Startups"></iframe>
       </div>
@@ -187,7 +181,7 @@
 
     <div id="page8" class="page">
       <h2>Heatmap</h2>
-      <p>Heatmap of startup funding totals by market and name initials. Useful for spotting high-performing categories and naming trends. Darker blocks = more funding.</p>
+      <p>This heatmap shows funding by startup name initial and market... [your full paragraph here]</p>
       <div class="viz-container">
         <iframe src="4200PROJECT/name_treemap_plot.html" title="Treemap - Funding by Name"></iframe>
       </div>
@@ -202,6 +196,7 @@
   <script>
     let currentPage = 1;
     const totalPages = 8;
+
     function showPage(page) {
       for (let i = 1; i <= totalPages; i++) {
         const p = document.getElementById(`page${i}`);
@@ -209,22 +204,26 @@
         if (i === page) p.classList.add("active");
       }
     }
+
     function nextPage() {
       if (currentPage < totalPages) {
         currentPage++;
         showPage(currentPage);
       }
     }
+
     function prevPage() {
       if (currentPage > 1) {
         currentPage--;
         showPage(currentPage);
       }
     }
+
     function goToPage(pageNumber) {
       currentPage = pageNumber;
       showPage(currentPage);
     }
+
     window.onload = () => showPage(currentPage);
   </script>
 </body>
