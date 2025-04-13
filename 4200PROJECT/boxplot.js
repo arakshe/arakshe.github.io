@@ -91,7 +91,7 @@ function draw() {
     .attr("y", d => y(d.q3))
     .attr("height", d => y(d.q1) - y(d.q3));
 
-  // Median lines
+  // Draw median lines
   svg.selectAll(".median-line")
     .data(grouped)
     .enter()
@@ -102,14 +102,11 @@ function draw() {
     .attr("y1", d => y(d.median))
     .attr("y2", d => y(d.median));
 
-  // Outliers with full info
+  // Draw outliers with tooltips
   const outlierDetails = grouped.flatMap(d => {
     return fullData
-      .filter(row => (selectedStatus === "all" || row.status === selectedStatus))
-      .filter(row => {
-        const val = +row[d.round];
-        return d.outliers.includes(val);
-      })
+      .filter(row => selectedStatus === "all" || row.status === selectedStatus)
+      .filter(row => d.outliers.includes(+row[d.round]))
       .map(row => ({
         round: d.round,
         value: +row[d.round],
@@ -138,8 +135,8 @@ function draw() {
         Status: ${d.status || "N/A"}<br/>
         ${d.website ? `<a href="${d.website}" target="_blank">Visit Website</a>` : ""}
       `)
-      .style("left", (event.pageX + 12) + "px")
-      .style("top", (event.pageY - 30) + "px");
+      .style("left", (event.pageX + 10) + "px")
+      .style("top", (event.pageY - 40) + "px");
     })
     .on("mouseout", () => {
       tooltip.transition().duration(300).style("opacity", 0);
