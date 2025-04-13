@@ -1,57 +1,72 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>Funding Boxplot Visualization</title>
+  <meta charset="UTF-8" />
+  <title>Startup Funding Box Plot</title>
   <script src="https://d3js.org/d3.v7.min.js"></script>
+  <script src="boxplot.js" defer></script>
   <style>
     body {
-      font-family: sans-serif;
+      font-family: Arial, sans-serif;
+      padding: 20px;
     }
-
-    .tooltip {
-      position: absolute;
-      text-align: left;
-      width: auto;
-      padding: 10px;
-      font-size: 12px;
-      background: white;
-      border: 1px solid #aaa;
-      border-radius: 4px;
-      pointer-events: none;
-      box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.2);
-      opacity: 0;
+    h2 {
+      margin-bottom: 10px;
     }
-
-    #controls {
+    .controls {
       margin-bottom: 20px;
     }
-
+    label {
+      font-weight: bold;
+    }
     select {
-      padding: 5px;
+      padding: 5px 10px;
       font-size: 14px;
     }
-
-    svg {
+    .tooltip {
+      font-size: 13px;
+      position: absolute;
+      background: #fff;
       border: 1px solid #ccc;
+      padding: 8px;
+      pointer-events: none;
+      opacity: 0;
+      border-radius: 4px;
+      box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+      transition: opacity 0.3s ease;
+    }
+    .box {
+      fill: steelblue;
+      stroke: #333;
+      stroke-width: 1px;
+    }
+    .median-line {
+      stroke: black;
+      stroke-width: 2px;
+    }
+    .outlier-dot {
+      fill: orangered;
+      opacity: 0.7;
+      stroke: black;
+      stroke-width: 0.5;
+      transition: transform 0.3s ease, opacity 0.3s ease;
+    }
+    .outlier-dot:hover {
+      transform: scale(1.4);
+      opacity: 1;
     }
   </style>
 </head>
 <body>
-
-  <h2>Startup Funding Analysis by Round</h2>
-
-  <div id="controls">
+  <h2>Startup Funding by Round</h2>
+  <div class="controls">
     <label for="statusFilter">Filter by Status:</label>
     <select id="statusFilter">
       <option value="all">All</option>
     </select>
   </div>
-
-  <svg width="960" height="600"></svg>
-
+  <svg width="960" height="700"></svg>
   <div class="tooltip"></div>
-
-  <script src="script.js"></script>
 </body>
 </html>
+
