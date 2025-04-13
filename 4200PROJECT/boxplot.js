@@ -1,58 +1,50 @@
 const margin = { top: 50, right: 30, bottom: 60, left: 100 },
       width = 960 - margin.left - margin.right,
-      height = 700 - margin.top - margin.bottom;
+      height = 600 - margin.top - margin.bottom;
 
 const svg = d3.select("svg")
-  .attr("width", width + margin.left + margin.right)
-  .attr("height", height + margin.top + margin.bottom)
   .append("g")
   .attr("transform", `translate(${margin.left},${margin.top})`);
 
 const tooltip = d3.select(".tooltip");
-
 const rounds = ["round_A", "round_B", "round_C", "round_D", "round_E", "round_F", "round_G"];
-
 let fullData = [];
 
-// Load CSV and clean column names
-
 d3.csv("data-2.csv").then(data => {
-  fullData = data.map(d => {
+  data = data.map(d => {
     const cleaned = {};
     Object.entries(d).forEach(([k, v]) => {
-      const key = k.trim();
-      cleaned[key] = typeof v === "string" ? v.trim() : v;
+      cleaned[k.trim()] = typeof v === "string" ? v.trim() : v;
     });
     return cleaned;
   });
 
-  const statuses = [...new Set(fullData.map(d => d.status).filter(Boolean))];
-  const dropdown = d3.select("#statusFilter");
-  statuses.sort().forEach(v => {
-    dropdown.append("option").attr("value", v).text(v);
-  });
+  fullData = data;
 
-  dropdown.on("change", draw);
-  draw();
+  populateDropdown("statusFilter", [...new Set(data.map(d => d.status).filter(Boolean))]);
+  update();
+
+  d3.select("#statusFilter").on("change", update);
 });
 
-function draw() {
+function populateDropdown(id, values) {
+  const dropdown = d3.select(`#${id}`);
+  values.sort().forEach(v => {
+    dropdown.append("option").attr("value", v).text(v);
+  });
+}
+
+function update() {
   const selectedStatus = d3.select("#statusFilter").property("value");
-  const longData = [];
+
+  let longData = [];
 
   fullData.forEach(d => {
     if (selectedStatus === "all" || d.status === selectedStatus) {
       rounds.forEach(round => {
         const value = +d[round];
-        if (!isNaN(value) && value > 0) {
-          longData.push({
-            round,
-            funding: value,
-            company: d.name,
-            industry: d["category_list"],
-            status: d.status,
-            website: d.homepage_url
-          });
+        if (value > 0) {
+          longData.push({ round, funding: value });
         }
       });
     }
@@ -64,18 +56,32 @@ function draw() {
     const median = d3.quantile(fundings, 0.5);
     const q3 = d3.quantile(fundings, 0.75);
     const iqr = q3 - q1;
-    const min = d3.max([d3.min(fundings), q1 - 1.0 * iqr]);
-    const max = d3.min([d3.max(fundings), q3 + 1.0 * iqr]);
-    const outliers = values.filter(d => d.funding < min || d.funding > max);
-    return { round: key, q1, median, q3, min, max, outliers, values };
+    const min = d3.max([d3.min(fundings), q1 - 1.5 * iqr]);
+    const max = d3.min([d3.max(fundings), q3 + 1.5 * iqr]);
+    const outliers = fundings.filter(f => f < min || f > max);
+    return { round: key, q1, median, q3, min, max, outliers };
   });
 
-  const x = d3.scaleBand().domain(rounds).range([0, width]).padding(0.1);
-  const y = d3.scaleLinear().domain([0, d3.max(grouped, d => d.max || 0)]).nice().range([height, 0]);
+  const x = d3.scaleBand().domain(rounds).range([0, width]).padding(0.4);
+  const y = d3.scaleLinear().domain([0, d3.max(grouped, d => d.max || 0)]).range([height, 0]);
 
   svg.selectAll("*").remove();
+
   svg.append("g").attr("transform", `translate(0, ${height})`).call(d3.axisBottom(x));
   svg.append("g").call(d3.axisLeft(y).ticks(10).tickFormat(d3.format(".2s")));
+
+  svg.append("text")
+    .attr("x", width / 2)
+    .attr("y", height + 40)
+    .attr("text-anchor", "middle")
+    .text("Funding Round");
+
+  svg.append("text")
+    .attr("x", -height / 2)
+    .attr("y", -60)
+    .attr("transform", "rotate(-90)")
+    .attr("text-anchor", "middle")
+    .text("Amount Raised (USD)");
 
   svg.selectAll(".box")
     .data(grouped)
@@ -86,7 +92,8 @@ function draw() {
     .attr("width", x.bandwidth())
     .attr("y", d => y(d.q3))
     .attr("height", d => y(d.q1) - y(d.q3))
-    .on("mouseover", (event, d) => {
+    .on("mouseover", function (event, d) {
+      d3.select(this).attr("fill", "#1f77b4");
       tooltip.transition().duration(200).style("opacity", 1);
       tooltip.html(`
         <strong>${d.round}</strong><br/>
@@ -94,11 +101,15 @@ function draw() {
         Q1: $${Math.round(d.q1).toLocaleString()}<br/>
         Median: $${Math.round(d.median).toLocaleString()}<br/>
         Q3: $${Math.round(d.q3).toLocaleString()}<br/>
-        Max: $${Math.round(d.max).toLocaleString()}`)
-        .style("left", (event.pageX + 10) + "px")
-        .style("top", (event.pageY - 40) + "px");
+        Max: $${Math.round(d.max).toLocaleString()}
+      `)
+      .style("left", (event.pageX + 10) + "px")
+      .style("top", (event.pageY - 40) + "px");
     })
-    .on("mouseout", () => tooltip.transition().duration(300).style("opacity", 0));
+    .on("mouseout", function () {
+      d3.select(this).attr("fill", "steelblue");
+      tooltip.transition().duration(300).style("opacity", 0);
+    });
 
   svg.selectAll(".median-line")
     .data(grouped)
@@ -110,25 +121,61 @@ function draw() {
     .attr("y1", d => y(d.median))
     .attr("y2", d => y(d.median));
 
+  svg.selectAll(".whisker")
+    .data(grouped)
+    .enter()
+    .append("line")
+    .attr("x1", d => x(d.round) + x.bandwidth() / 2)
+    .attr("x2", d => x(d.round) + x.bandwidth() / 2)
+    .attr("y1", d => y(d.min))
+    .attr("y2", d => y(d.q1))
+    .attr("stroke", "black");
+
+  svg.selectAll(".whisker2")
+    .data(grouped)
+    .enter()
+    .append("line")
+    .attr("x1", d => x(d.round) + x.bandwidth() / 2)
+    .attr("x2", d => x(d.round) + x.bandwidth() / 2)
+    .attr("y1", d => y(d.max))
+    .attr("y2", d => y(d.q3))
+    .attr("stroke", "black");
+
+  svg.selectAll(".cap-min")
+    .data(grouped)
+    .enter()
+    .append("line")
+    .attr("x1", d => x(d.round) + x.bandwidth() / 4)
+    .attr("x2", d => x(d.round) + x.bandwidth() * 0.75)
+    .attr("y1", d => y(d.min))
+    .attr("y2", d => y(d.min))
+    .attr("stroke", "black");
+
+  svg.selectAll(".cap-max")
+    .data(grouped)
+    .enter()
+    .append("line")
+    .attr("x1", d => x(d.round) + x.bandwidth() / 4)
+    .attr("x2", d => x(d.round) + x.bandwidth() * 0.75)
+    .attr("y1", d => y(d.max))
+    .attr("y2", d => y(d.max))
+    .attr("stroke", "black");
+
   svg.selectAll(".outlier-dot")
-    .data(grouped.flatMap(d => d.outliers.map(o => ({ ...o, round: d.round }))))
+    .data(grouped.flatMap(d => d.outliers.map(v => ({ round: d.round, value: v }))))
     .enter()
     .append("circle")
     .attr("class", "outlier-dot")
     .attr("cx", d => x(d.round) + x.bandwidth() / 2)
-    .attr("cy", d => y(d.funding))
+    .attr("cy", d => y(d.value))
     .attr("r", 4)
     .on("mouseover", (event, d) => {
       tooltip.transition().duration(200).style("opacity", 1);
-      tooltip.html(`
-        <strong>${d.company}</strong><br/>
-        Round: ${d.round}<br/>
-        Amount: $${d.funding.toLocaleString()}<br/>
-        Industry: ${d.industry || "N/A"}<br/>
-        Status: ${d.status || "N/A"}<br/>
-        ${d.website ? `<a href="${d.website}" target="_blank">Website</a>` : ""}`)
+      tooltip.html(`<strong>Outlier</strong><br/>$${d.value.toLocaleString()}`)
         .style("left", (event.pageX + 10) + "px")
         .style("top", (event.pageY - 30) + "px");
     })
-    .on("mouseout", () => tooltip.transition().duration(300).style("opacity", 0));
+    .on("mouseout", () => {
+      tooltip.transition().duration(300).style("opacity", 0);
+    });
 }
