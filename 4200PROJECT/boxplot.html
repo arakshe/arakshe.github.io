@@ -10,18 +10,8 @@
       font-family: Arial, sans-serif;
       padding: 20px;
     }
-    h2 {
-      margin-bottom: 10px;
-    }
     .controls {
       margin-bottom: 20px;
-    }
-    label {
-      font-weight: bold;
-    }
-    select {
-      padding: 5px 10px;
-      font-size: 14px;
     }
     .tooltip {
       font-size: 13px;
@@ -59,13 +49,15 @@
 </head>
 <body>
   <h2>Startup Funding by Round</h2>
+
   <div class="controls">
     <label for="statusFilter">Filter by Status:</label>
     <select id="statusFilter">
       <option value="all">All</option>
     </select>
   </div>
-  <svg width="960" height="700"></svg>
+
+  <svg width="960" height="600"></svg>
   <div class="tooltip"></div>
 </body>
 </html>
