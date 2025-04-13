@@ -1,5 +1,3 @@
-// boxplot.js with log-transformed funding values and regression line
-
 const margin = { top: 50, right: 30, bottom: 60, left: 100 },
       width = 960 - margin.left - margin.right,
       height = 700 - margin.top - margin.bottom;
