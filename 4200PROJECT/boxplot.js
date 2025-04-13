@@ -1,4 +1,4 @@
-// boxplot.js with cleaned 0-value data and regression line
+// boxplot.js with log-transformed funding values and regression line
 
 const margin = { top: 50, right: 30, bottom: 60, left: 100 },
       width = 960 - margin.left - margin.right,
@@ -42,9 +42,10 @@ function draw() {
   fullData.forEach(d => {
     if (selectedStatus === "all" || d.status === selectedStatus) {
       rounds.forEach(round => {
-        const value = +d[round];
-        if (!isNaN(value) && value > 0) {
-          longData.push({ round, funding: value });
+        const rawValue = +d[round];
+        if (!isNaN(rawValue) && rawValue > 0) {
+          const logValue = Math.log10(rawValue);
+          longData.push({ round, funding: logValue, raw: rawValue });
         }
       });
     }
@@ -56,19 +57,22 @@ function draw() {
     const median = d3.quantile(fundings, 0.5);
     const q3 = d3.quantile(fundings, 0.75);
     const iqr = q3 - q1;
-    const min = d3.max([d3.min(fundings), q1 - 3 * iqr]);
-    const max = d3.min([d3.max(fundings), q3 + 3 * iqr]);
-    const outliers = fundings.filter(f => f < min || f > max);
+    const min = d3.max([d3.min(fundings), q1 - 1.5 * iqr]);
+    const max = d3.min([d3.max(fundings), q3 + 1.5 * iqr]);
+    const outliers = values.filter(d => d.funding < min || d.funding > max);
     return { round: key, q1, median, q3, min, max, outliers };
   });
 
   const x = d3.scaleBand().domain(rounds).range([0, width]).padding(0.4);
-  const y = d3.scaleLinear().domain([0, d3.max(grouped, d => d.max || 0)]).range([height, 0]);
+  const y = d3.scaleLinear()
+    .domain([d3.min(grouped, d => d.min), d3.max(grouped, d => d.max)])
+    .nice()
+    .range([height, 0]);
 
   svg.selectAll("*").remove();
 
   svg.append("g").attr("transform", `translate(0, ${height})`).call(d3.axisBottom(x));
-  svg.append("g").call(d3.axisLeft(y).ticks(10).tickFormat(d3.format(".2s")));
+  svg.append("g").call(d3.axisLeft(y).ticks(10).tickFormat(d3.format(".2f")));
 
   svg.append("text")
     .attr("x", width / 2)
@@ -81,7 +85,7 @@ function draw() {
     .attr("y", -60)
     .attr("transform", "rotate(-90)")
     .attr("text-anchor", "middle")
-    .text("Amount Raised (USD)");
+    .text("Log10 of Amount Raised (USD)");
 
   svg.selectAll(".box")
     .data(grouped)
@@ -97,11 +101,10 @@ function draw() {
       tooltip.transition().duration(200).style("opacity", 1);
       tooltip.html(`
         <strong>${d.round}</strong><br/>
-        Min: $${Math.round(d.min).toLocaleString()}<br/>
-        Q1: $${Math.round(d.q1).toLocaleString()}<br/>
-        Median: $${Math.round(d.median).toLocaleString()}<br/>
-        Q3: $${Math.round(d.q3).toLocaleString()}<br/>
-        Max: $${Math.round(d.max).toLocaleString()}`)
+        Log Median: ${d.median.toFixed(2)}<br/>
+        Approx. Median: $${Math.pow(10, d.median).toLocaleString()}<br/>
+        Min (log): ${d.min.toFixed(2)}<br/>
+        Max (log): ${d.max.toFixed(2)}`)
       .style("left", (event.pageX + 10) + "px")
       .style("top", (event.pageY - 40) + "px");
     })
@@ -170,7 +173,7 @@ function draw() {
     .attr("r", 4)
     .on("mouseover", (event, d) => {
       tooltip.transition().duration(200).style("opacity", 1);
-      tooltip.html(`<strong>Outlier</strong><br/>$${d.value.toLocaleString()}`)
+      tooltip.html(`<strong>Outlier</strong><br/>Log: ${d.value.toFixed(2)}<br/>Approx: $${Math.pow(10, d.value).toLocaleString()}`)
         .style("left", (event.pageX + 10) + "px")
         .style("top", (event.pageY - 30) + "px");
     })
