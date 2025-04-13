@@ -12,7 +12,7 @@ const tooltip = d3.select(".tooltip");
 const rounds = ["round_A", "round_B", "round_C", "round_D", "round_E", "round_F", "round_G"];
 let fullData = [];
 
-d3.csv("data-2.csv").then(data => {
+d3.csv("data.csv").then(data => {
   fullData = data.map(d => {
     const cleaned = {};
     Object.entries(d).forEach(([k, v]) => {
