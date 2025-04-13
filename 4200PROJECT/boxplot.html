@@ -49,6 +49,11 @@
       opacity: 0.7;
       stroke: black;
       stroke-width: 0.5;
+      transition: transform 0.3s ease, opacity 0.3s ease;
+    }
+    .outlier-dot:hover {
+      transform: scale(1.4);
+      opacity: 1;
     }
   </style>
 </head>
@@ -60,10 +65,8 @@
       <option value="all">All</option>
     </select>
   </div>
-  <svg width="960" height="600"></svg>
+  <svg width="960" height="800"></svg>
   <div class="tooltip"></div>
 </body>
 </html>
-
-
 
