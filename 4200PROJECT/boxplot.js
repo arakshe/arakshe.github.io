@@ -1,10 +1,8 @@
 const margin = { top: 50, right: 30, bottom: 60, left: 100 },
       width = 960 - margin.left - margin.right,
-      height = 700 - margin.top - margin.bottom;
+      height = 600 - margin.top - margin.bottom;
 
 const svg = d3.select("svg")
-  .attr("width", width + margin.left + margin.right)
-  .attr("height", height + margin.top + margin.bottom)
   .append("g")
   .attr("transform", `translate(${margin.left},${margin.top})`);
 
@@ -13,37 +11,40 @@ const rounds = ["round_A", "round_B", "round_C", "round_D", "round_E", "round_F"
 let fullData = [];
 
 d3.csv("data-2.csv").then(data => {
-  fullData = data.map(d => {
+  data = data.map(d => {
     const cleaned = {};
     Object.entries(d).forEach(([k, v]) => {
-      const key = k.trim();
-      const value = typeof v === "string" ? v.trim() : v;
-      cleaned[key] = (value === "0" || +value === 0) ? null : value;
+      cleaned[k.trim()] = typeof v === "string" ? v.trim() : v;
     });
     return cleaned;
   });
 
-  const statuses = [...new Set(fullData.map(d => d.status).filter(Boolean))];
-  const dropdown = d3.select("#statusFilter");
-  statuses.sort().forEach(v => {
-    dropdown.append("option").attr("value", v).text(v);
-  });
+  fullData = data;
 
-  dropdown.on("change", draw);
-  draw();
+  populateDropdown("statusFilter", [...new Set(data.map(d => d.status).filter(Boolean))]);
+  update();
+
+  d3.select("#statusFilter").on("change", update);
 });
 
-function draw() {
+function populateDropdown(id, values) {
+  const dropdown = d3.select(`#${id}`);
+  values.sort().forEach(v => {
+    dropdown.append("option").attr("value", v).text(v);
+  });
+}
+
+function update() {
   const selectedStatus = d3.select("#statusFilter").property("value");
-  const longData = [];
+
+  let longData = [];
 
   fullData.forEach(d => {
     if (selectedStatus === "all" || d.status === selectedStatus) {
       rounds.forEach(round => {
-        const rawValue = +d[round];
-        if (!isNaN(rawValue) && rawValue > 0) {
-          const logValue = Math.log10(rawValue);
-          longData.push({ round, funding: logValue, raw: rawValue });
+        const value = +d[round];
+        if (!isNaN(value) && value > 0) {
+          longData.push({ round, funding: value });
         }
       });
     }
@@ -62,15 +63,12 @@ function draw() {
   });
 
   const x = d3.scaleBand().domain(rounds).range([0, width]).padding(0.4);
-  const y = d3.scaleLinear()
-    .domain([d3.min(grouped, d => d.min), d3.max(grouped, d => d.max)])
-    .nice()
-    .range([height, 0]);
+  const y = d3.scaleLinear().domain([0, d3.max(grouped, d => d.max || 0)]).range([height, 0]);
 
   svg.selectAll("*").remove();
 
   svg.append("g").attr("transform", `translate(0, ${height})`).call(d3.axisBottom(x));
-  svg.append("g").call(d3.axisLeft(y).ticks(10).tickFormat(d3.format(".2f")));
+  svg.append("g").call(d3.axisLeft(y).ticks(10).tickFormat(d3.format(".2s")));
 
   svg.append("text")
     .attr("x", width / 2)
@@ -83,7 +81,7 @@ function draw() {
     .attr("y", -60)
     .attr("transform", "rotate(-90)")
     .attr("text-anchor", "middle")
-    .text("Log10 of Amount Raised (USD)");
+    .text("Amount Raised (USD)");
 
   svg.selectAll(".box")
     .data(grouped)
@@ -99,10 +97,12 @@ function draw() {
       tooltip.transition().duration(200).style("opacity", 1);
       tooltip.html(`
         <strong>${d.round}</strong><br/>
-        Log Median: ${d.median.toFixed(2)}<br/>
-        Approx. Median: $${Math.pow(10, d.median).toLocaleString()}<br/>
-        Min (log): ${d.min.toFixed(2)}<br/>
-        Max (log): ${d.max.toFixed(2)}`)
+        Min: $${Math.round(d.min).toLocaleString()}<br/>
+        Q1: $${Math.round(d.q1).toLocaleString()}<br/>
+        Median: $${Math.round(d.median).toLocaleString()}<br/>
+        Q3: $${Math.round(d.q3).toLocaleString()}<br/>
+        Max: $${Math.round(d.max).toLocaleString()}
+      `)
       .style("left", (event.pageX + 10) + "px")
       .style("top", (event.pageY - 40) + "px");
     })
@@ -162,7 +162,7 @@ function draw() {
     .attr("stroke", "black");
 
   svg.selectAll(".outlier-dot")
-    .data(grouped.flatMap(d => d.outliers.map(v => ({ round: d.round, value: v }))))
+    .data(grouped.flatMap(d => d.outliers.map(v => ({ round: d.round, value: v.funding }))))
     .enter()
     .append("circle")
     .attr("class", "outlier-dot")
@@ -171,15 +171,13 @@ function draw() {
     .attr("r", 4)
     .on("mouseover", (event, d) => {
       tooltip.transition().duration(200).style("opacity", 1);
-      tooltip.html(`<strong>Outlier</strong><br/>Log: ${d.value.toFixed(2)}<br/>Approx: $${Math.pow(10, d.value).toLocaleString()}`)
+      tooltip.html(`<strong>Outlier</strong><br/>$${d.value.toLocaleString()}`)
         .style("left", (event.pageX + 10) + "px")
         .style("top", (event.pageY - 30) + "px");
     })
-    .on("mouseout", () => {
-      tooltip.transition().duration(300).style("opacity", 0);
-    });
+    .on("mouseout", () => tooltip.transition().duration(300).style("opacity", 0));
 
-  // Add regression line through medians
+  // Regression Line
   const lineData = grouped.map(d => ({
     x: x(d.round) + x.bandwidth() / 2,
     y: y(d.median)
@@ -201,9 +199,9 @@ function draw() {
     .data(lineData)
     .enter()
     .append("circle")
-    .attr("class", "median-dot")
     .attr("cx", d => d.x)
     .attr("cy", d => d.y)
     .attr("r", 3)
     .attr("fill", "darkred");
 }
+
