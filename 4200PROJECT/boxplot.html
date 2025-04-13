@@ -10,7 +10,6 @@
       font-family: Arial, sans-serif;
       padding: 20px;
     }
-
     .tooltip {
       font-size: 13px;
       position: absolute;
@@ -23,22 +22,22 @@
       box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
       transition: opacity 0.3s ease;
     }
-
     .controls {
       margin-bottom: 20px;
     }
-
     .box {
       fill: steelblue;
       stroke: #333;
       stroke-width: 1px;
+      cursor: pointer;
     }
-
+    .box:hover {
+      fill: #4682b4;
+    }
     .median-line {
       stroke: black;
       stroke-width: 2px;
     }
-
     .outlier-dot {
       fill: orangered;
       opacity: 0.7;
@@ -46,7 +45,6 @@
       stroke-width: 0.5;
       transition: transform 0.3s ease, opacity 0.3s ease;
     }
-
     .outlier-dot:hover {
       transform: scale(1.4);
       opacity: 1;
@@ -63,7 +61,7 @@
     </select>
   </div>
 
-  <svg width="960" height="600"></svg>
+  <svg width="960" height="700"></svg>
   <div class="tooltip"></div>
 </body>
 </html>
