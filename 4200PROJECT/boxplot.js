@@ -56,8 +56,8 @@ function draw() {
     const median = d3.quantile(fundings, 0.5);
     const q3 = d3.quantile(fundings, 0.75);
     const iqr = q3 - q1;
-    const min = d3.max([d3.min(fundings), q1 - 1.5 * iqr]);
-    const max = d3.min([d3.max(fundings), q3 + 1.5 * iqr]);
+    const min = d3.max([d3.min(fundings), q1 - 3 * iqr]);
+    const max = d3.min([d3.max(fundings), q3 + 3 * iqr]);
     const outliers = fundings.filter(f => f < min || f > max);
     return { round: key, q1, median, q3, min, max, outliers };
   });
