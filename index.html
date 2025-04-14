@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  
+  <title>Startup Funding Analysis Report</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
   <style>
@@ -13,20 +13,6 @@
       background-color: #fff;
       color: #111;
       line-height: 1.6;
-    }
-
-
-    header {
-      text-align: center;
-      margin-bottom: 20px;
-    }
-    
-    header img {
-      width: 100%;
-      max-width: 1200px;
-      height: auto;
-      display: block;
-      margin: 0 auto;
     }
 
     .container {
@@ -65,8 +51,8 @@
     }
 
     iframe {
-      width: auto;
-      height: auto;
+      width: 1100px;
+      height: 700px;
       border: none;
       display: block;
       margin: 0 auto;
@@ -86,11 +72,6 @@
   </style>
 </head>
 <body>
-  <!-- Header Section with the header.png Image -->
-  <header>
-    <img src="header.png" alt="Header Image">
-  </header>
-
   <div class="container">
     <h1>Startup Funding Analysis Report</h1>
     <p><strong>Group Members:</strong> Anvi Rakshe, Manika Sakulsureeyadej, Mehek Daga</p>
@@ -106,7 +87,7 @@
 
     <div class="section-divider"></div>
 
-    <h2>Line Plot</h2>
+    <h2>Line Plot – Funding Over Time</h2>
     <p>This line plot presents the total amount of startup funding by first funding year, from 1985 to 2014. The chart reveals important trends in venture capital investment over the decades...</p>
     <div class="viz-container">
       <iframe src="4200PROJECT/funding_time_lineplot.html" title="Line Plot - Funding Over Time"></iframe>
@@ -119,32 +100,32 @@
       <iframe src="4200PROJECT/treemap_funding_sources.html" title="Treemap - Funding Sources by Rounds"></iframe>
     </div>
 
-    <h2>Bar Chart</h2>
-    <p>Software is the highest-funded market, with total funding nearing $7 billion...</p>
+    <h2>Bar Chart – Funding by Market</h2>
+    <p>Software is the highest-funded market, with total funding nearing $7 billion. This bar chart highlights funding distribution across markets, with clear emphasis on leading categories like biotechnology, mobile, and health care...</p>
     <div class="viz-container">
       <iframe src="4200PROJECT/fundingrounds.html" title="Bar Chart - Funding Rounds"></iframe>
     </div>
 
-    <h2>Startup Funding by Round</h2>
-    <p>The box plot reveals clear patterns in startup funding distributions across funding rounds (A through G). Early rounds (Round A and B) show relatively lower median funding amounts, typically under $20 million, reflecting the initial funding stages with modest financial commitments. As startups progress to later rounds (Rounds C, D, E, and particularly F and G), median funding substantially increases, highlighting growing investor confidence and larger-scale investments as companies mature. The significant presence of outliers, especially in earlier rounds, indicates certain startups secured exceptionally high funding compared to their peers, suggesting occasional investor enthusiasm or market speculation in select startups. The interactive tooltip feature provides additional context, allowing detailed exploration of individual funding amounts, medians, and quartiles, enhancing the analytical depth. Overall, this analysis underscores a consistent growth trajectory in investment amounts as startups advance through funding stages, with notable variability and exceptional cases in early funding rounds.</p>
+    <h2>Box Plot – Funding Amount by Round</h2>
+    <p>The box plot reveals clear patterns in startup funding distributions across funding rounds (A through G). Early rounds show relatively lower medians, while later rounds feature larger investments. Outliers suggest investor excitement in select startups. Interactive elements allow detailed data exploration.</p>
     <div class="viz-container">
       <iframe src="4200PROJECT/boxplot.html" title="Box Plot"></iframe>
     </div>
 
-    <h2>Interactive Map</h2>
-    <p>This visualization highlights the geographic diversity of startup activity within the Bay Area...</p>
+    <h2>Interactive Map – Bay Area Startups</h2>
+    <p>This map displays the geographic distribution of funded startups across the Bay Area, pinpointing local startup hubs and investment clusters.</p>
     <div class="viz-container">
       <iframe src="4200PROJECT/sf_startups_map_plot.html" title="Map - SF Startups"></iframe>
     </div>
 
-    <h2>Funding by Startup Name Letter</h2>
-    <p>This heatmap visualizes total startup funding by market and the first letter of the startup name...</p>
+    <h2>Treemap – Funding by Startup Name</h2>
+    <p>This heatmap visualizes total startup funding by market and the first letter of the startup name, uncovering alphabetic patterns in top-funded categories.</p>
     <div class="viz-container">
       <iframe src="4200PROJECT/name_treemap_plot.html" title="Treemap - Funding by Name"></iframe>
     </div>
 
     <h2>Conclusion</h2>
-    <p>The analysis of startup funding in the San Francisco Bay Area revealed clear trends and patterns...</p>
+    <p>The analysis of startup funding in the San Francisco Bay Area revealed clear trends and patterns in investment behavior, dominant industries, and funding stages. These insights can support future decisions by investors, founders, and policymakers looking to support innovation ecosystems.</p>
 
     <footer>
       &copy; 2025 Startup Visualization Team — DS4200 Final Project
