@@ -1,0 +1,2134 @@
+<!DOCTYPE html>
+<html>
+<head>
+    
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+    
+        <script>
+            L_NO_TOUCH = false;
+            L_DISABLE_3D = false;
+        </script>
+    
+    <style>html, body {width: 100%;height: 100%;margin: 0;padding: 0;}</style>
+    <style>#map {position:absolute;top:0;bottom:0;right:0;left:0;}</style>
+    <script src="https://cdn.jsdelivr.net/npm/leaflet@1.9.3/dist/leaflet.js"></script>
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Leaflet.awesome-markers/2.0.2/leaflet.awesome-markers.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/leaflet@1.9.3/dist/leaflet.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap-glyphicons.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.2.0/css/all.min.css"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Leaflet.awesome-markers/2.0.2/leaflet.awesome-markers.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/python-visualization/folium/folium/templates/leaflet.awesome.rotate.min.css"/>
+    
+            <meta name="viewport" content="width=device-width,
+                initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+            <style>
+                #map_431764e8ccb9ea9e86439d6e6b9e4aa9 {
+                    position: relative;
+                    width: 100.0%;
+                    height: 100.0%;
+                    left: 0.0%;
+                    top: 0.0%;
+                }
+                .leaflet-container { font-size: 1rem; }
+            </style>
+        
+    <script src="https://cdn.jsdelivr.net/gh/python-visualization/folium@main/folium/templates/leaflet_heat.min.js"></script>
+</head>
+<body>
+    
+    
+<div id="legend" style="
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    z-index: 9999;
+    background: white;
+    padding: 10px;
+    font-size: 14px;
+    border: 2px solid grey;
+    opacity: 0.9;
+    width: 260px;
+">
+    <div style="font-weight: bold; margin-bottom: 5px;">Average Funding (USD)</div>
+    
+    <div style="display: flex; align-items: center; margin-bottom: 2px;">
+        <div style="width: 20px; height: 20px; background:#deebf7; margin-right: 5px;"></div>
+        <div>$827 - $11.1M</div>
+    </div>
+    
+    <div style="display: flex; align-items: center; margin-bottom: 2px;">
+        <div style="width: 20px; height: 20px; background:#9ecae1; margin-right: 5px;"></div>
+        <div>$11.1M - $22.1M</div>
+    </div>
+    
+    <div style="display: flex; align-items: center; margin-bottom: 2px;">
+        <div style="width: 20px; height: 20px; background:#4292c6; margin-right: 5px;"></div>
+        <div>$22.1M - $33.2M</div>
+    </div>
+    
+    <div style="display: flex; align-items: center; margin-bottom: 2px;">
+        <div style="width: 20px; height: 20px; background:#2171b5; margin-right: 5px;"></div>
+        <div>$33.2M - $44.2M</div>
+    </div>
+    
+    <div style="display: flex; align-items: center; margin-bottom: 2px;">
+        <div style="width: 20px; height: 20px; background:#08519c; margin-right: 5px;"></div>
+        <div>$44.2M - $55.3M</div>
+    </div>
+    
+    <div style="display: flex; align-items: center; margin-bottom: 2px;">
+        <div style="width: 20px; height: 20px; background:#08306b; margin-right: 5px;"></div>
+        <div>$55.3M - $66.3M</div>
+    </div>
+    
+    <hr style="margin:10px 0;">
+    <div style="font-weight: bold; margin-bottom: 5px;">Startup Count</div>
+    
+    <div style="display: flex; align-items: center; margin-bottom: 5px;">
+        <svg width="20" height="20">
+            <circle cx="10.464101615137753" cy="10.464101615137753" r="5.464101615137754"
+                style="fill:#3182bd; opacity:0.85; stroke:#000; stroke-width:0.5"/>
+        </svg>
+        <div style="margin-left: 8px;">1–5 Startups</div>
+    </div>
+    
+    <div style="display: flex; align-items: center; margin-bottom: 5px;">
+        <svg width="28" height="28">
+            <circle cx="14.21110255092798" cy="14.21110255092798" r="9.21110255092798"
+                style="fill:#3182bd; opacity:0.85; stroke:#000; stroke-width:0.5"/>
+        </svg>
+        <div style="margin-left: 8px;">6–20 Startups</div>
+    </div>
+    
+    <div style="display: flex; align-items: center; margin-bottom: 5px;">
+        <svg width="37" height="37">
+            <circle cx="18.916375287812983" cy="18.916375287812983" r="13.916375287812984"
+                style="fill:#3182bd; opacity:0.85; stroke:#000; stroke-width:0.5"/>
+        </svg>
+        <div style="margin-left: 8px;">21–50 Startups</div>
+    </div>
+    
+    <div style="display: flex; align-items: center; margin-bottom: 5px;">
+        <svg width="48" height="48">
+            <circle cx="24.320508075688775" cy="24.320508075688775" r="19.320508075688775"
+                style="fill:#3182bd; opacity:0.85; stroke:#000; stroke-width:0.5"/>
+        </svg>
+        <div style="margin-left: 8px;">51+ Startups</div>
+    </div>
+    
+</div>
+    
+<div id="heatmap-legend" style="
+    position: fixed;
+    bottom: 20px;
+    left: 20px;
+    z-index: 9998;
+    background: white;
+    padding: 10px;
+    font-size: 14px;
+    border: 2px solid grey;
+    opacity: 0.9;
+    width: 200px;
+">
+    <div style="font-weight: bold; margin-bottom: 5px;">Heatmap Intensity</div>
+    <div style="display: flex; align-items: center;">
+        <div style="width: 100%; height: 15px; background: linear-gradient(to right, blue, lime, red);"></div>
+    </div>
+    <div style="display: flex; justify-content: space-between;">
+        <span>Low</span>
+        <span>High</span>
+    </div>
+</div>
+    
+<style>
+.leaflet-control-layers {
+    position: fixed !important;
+    top: auto !important;
+    bottom: 20px !important;
+    left: auto !important;
+    right: 20px !important;
+    z-index: 1100 !important;
+}
+</style>
+    
+            <div class="folium-map" id="map_431764e8ccb9ea9e86439d6e6b9e4aa9" ></div>
+        
+</body>
+<script>
+    
+    
+            var map_431764e8ccb9ea9e86439d6e6b9e4aa9 = L.map(
+                "map_431764e8ccb9ea9e86439d6e6b9e4aa9",
+                {
+                    center: [37.77, -122.42],
+                    crs: L.CRS.EPSG3857,
+                    ...{
+  "zoom": 9,
+  "zoomControl": true,
+  "preferCanvas": false,
+}
+
+                }
+            );
+
+            
+
+        
+    
+            var tile_layer_c0dff39be6c8d321febc2ae4eea698f4 = L.tileLayer(
+                "https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png",
+                {
+  "minZoom": 0,
+  "maxZoom": 20,
+  "maxNativeZoom": 20,
+  "noWrap": false,
+  "attribution": "\u0026copy; \u003ca href=\"https://www.openstreetmap.org/copyright\"\u003eOpenStreetMap\u003c/a\u003e contributors \u0026copy; \u003ca href=\"https://carto.com/attributions\"\u003eCARTO\u003c/a\u003e",
+  "subdomains": "abcd",
+  "detectRetina": false,
+  "tms": false,
+  "opacity": 1,
+}
+
+            );
+        
+    
+            tile_layer_c0dff39be6c8d321febc2ae4eea698f4.addTo(map_431764e8ccb9ea9e86439d6e6b9e4aa9);
+        
+    
+            var feature_group_885af36faedf5c36cf132af05ca96e6f = L.featureGroup(
+                {
+}
+            );
+        
+    
+            var circle_marker_afd8c68d598bfe80095fd72907e95f10 = L.circleMarker(
+                [37.6090291, -121.899142],
+                {"bubblingMouseEvents": true, "color": "#9ecae1", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#9ecae1", "fillOpacity": 0.85, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 15.862943611198906, "stroke": true, "weight": 3}
+            ).addTo(feature_group_885af36faedf5c36cf132af05ca96e6f);
+        
+    
+            circle_marker_afd8c68d598bfe80095fd72907e95f10.bindTooltip(
+                `<div>
+                     
+        <div style="font-size: 14px;">
+            <b>Alameda</b><br>
+            Startups: 15<br>
+            Avg. Funding: $20,984,031<br>
+            Top Market:  Biotechnology <br><br>
+            <b>Top-Funded Startup:</b><br>
+            Singulex ($127,336,875)
+        </div>
+    
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_92a1e245d7a70d9d568c3388ba9daeb8 = L.circleMarker(
+                [37.85513505, -122.00668905178806],
+                {"bubblingMouseEvents": true, "color": "#deebf7", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#deebf7", "fillOpacity": 0.85, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 7.493061443340549, "stroke": true, "weight": 3}
+            ).addTo(feature_group_885af36faedf5c36cf132af05ca96e6f);
+        
+    
+            circle_marker_92a1e245d7a70d9d568c3388ba9daeb8.bindTooltip(
+                `<div>
+                     
+        <div style="font-size: 14px;">
+            <b>Alamo</b><br>
+            Startups: 2<br>
+            Avg. Funding: $2,100,000<br>
+            Top Market:  Networking <br><br>
+            <b>Top-Funded Startup:</b><br>
+            Brainpark ($3,700,000)
+        </div>
+    
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_de5d1de0a556fe0aed7886f7eedc01a2 = L.circleMarker(
+                [36.9941295, -121.89033677231834],
+                {"bubblingMouseEvents": true, "color": "#deebf7", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#deebf7", "fillOpacity": 0.85, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 8.931471805599454, "stroke": true, "weight": 3}
+            ).addTo(feature_group_885af36faedf5c36cf132af05ca96e6f);
+        
+    
+            circle_marker_de5d1de0a556fe0aed7886f7eedc01a2.bindTooltip(
+                `<div>
+                     
+        <div style="font-size: 14px;">
+            <b>Aptos</b><br>
+            Startups: 3<br>
+            Avg. Funding: $200,000<br>
+            Top Market:  Cloud Computing <br><br>
+            <b>Top-Funded Startup:</b><br>
+            SocialEars ($200,000)
+        </div>
+    
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_f7f29792e811f8b32309a2b9a34c2e4f = L.circleMarker(
+                [37.453773, -122.2058272],
+                {"bubblingMouseEvents": true, "color": "#deebf7", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#deebf7", "fillOpacity": 0.85, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 5.465735902799727, "stroke": true, "weight": 3}
+            ).addTo(feature_group_885af36faedf5c36cf132af05ca96e6f);
+        
+    
+            circle_marker_f7f29792e811f8b32309a2b9a34c2e4f.bindTooltip(
+                `<div>
+                     
+        <div style="font-size: 14px;">
+            <b>Atherton</b><br>
+            Startups: 1<br>
+            Avg. Funding: $1,000,000<br>
+            Top Market:  Curated Web <br><br>
+            <b>Top-Funded Startup:</b><br>
+            DevHD ($1,000,000)
+        </div>
+    
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_e4f1edef28f31fd1883d6fa3f4c85101 = L.circleMarker(
+                [37.5164926, -122.2941914],
+                {"bubblingMouseEvents": true, "color": "#9ecae1", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#9ecae1", "fillOpacity": 0.85, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 13.989476363991853, "stroke": true, "weight": 3}
+            ).addTo(feature_group_885af36faedf5c36cf132af05ca96e6f);
+        
+    
+            circle_marker_e4f1edef28f31fd1883d6fa3f4c85101.bindTooltip(
+                `<div>
+                     
+        <div style="font-size: 14px;">
+            <b>Belmont</b><br>
+            Startups: 10<br>
+            Avg. Funding: $14,510,400<br>
+            Top Market:  Software <br><br>
+            <b>Top-Funded Startup:</b><br>
+            PowerVision ($86,500,000)
+        </div>
+    
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_a4cddb64b5bc7999f03073ead81e06ef = L.circleMarker(
+                [37.8770247, -122.4614566],
+                {"bubblingMouseEvents": true, "color": "#deebf7", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#deebf7", "fillOpacity": 0.85, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 12.39720770839918, "stroke": true, "weight": 3}
+            ).addTo(feature_group_885af36faedf5c36cf132af05ca96e6f);
+        
+    
+            circle_marker_a4cddb64b5bc7999f03073ead81e06ef.bindTooltip(
+                `<div>
+                     
+        <div style="font-size: 14px;">
+            <b>Belvedere Tiburon</b><br>
+            Startups: 7<br>
+            Avg. Funding: $3,701,300<br>
+            Top Market:  Hardware + Software <br><br>
+            <b>Top-Funded Startup:</b><br>
+            Taxon Biosciences ($9,100,000)
+        </div>
+    
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_d788640da6867a2936fd9a45e741dae5 = L.circleMarker(
+                [38.049365, -122.1585777],
+                {"bubblingMouseEvents": true, "color": "#deebf7", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#deebf7", "fillOpacity": 0.85, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 5.465735902799727, "stroke": true, "weight": 3}
+            ).addTo(feature_group_885af36faedf5c36cf132af05ca96e6f);
+        
+    
+            circle_marker_d788640da6867a2936fd9a45e741dae5.bindTooltip(
+                `<div>
+                     
+        <div style="font-size: 14px;">
+            <b>Benicia</b><br>
+            Startups: 1<br>
+            Avg. Funding: $7,500,000<br>
+            Top Market:  Nanotechnology <br><br>
+            <b>Top-Funded Startup:</b><br>
+            Therma Flite ($7,500,000)
+        </div>
+    
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_76b1a4cf656a092ed90c34a973c7fb6c = L.circleMarker(
+                [37.8708393, -122.272863],
+                {"bubblingMouseEvents": true, "color": "#deebf7", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#deebf7", "fillOpacity": 0.85, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 23.097538525880534, "stroke": true, "weight": 3}
+            ).addTo(feature_group_885af36faedf5c36cf132af05ca96e6f);
+        
+    
+            circle_marker_76b1a4cf656a092ed90c34a973c7fb6c.bindTooltip(
+                `<div>
+                     
+        <div style="font-size: 14px;">
+            <b>Berkeley</b><br>
+            Startups: 67<br>
+            Avg. Funding: $6,327,646<br>
+            Top Market:  Advertising <br><br>
+            <b>Top-Funded Startup:</b><br>
+            Aduro BioTech ($91,980,947)
+        </div>
+    
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_aa5860b72a482c2770541980066357a2 = L.circleMarker(
+                [37.9317766, -121.696026],
+                {"bubblingMouseEvents": true, "color": "#4292c6", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#4292c6", "fillOpacity": 0.85, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 10.047189562170502, "stroke": true, "weight": 3}
+            ).addTo(feature_group_885af36faedf5c36cf132af05ca96e6f);
+        
+    
+            circle_marker_aa5860b72a482c2770541980066357a2.bindTooltip(
+                `<div>
+                     
+        <div style="font-size: 14px;">
+            <b>Brentwood</b><br>
+            Startups: 4<br>
+            Avg. Funding: $31,993,348<br>
+            Top Market:  Education <br><br>
+            <b>Top-Funded Startup:</b><br>
+            Halt Medical ($93,890,518)
+        </div>
+    
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_d1814c2805e305d6d52bf936106911f3 = L.circleMarker(
+                [37.687165, -122.402794],
+                {"bubblingMouseEvents": true, "color": "#08306b", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#08306b", "fillOpacity": 0.85, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 12.39720770839918, "stroke": true, "weight": 3}
+            ).addTo(feature_group_885af36faedf5c36cf132af05ca96e6f);
+        
+    
+            circle_marker_d1814c2805e305d6d52bf936106911f3.bindTooltip(
+                `<div>
+                     
+        <div style="font-size: 14px;">
+            <b>Brisbane</b><br>
+            Startups: 7<br>
+            Avg. Funding: $56,560,030<br>
+            Top Market:  Biotechnology <br><br>
+            <b>Top-Funded Startup:</b><br>
+            Mode Media ($214,600,000)
+        </div>
+    
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_089d787c46f6736362adb39f13d94f46 = L.circleMarker(
+                [37.5780965, -122.3473099],
+                {"bubblingMouseEvents": true, "color": "#9ecae1", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#9ecae1", "fillOpacity": 0.85, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 21.143206982445477, "stroke": true, "weight": 3}
+            ).addTo(feature_group_885af36faedf5c36cf132af05ca96e6f);
+        
+    
+            circle_marker_089d787c46f6736362adb39f13d94f46.bindTooltip(
+                `<div>
+                     
+        <div style="font-size: 14px;">
+            <b>Burlingame</b><br>
+            Startups: 45<br>
+            Avg. Funding: $11,283,117<br>
+            Top Market:  Biotechnology <br><br>
+            <b>Top-Funded Startup:</b><br>
+            Igenica ($71,215,740)
+        </div>
+    
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_8cb66c64a281944817f7e8ba556c9bf0 = L.circleMarker(
+                [37.2870626, -121.944881],
+                {"bubblingMouseEvents": true, "color": "#9ecae1", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#9ecae1", "fillOpacity": 0.85, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 21.250738008550293, "stroke": true, "weight": 3}
+            ).addTo(feature_group_885af36faedf5c36cf132af05ca96e6f);
+        
+    
+            circle_marker_8cb66c64a281944817f7e8ba556c9bf0.bindTooltip(
+                `<div>
+                     
+        <div style="font-size: 14px;">
+            <b>Campbell</b><br>
+            Startups: 46<br>
+            Avg. Funding: $19,663,219<br>
+            Top Market:  Software <br><br>
+            <b>Top-Funded Startup:</b><br>
+            ChargePoint, Inc. ($113,993,598)
+        </div>
+    
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_054ff18392e1a0dc969c1e0b8067248d = L.circleMarker(
+                [37.9768525, -122.0335624],
+                {"bubblingMouseEvents": true, "color": "#deebf7", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#deebf7", "fillOpacity": 0.85, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 7.493061443340549, "stroke": true, "weight": 3}
+            ).addTo(feature_group_885af36faedf5c36cf132af05ca96e6f);
+        
+    
+            circle_marker_054ff18392e1a0dc969c1e0b8067248d.bindTooltip(
+                `<div>
+                     
+        <div style="font-size: 14px;">
+            <b>Concord</b><br>
+            Startups: 2<br>
+            Avg. Funding: $414,926<br>
+            Top Market:  Enterprise Software <br><br>
+            <b>Top-Funded Startup:</b><br>
+            pbsi ($519,851)
+        </div>
+    
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_ddd1273c9f1c97ad514ad35e8ce5803e = L.circleMarker(
+                [37.9254806, -122.527475],
+                {"bubblingMouseEvents": true, "color": "#deebf7", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#deebf7", "fillOpacity": 0.85, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 12.986122886681098, "stroke": true, "weight": 3}
+            ).addTo(feature_group_885af36faedf5c36cf132af05ca96e6f);
+        
+    
+            circle_marker_ddd1273c9f1c97ad514ad35e8ce5803e.bindTooltip(
+                `<div>
+                     
+        <div style="font-size: 14px;">
+            <b>Corte Madera</b><br>
+            Startups: 8<br>
+            Avg. Funding: $2,153,667<br>
+            Top Market:  Curated Web <br><br>
+            <b>Top-Funded Startup:</b><br>
+            Threefold Photos ($9,500,000)
+        </div>
+    
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_3e097858414de2cc46ccd54317fe1a1a = L.circleMarker(
+                [37.3228934, -122.0322895],
+                {"bubblingMouseEvents": true, "color": "#9ecae1", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#9ecae1", "fillOpacity": 0.85, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 21.356005054539455, "stroke": true, "weight": 3}
+            ).addTo(feature_group_885af36faedf5c36cf132af05ca96e6f);
+        
+    
+            circle_marker_3e097858414de2cc46ccd54317fe1a1a.bindTooltip(
+                `<div>
+                     
+        <div style="font-size: 14px;">
+            <b>Cupertino</b><br>
+            Startups: 47<br>
+            Avg. Funding: $18,869,489<br>
+            Top Market:  Software <br><br>
+            <b>Top-Funded Startup:</b><br>
+            SugarCRM ($100,520,000)
+        </div>
+    
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_09de6498c03ea76423bf7876f24a956c = L.circleMarker(
+                [37.6904826, -122.47267],
+                {"bubblingMouseEvents": true, "color": "#deebf7", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#deebf7", "fillOpacity": 0.85, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 5.465735902799727, "stroke": true, "weight": 3}
+            ).addTo(feature_group_885af36faedf5c36cf132af05ca96e6f);
+        
+    
+            circle_marker_09de6498c03ea76423bf7876f24a956c.bindTooltip(
+                `<div>
+                     
+        <div style="font-size: 14px;">
+            <b>Daly City</b><br>
+            Startups: 1<br>
+            Avg. Funding: $827<br>
+            Top Market: Unknown<br><br>
+            <b>Top-Funded Startup:</b><br>
+            Create! Art Collective ($827)
+        </div>
+    
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_7b98db57e83ad73d0217693d1f524309 = L.circleMarker(
+                [37.8225892, -122.0008254],
+                {"bubblingMouseEvents": true, "color": "#deebf7", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#deebf7", "fillOpacity": 0.85, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 8.931471805599454, "stroke": true, "weight": 3}
+            ).addTo(feature_group_885af36faedf5c36cf132af05ca96e6f);
+        
+    
+            circle_marker_7b98db57e83ad73d0217693d1f524309.bindTooltip(
+                `<div>
+                     
+        <div style="font-size: 14px;">
+            <b>Danville</b><br>
+            Startups: 3<br>
+            Avg. Funding: $2,956,938<br>
+            Top Market:  Hardware + Software <br><br>
+            <b>Top-Funded Startup:</b><br>
+            Everloop ($3,100,000)
+        </div>
+    
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_c639b5484d2949fcd8d3cd238bfbc9d1 = L.circleMarker(
+                [37.7021521, -121.9357918],
+                {"bubblingMouseEvents": true, "color": "#deebf7", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#deebf7", "fillOpacity": 0.85, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 10.047189562170502, "stroke": true, "weight": 3}
+            ).addTo(feature_group_885af36faedf5c36cf132af05ca96e6f);
+        
+    
+            circle_marker_c639b5484d2949fcd8d3cd238bfbc9d1.bindTooltip(
+                `<div>
+                     
+        <div style="font-size: 14px;">
+            <b>Dublin</b><br>
+            Startups: 4<br>
+            Avg. Funding: $3,768,011<br>
+            Top Market:  Biotechnology <br><br>
+            <b>Top-Funded Startup:</b><br>
+            Evident.io ($11,400,000)
+        </div>
+    
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_1ac011e29723fc804f9e7d08b1526c17 = L.circleMarker(
+                [37.4688273, -122.141075],
+                {"bubblingMouseEvents": true, "color": "#deebf7", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#deebf7", "fillOpacity": 0.85, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 8.931471805599454, "stroke": true, "weight": 3}
+            ).addTo(feature_group_885af36faedf5c36cf132af05ca96e6f);
+        
+    
+            circle_marker_1ac011e29723fc804f9e7d08b1526c17.bindTooltip(
+                `<div>
+                     
+        <div style="font-size: 14px;">
+            <b>East Palo Alto</b><br>
+            Startups: 3<br>
+            Avg. Funding: $144,494<br>
+            Top Market:  Clean Technology <br><br>
+            <b>Top-Funded Startup:</b><br>
+            Direct Dermatology ($240,000)
+        </div>
+    
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_5b444014f24476ebfd453fdddc7f32ba = L.circleMarker(
+                [37.9154056, -122.301411],
+                {"bubblingMouseEvents": true, "color": "#deebf7", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#deebf7", "fillOpacity": 0.85, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 7.493061443340549, "stroke": true, "weight": 3}
+            ).addTo(feature_group_885af36faedf5c36cf132af05ca96e6f);
+        
+    
+            circle_marker_5b444014f24476ebfd453fdddc7f32ba.bindTooltip(
+                `<div>
+                     
+        <div style="font-size: 14px;">
+            <b>El Cerrito</b><br>
+            Startups: 2<br>
+            Avg. Funding: $975,134<br>
+            Top Market:  Hospitality <br><br>
+            <b>Top-Funded Startup:</b><br>
+            Federspiel Corp ($975,134)
+        </div>
+    
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_286b6941fe315537b22c33e678acef02 = L.circleMarker(
+                [37.8314089, -122.2865266],
+                {"bubblingMouseEvents": true, "color": "#4292c6", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#4292c6", "fillOpacity": 0.85, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 20.18793079863193, "stroke": true, "weight": 3}
+            ).addTo(feature_group_885af36faedf5c36cf132af05ca96e6f);
+        
+    
+            circle_marker_286b6941fe315537b22c33e678acef02.bindTooltip(
+                `<div>
+                     
+        <div style="font-size: 14px;">
+            <b>Emeryville</b><br>
+            Startups: 37<br>
+            Avg. Funding: $28,243,303<br>
+            Top Market:  Biotechnology <br><br>
+            <b>Top-Funded Startup:</b><br>
+            Amyris Biotechnologies ($417,040,423)
+        </div>
+    
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_94572b9cda8950ad1cfb7780ef91862e = L.circleMarker(
+                [37.9872935, -122.587967],
+                {"bubblingMouseEvents": true, "color": "#deebf7", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#deebf7", "fillOpacity": 0.85, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 5.465735902799727, "stroke": true, "weight": 3}
+            ).addTo(feature_group_885af36faedf5c36cf132af05ca96e6f);
+        
+    
+            circle_marker_94572b9cda8950ad1cfb7780ef91862e.bindTooltip(
+                `<div>
+                     
+        <div style="font-size: 14px;">
+            <b>Fairfax</b><br>
+            Startups: 1<br>
+            Avg. Funding: $611,347<br>
+            Top Market:  Photography <br><br>
+            <b>Top-Funded Startup:</b><br>
+            Flipiture ($611,347)
+        </div>
+    
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_9f5a11a79779ea6d5d6f8ea68b479da2 = L.circleMarker(
+                [37.5600336, -122.2688522],
+                {"bubblingMouseEvents": true, "color": "#9ecae1", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#9ecae1", "fillOpacity": 0.85, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 19.005986908310778, "stroke": true, "weight": 3}
+            ).addTo(feature_group_885af36faedf5c36cf132af05ca96e6f);
+        
+    
+            circle_marker_9f5a11a79779ea6d5d6f8ea68b479da2.bindTooltip(
+                `<div>
+                     
+        <div style="font-size: 14px;">
+            <b>Foster City</b><br>
+            Startups: 29<br>
+            Avg. Funding: $19,442,528<br>
+            Top Market:  Biotechnology <br><br>
+            <b>Top-Funded Startup:</b><br>
+            Zuora ($127,500,000)
+        </div>
+    
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_6c647004d2b90498c9475fc2e92ef459 = L.circleMarker(
+                [37.5482697, -121.988571],
+                {"bubblingMouseEvents": true, "color": "#4292c6", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#4292c6", "fillOpacity": 0.85, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 24.154083994216567, "stroke": true, "weight": 3}
+            ).addTo(feature_group_885af36faedf5c36cf132af05ca96e6f);
+        
+    
+            circle_marker_6c647004d2b90498c9475fc2e92ef459.bindTooltip(
+                `<div>
+                     
+        <div style="font-size: 14px;">
+            <b>Fremont</b><br>
+            Startups: 83<br>
+            Avg. Funding: $22,722,307<br>
+            Top Market:  Software <br><br>
+            <b>Top-Funded Startup:</b><br>
+            Quantenna Communications ($144,153,980)
+        </div>
+    
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_cd972e6fdc8724afb254c08ec401fbec = L.circleMarker(
+                [37.0065078, -121.5631723],
+                {"bubblingMouseEvents": true, "color": "#deebf7", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#deebf7", "fillOpacity": 0.85, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 5.465735902799727, "stroke": true, "weight": 3}
+            ).addTo(feature_group_885af36faedf5c36cf132af05ca96e6f);
+        
+    
+            circle_marker_cd972e6fdc8724afb254c08ec401fbec.bindTooltip(
+                `<div>
+                     
+        <div style="font-size: 14px;">
+            <b>Gilroy</b><br>
+            Startups: 1<br>
+            Avg. Funding: $554,508<br>
+            Top Market:  Software <br><br>
+            <b>Top-Funded Startup:</b><br>
+            OmegaGenesis ($554,508)
+        </div>
+    
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_0981e0b66c3fdc5ae9bffc33458556a1 = L.circleMarker(
+                [37.9485356, -122.5247031],
+                {"bubblingMouseEvents": true, "color": "#deebf7", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#deebf7", "fillOpacity": 0.85, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 5.465735902799727, "stroke": true, "weight": 3}
+            ).addTo(feature_group_885af36faedf5c36cf132af05ca96e6f);
+        
+    
+            circle_marker_0981e0b66c3fdc5ae9bffc33458556a1.bindTooltip(
+                `<div>
+                     
+        <div style="font-size: 14px;">
+            <b>Greenbrae</b><br>
+            Startups: 1<br>
+            Avg. Funding: $3,406,159<br>
+            Top Market:  Artists Globally <br><br>
+            <b>Top-Funded Startup:</b><br>
+            Muzooka ($3,406,159)
+        </div>
+    
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_425e96fa69e40140021dee4a88b14cea = L.circleMarker(
+                [37.6688205, -122.080796],
+                {"bubblingMouseEvents": true, "color": "#08519c", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#08519c", "fillOpacity": 0.85, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 18.29048269010741, "stroke": true, "weight": 3}
+            ).addTo(feature_group_885af36faedf5c36cf132af05ca96e6f);
+        
+    
+            circle_marker_425e96fa69e40140021dee4a88b14cea.bindTooltip(
+                `<div>
+                     
+        <div style="font-size: 14px;">
+            <b>Hayward</b><br>
+            Startups: 25<br>
+            Avg. Funding: $49,869,021<br>
+            Top Market:  Biotechnology <br><br>
+            <b>Top-Funded Startup:</b><br>
+            Intarcia Therapeutics ($534,305,937)
+        </div>
+    
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_7009ba917f971a66d5ff6ccaa3f58812 = L.circleMarker(
+                [38.0171441, -122.2885808],
+                {"bubblingMouseEvents": true, "color": "#deebf7", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#deebf7", "fillOpacity": 0.85, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 5.465735902799727, "stroke": true, "weight": 3}
+            ).addTo(feature_group_885af36faedf5c36cf132af05ca96e6f);
+        
+    
+            circle_marker_7009ba917f971a66d5ff6ccaa3f58812.bindTooltip(
+                `<div>
+                     
+        <div style="font-size: 14px;">
+            <b>Hercules</b><br>
+            Startups: 1<br>
+            Avg. Funding: $302,568<br>
+            Top Market:  Health Care <br><br>
+            <b>Top-Funded Startup:</b><br>
+            Bioxiness Pharmaceuticals ($302,568)
+        </div>
+    
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_caa7f73a1d817f722bad7f30e5de962f = L.circleMarker(
+                [37.8857582, -122.1180201],
+                {"bubblingMouseEvents": true, "color": "#deebf7", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#deebf7", "fillOpacity": 0.85, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 11.729550745276565, "stroke": true, "weight": 3}
+            ).addTo(feature_group_885af36faedf5c36cf132af05ca96e6f);
+        
+    
+            circle_marker_caa7f73a1d817f722bad7f30e5de962f.bindTooltip(
+                `<div>
+                     
+        <div style="font-size: 14px;">
+            <b>Lafayette</b><br>
+            Startups: 6<br>
+            Avg. Funding: $5,437,514<br>
+            Top Market:  Enterprise Software <br><br>
+            <b>Top-Funded Startup:</b><br>
+            California Bank of Commerce ($16,000,000)
+        </div>
+    
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_8658344de04de883a43475f8bf2d760d = L.circleMarker(
+                [37.9340915, -122.5352539],
+                {"bubblingMouseEvents": true, "color": "#9ecae1", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#9ecae1", "fillOpacity": 0.85, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 10.958797346140274, "stroke": true, "weight": 3}
+            ).addTo(feature_group_885af36faedf5c36cf132af05ca96e6f);
+        
+    
+            circle_marker_8658344de04de883a43475f8bf2d760d.bindTooltip(
+                `<div>
+                     
+        <div style="font-size: 14px;">
+            <b>Larkspur</b><br>
+            Startups: 5<br>
+            Avg. Funding: $11,366,900<br>
+            Top Market:  Biotechnology <br><br>
+            <b>Top-Funded Startup:</b><br>
+            Greenline Industries ($20,000,000)
+        </div>
+    
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_ffae09b0a51d8df17d5159f1c374b6ff = L.circleMarker(
+                [37.6820583, -121.768053],
+                {"bubblingMouseEvents": true, "color": "#deebf7", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#deebf7", "fillOpacity": 0.85, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 15.54025100551105, "stroke": true, "weight": 3}
+            ).addTo(feature_group_885af36faedf5c36cf132af05ca96e6f);
+        
+    
+            circle_marker_ffae09b0a51d8df17d5159f1c374b6ff.bindTooltip(
+                `<div>
+                     
+        <div style="font-size: 14px;">
+            <b>Livermore</b><br>
+            Startups: 14<br>
+            Avg. Funding: $6,330,544<br>
+            Top Market:  Clean Technology <br><br>
+            <b>Top-Funded Startup:</b><br>
+            Cool Earth Solar ($22,750,000)
+        </div>
+    
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_084323b4bf0fe46de2a7f67ee5477684 = L.circleMarker(
+                [37.3790629, -122.116578],
+                {"bubblingMouseEvents": true, "color": "#2171b5", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#2171b5", "fillOpacity": 0.85, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 21.250738008550293, "stroke": true, "weight": 3}
+            ).addTo(feature_group_885af36faedf5c36cf132af05ca96e6f);
+        
+    
+            circle_marker_084323b4bf0fe46de2a7f67ee5477684.bindTooltip(
+                `<div>
+                     
+        <div style="font-size: 14px;">
+            <b>Los Altos</b><br>
+            Startups: 46<br>
+            Avg. Funding: $35,292,675<br>
+            Top Market:  Biotechnology <br><br>
+            <b>Top-Funded Startup:</b><br>
+            Box ($564,059,999)
+        </div>
+    
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_b998b1b0898f091a24f9f98dea300307 = L.circleMarker(
+                [37.3796627, -122.137463],
+                {"bubblingMouseEvents": true, "color": "#deebf7", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#deebf7", "fillOpacity": 0.85, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 12.39720770839918, "stroke": true, "weight": 3}
+            ).addTo(feature_group_885af36faedf5c36cf132af05ca96e6f);
+        
+    
+            circle_marker_b998b1b0898f091a24f9f98dea300307.bindTooltip(
+                `<div>
+                     
+        <div style="font-size: 14px;">
+            <b>Los Altos Hills</b><br>
+            Startups: 7<br>
+            Avg. Funding: $1,715,222<br>
+            Top Market:  Analytics <br><br>
+            <b>Top-Funded Startup:</b><br>
+            Vorstack Corporation ($5,200,000)
+        </div>
+    
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_2df44f437e3ffef65985b4849619baf9 = L.circleMarker(
+                [37.226611, -121.9746797],
+                {"bubblingMouseEvents": true, "color": "#9ecae1", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#9ecae1", "fillOpacity": 0.85, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 21.56011502714073, "stroke": true, "weight": 3}
+            ).addTo(feature_group_885af36faedf5c36cf132af05ca96e6f);
+        
+    
+            circle_marker_2df44f437e3ffef65985b4849619baf9.bindTooltip(
+                `<div>
+                     
+        <div style="font-size: 14px;">
+            <b>Los Gatos</b><br>
+            Startups: 49<br>
+            Avg. Funding: $17,710,312<br>
+            Top Market:  Enterprise Software <br><br>
+            <b>Top-Funded Startup:</b><br>
+            Netflix ($230,000,000)
+        </div>
+    
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_9ae3685df7511026f60f0a12ee698a90 = L.circleMarker(
+                [38.0138934, -122.1338674],
+                {"bubblingMouseEvents": true, "color": "#deebf7", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#deebf7", "fillOpacity": 0.85, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 7.493061443340549, "stroke": true, "weight": 3}
+            ).addTo(feature_group_885af36faedf5c36cf132af05ca96e6f);
+        
+    
+            circle_marker_9ae3685df7511026f60f0a12ee698a90.bindTooltip(
+                `<div>
+                     
+        <div style="font-size: 14px;">
+            <b>Martinez</b><br>
+            Startups: 2<br>
+            Avg. Funding: $1,340,000<br>
+            Top Market:  Hardware + Software <br><br>
+            <b>Top-Funded Startup:</b><br>
+            Air Ion Devices ($2,380,000)
+        </div>
+    
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_edd2b99fab4b0abfc1eeb74f8417ded4 = L.circleMarker(
+                [37.4519671, -122.177992],
+                {"bubblingMouseEvents": true, "color": "#2171b5", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#2171b5", "fillOpacity": 0.85, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 27.67899218525131, "stroke": true, "weight": 3}
+            ).addTo(feature_group_885af36faedf5c36cf132af05ca96e6f);
+        
+    
+            circle_marker_edd2b99fab4b0abfc1eeb74f8417ded4.bindTooltip(
+                `<div>
+                     
+        <div style="font-size: 14px;">
+            <b>Menlo Park</b><br>
+            Startups: 169<br>
+            Avg. Funding: $34,607,337<br>
+            Top Market:  Biotechnology <br><br>
+            <b>Top-Funded Startup:</b><br>
+            Facebook ($2,425,700,000)
+        </div>
+    
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_4dd39ed038eb5c83f5c3023e94d7ffbd = L.circleMarker(
+                [37.9060368, -122.5449763],
+                {"bubblingMouseEvents": true, "color": "#deebf7", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#deebf7", "fillOpacity": 0.85, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 15.195286648076292, "stroke": true, "weight": 3}
+            ).addTo(feature_group_885af36faedf5c36cf132af05ca96e6f);
+        
+    
+            circle_marker_4dd39ed038eb5c83f5c3023e94d7ffbd.bindTooltip(
+                `<div>
+                     
+        <div style="font-size: 14px;">
+            <b>Mill Valley</b><br>
+            Startups: 13<br>
+            Avg. Funding: $1,949,816<br>
+            Top Market:  Biotechnology <br><br>
+            <b>Top-Funded Startup:</b><br>
+            Sparkplay Media ($7,050,000)
+        </div>
+    
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_5e630eff8c0f4071b73f31426ac6e02d = L.circleMarker(
+                [37.598958, -122.400941],
+                {"bubblingMouseEvents": true, "color": "#deebf7", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#deebf7", "fillOpacity": 0.85, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 10.958797346140274, "stroke": true, "weight": 3}
+            ).addTo(feature_group_885af36faedf5c36cf132af05ca96e6f);
+        
+    
+            circle_marker_5e630eff8c0f4071b73f31426ac6e02d.bindTooltip(
+                `<div>
+                     
+        <div style="font-size: 14px;">
+            <b>Millbrae</b><br>
+            Startups: 5<br>
+            Avg. Funding: $7,085,668<br>
+            Top Market:  Consulting <br><br>
+            <b>Top-Funded Startup:</b><br>
+            Stem ($28,097,672)
+        </div>
+    
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_0b03c9be9dd3a09ef319180f568c22ce = L.circleMarker(
+                [37.4332273, -121.8989248],
+                {"bubblingMouseEvents": true, "color": "#08306b", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#08306b", "fillOpacity": 0.85, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 19.63180262308081, "stroke": true, "weight": 3}
+            ).addTo(feature_group_885af36faedf5c36cf132af05ca96e6f);
+        
+    
+            circle_marker_0b03c9be9dd3a09ef319180f568c22ce.bindTooltip(
+                `<div>
+                     
+        <div style="font-size: 14px;">
+            <b>Milpitas</b><br>
+            Startups: 33<br>
+            Avg. Funding: $66,311,845<br>
+            Top Market:  Semiconductors <br><br>
+            <b>Top-Funded Startup:</b><br>
+            FireEye ($823,715,776)
+        </div>
+    
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_eb12b0e8f5ef8b75ba6ac246dbd23b57 = L.circleMarker(
+                [37.834897, -122.12883],
+                {"bubblingMouseEvents": true, "color": "#deebf7", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#deebf7", "fillOpacity": 0.85, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 7.493061443340549, "stroke": true, "weight": 3}
+            ).addTo(feature_group_885af36faedf5c36cf132af05ca96e6f);
+        
+    
+            circle_marker_eb12b0e8f5ef8b75ba6ac246dbd23b57.bindTooltip(
+                `<div>
+                     
+        <div style="font-size: 14px;">
+            <b>Moraga</b><br>
+            Startups: 2<br>
+            Avg. Funding: $5,204,967<br>
+            Top Market:  Biotechnology <br><br>
+            <b>Top-Funded Startup:</b><br>
+            Trigemina ($5,204,967)
+        </div>
+    
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_c63571551e06db7fcadf85ed76e655da = L.circleMarker(
+                [37.130408, -121.6544974],
+                {"bubblingMouseEvents": true, "color": "#08306b", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#08306b", "fillOpacity": 0.85, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 10.958797346140274, "stroke": true, "weight": 3}
+            ).addTo(feature_group_885af36faedf5c36cf132af05ca96e6f);
+        
+    
+            circle_marker_c63571551e06db7fcadf85ed76e655da.bindTooltip(
+                `<div>
+                     
+        <div style="font-size: 14px;">
+            <b>Morgan Hill</b><br>
+            Startups: 5<br>
+            Avg. Funding: $59,435,252<br>
+            Top Market:  Manufacturing <br><br>
+            <b>Top-Funded Startup:</b><br>
+            Alien Technology ($247,377,366)
+        </div>
+    
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_952f0065ea131c06418b8b8dfdcc59fb = L.circleMarker(
+                [37.3893889, -122.0832101],
+                {"bubblingMouseEvents": true, "color": "#4292c6", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#4292c6", "fillOpacity": 0.85, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 31.51316666700683, "stroke": true, "weight": 3}
+            ).addTo(feature_group_885af36faedf5c36cf132af05ca96e6f);
+        
+    
+            circle_marker_952f0065ea131c06418b8b8dfdcc59fb.bindTooltip(
+                `<div>
+                     
+        <div style="font-size: 14px;">
+            <b>Mountain View</b><br>
+            Startups: 365<br>
+            Avg. Funding: $22,655,704<br>
+            Top Market:  Software <br><br>
+            <b>Top-Funded Startup:</b><br>
+            Pure Storage ($474,856,468)
+        </div>
+    
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_9830f3ecd4206e7e6b3802fcab875157 = L.circleMarker(
+                [37.5296593, -122.0402399],
+                {"bubblingMouseEvents": true, "color": "#08519c", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#08519c", "fillOpacity": 0.85, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 16.978661367769952, "stroke": true, "weight": 3}
+            ).addTo(feature_group_885af36faedf5c36cf132af05ca96e6f);
+        
+    
+            circle_marker_9830f3ecd4206e7e6b3802fcab875157.bindTooltip(
+                `<div>
+                     
+        <div style="font-size: 14px;">
+            <b>Newark</b><br>
+            Startups: 19<br>
+            Avg. Funding: $46,541,936<br>
+            Top Market:  Biotechnology <br><br>
+            <b>Top-Funded Startup:</b><br>
+            DepoMed ($300,000,000)
+        </div>
+    
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_f13fbcd19ae21082e2276e90931ab220 = L.circleMarker(
+                [38.1061979, -122.5681191],
+                {"bubblingMouseEvents": true, "color": "#4292c6", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#4292c6", "fillOpacity": 0.85, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 12.39720770839918, "stroke": true, "weight": 3}
+            ).addTo(feature_group_885af36faedf5c36cf132af05ca96e6f);
+        
+    
+            circle_marker_f13fbcd19ae21082e2276e90931ab220.bindTooltip(
+                `<div>
+                     
+        <div style="font-size: 14px;">
+            <b>Novato</b><br>
+            Startups: 7<br>
+            Avg. Funding: $32,793,329<br>
+            Top Market:  Biotechnology <br><br>
+            <b>Top-Funded Startup:</b><br>
+            Ultragenyx Pharmaceutical ($135,100,005)
+        </div>
+    
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_9f8ab4949aef9794f66b699ff437ee1a = L.circleMarker(
+                [37.8044557, -122.271356],
+                {"bubblingMouseEvents": true, "color": "#4292c6", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#4292c6", "fillOpacity": 0.85, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 22.948273710132128, "stroke": true, "weight": 3}
+            ).addTo(feature_group_885af36faedf5c36cf132af05ca96e6f);
+        
+    
+            circle_marker_9f8ab4949aef9794f66b699ff437ee1a.bindTooltip(
+                `<div>
+                     
+        <div style="font-size: 14px;">
+            <b>Oakland</b><br>
+            Startups: 65<br>
+            Avg. Funding: $26,768,836<br>
+            Top Market:  Software <br><br>
+            <b>Top-Funded Startup:</b><br>
+            BrightSource Energy ($845,000,000)
+        </div>
+    
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_2d476f3130874623da2904b8f4aa3da1 = L.circleMarker(
+                [37.8771476, -122.1796888],
+                {"bubblingMouseEvents": true, "color": "#deebf7", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#deebf7", "fillOpacity": 0.85, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 7.493061443340549, "stroke": true, "weight": 3}
+            ).addTo(feature_group_885af36faedf5c36cf132af05ca96e6f);
+        
+    
+            circle_marker_2d476f3130874623da2904b8f4aa3da1.bindTooltip(
+                `<div>
+                     
+        <div style="font-size: 14px;">
+            <b>Orinda</b><br>
+            Startups: 2<br>
+            Avg. Funding: $2,100,000<br>
+            Top Market:  Health Care <br><br>
+            <b>Top-Funded Startup:</b><br>
+            Ziploop ($2,200,000)
+        </div>
+    
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_46ee86eec7c359553aaae9c85be9ead3 = L.circleMarker(
+                [37.4443293, -122.1598465],
+                {"bubblingMouseEvents": true, "color": "#4292c6", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#4292c6", "fillOpacity": 0.85, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 32.50159476010032, "stroke": true, "weight": 3}
+            ).addTo(feature_group_885af36faedf5c36cf132af05ca96e6f);
+        
+    
+            circle_marker_46ee86eec7c359553aaae9c85be9ead3.bindTooltip(
+                `<div>
+                     
+        <div style="font-size: 14px;">
+            <b>Palo Alto</b><br>
+            Startups: 445<br>
+            Avg. Funding: $24,638,002<br>
+            Top Market:  Software <br><br>
+            <b>Top-Funded Startup:</b><br>
+            Cloudera ($1,201,000,000)
+        </div>
+    
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_0bd55d18d65c7e9ccd2cdb4d1c437567 = L.circleMarker(
+                [37.8243715, -122.231635],
+                {"bubblingMouseEvents": true, "color": "#deebf7", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#deebf7", "fillOpacity": 0.85, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 5.465735902799727, "stroke": true, "weight": 3}
+            ).addTo(feature_group_885af36faedf5c36cf132af05ca96e6f);
+        
+    
+            circle_marker_0bd55d18d65c7e9ccd2cdb4d1c437567.bindTooltip(
+                `<div>
+                     
+        <div style="font-size: 14px;">
+            <b>Piedmont</b><br>
+            Startups: 1<br>
+            Avg. Funding: $898,618<br>
+            Top Market:  Biotechnology <br><br>
+            <b>Top-Funded Startup:</b><br>
+            SynAgile ($898,618)
+        </div>
+    
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_edbcb3804f5cfd410bdd25d697179526 = L.circleMarker(
+                [38.0181745, -121.8901232],
+                {"bubblingMouseEvents": true, "color": "#deebf7", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#deebf7", "fillOpacity": 0.85, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 5.465735902799727, "stroke": true, "weight": 3}
+            ).addTo(feature_group_885af36faedf5c36cf132af05ca96e6f);
+        
+    
+            circle_marker_edbcb3804f5cfd410bdd25d697179526.bindTooltip(
+                `<div>
+                     
+        <div style="font-size: 14px;">
+            <b>Pittsburg</b><br>
+            Startups: 1<br>
+            Avg. Funding: $9,300,000<br>
+            Top Market:  Biotechnology <br><br>
+            <b>Top-Funded Startup:</b><br>
+            Biozone Pharmaceuticals ($9,300,000)
+        </div>
+    
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_e3dd40558b0506c9c0fba42cad9efd92 = L.circleMarker(
+                [37.9479786, -122.0607963],
+                {"bubblingMouseEvents": true, "color": "#deebf7", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#deebf7", "fillOpacity": 0.85, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 7.493061443340549, "stroke": true, "weight": 3}
+            ).addTo(feature_group_885af36faedf5c36cf132af05ca96e6f);
+        
+    
+            circle_marker_e3dd40558b0506c9c0fba42cad9efd92.bindTooltip(
+                `<div>
+                     
+        <div style="font-size: 14px;">
+            <b>Pleasant Hill</b><br>
+            Startups: 2<br>
+            Avg. Funding: $625,000<br>
+            Top Market:  Content Syndication <br><br>
+            <b>Top-Funded Startup:</b><br>
+            SYNQY Corporation ($1,000,000)
+        </div>
+    
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_9407005c1d235fcdd647fd1e81bc6d67 = L.circleMarker(
+                [37.6624312, -121.8746789],
+                {"bubblingMouseEvents": true, "color": "#4292c6", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#4292c6", "fillOpacity": 0.85, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 21.033312448851596, "stroke": true, "weight": 3}
+            ).addTo(feature_group_885af36faedf5c36cf132af05ca96e6f);
+        
+    
+            circle_marker_9407005c1d235fcdd647fd1e81bc6d67.bindTooltip(
+                `<div>
+                     
+        <div style="font-size: 14px;">
+            <b>Pleasanton</b><br>
+            Startups: 44<br>
+            Avg. Funding: $31,296,899<br>
+            Top Market:  Software <br><br>
+            <b>Top-Funded Startup:</b><br>
+            TRIA Beauty ($247,226,267)
+        </div>
+    
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_4b386886f6dc8e5979bc5e88b8ac982f = L.circleMarker(
+                [37.3736298, -122.219047],
+                {"bubblingMouseEvents": true, "color": "#deebf7", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#deebf7", "fillOpacity": 0.85, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 10.958797346140274, "stroke": true, "weight": 3}
+            ).addTo(feature_group_885af36faedf5c36cf132af05ca96e6f);
+        
+    
+            circle_marker_4b386886f6dc8e5979bc5e88b8ac982f.bindTooltip(
+                `<div>
+                     
+        <div style="font-size: 14px;">
+            <b>Portola Valley</b><br>
+            Startups: 5<br>
+            Avg. Funding: $2,848,600<br>
+            Top Market:  Biotechnology <br><br>
+            <b>Top-Funded Startup:</b><br>
+            Bayhill Therapeutics ($9,999,999)
+        </div>
+    
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_a2fc594864971c78eaf7bd4f97b91d5f = L.circleMarker(
+                [37.4863239, -122.232523],
+                {"bubblingMouseEvents": true, "color": "#2171b5", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#2171b5", "fillOpacity": 0.85, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 28.261367140233148, "stroke": true, "weight": 3}
+            ).addTo(feature_group_885af36faedf5c36cf132af05ca96e6f);
+        
+    
+            circle_marker_a2fc594864971c78eaf7bd4f97b91d5f.bindTooltip(
+                `<div>
+                     
+        <div style="font-size: 14px;">
+            <b>Redwood City</b><br>
+            Startups: 190<br>
+            Avg. Funding: $39,726,918<br>
+            Top Market:  Software <br><br>
+            <b>Top-Funded Startup:</b><br>
+            Silver Spring Networks ($358,929,976)
+        </div>
+    
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_da2f8465f219a569f33ec2d8dc2aca09 = L.circleMarker(
+                [37.5318804, -122.2480219],
+                {"bubblingMouseEvents": true, "color": "#9ecae1", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#9ecae1", "fillOpacity": 0.85, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 12.986122886681098, "stroke": true, "weight": 3}
+            ).addTo(feature_group_885af36faedf5c36cf132af05ca96e6f);
+        
+    
+            circle_marker_da2f8465f219a569f33ec2d8dc2aca09.bindTooltip(
+                `<div>
+                     
+        <div style="font-size: 14px;">
+            <b>Redwood Shores</b><br>
+            Startups: 8<br>
+            Avg. Funding: $14,014,280<br>
+            Top Market:  Biotechnology <br><br>
+            <b>Top-Funded Startup:</b><br>
+            Blekko ($60,200,000)
+        </div>
+    
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_e309e3434f739933ac0667d3e346a307 = L.circleMarker(
+                [37.9357576, -122.347748],
+                {"bubblingMouseEvents": true, "color": "#4292c6", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#4292c6", "fillOpacity": 0.85, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 13.989476363991853, "stroke": true, "weight": 3}
+            ).addTo(feature_group_885af36faedf5c36cf132af05ca96e6f);
+        
+    
+            circle_marker_e309e3434f739933ac0667d3e346a307.bindTooltip(
+                `<div>
+                     
+        <div style="font-size: 14px;">
+            <b>Richmond</b><br>
+            Startups: 10<br>
+            Avg. Funding: $25,126,580<br>
+            Top Market:  Clean Technology <br><br>
+            <b>Top-Funded Startup:</b><br>
+            MBA Polymers ($86,200,000)
+        </div>
+    
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_44231b879218c5ace91044193d825753 = L.circleMarker(
+                [37.9744323, -122.561503],
+                {"bubblingMouseEvents": true, "color": "#deebf7", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#deebf7", "fillOpacity": 0.85, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 5.465735902799727, "stroke": true, "weight": 3}
+            ).addTo(feature_group_885af36faedf5c36cf132af05ca96e6f);
+        
+    
+            circle_marker_44231b879218c5ace91044193d825753.bindTooltip(
+                `<div>
+                     
+        <div style="font-size: 14px;">
+            <b>San Anselmo</b><br>
+            Startups: 1<br>
+            Avg. Funding: $50,000<br>
+            Top Market:  Software <br><br>
+            <b>Top-Funded Startup:</b><br>
+            Rsync.net ($50,000)
+        </div>
+    
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_3b0d08a15edbc01f2663a98809f4fabd = L.circleMarker(
+                [37.6248536, -122.4145986],
+                {"bubblingMouseEvents": true, "color": "#9ecae1", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#9ecae1", "fillOpacity": 0.85, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 15.54025100551105, "stroke": true, "weight": 3}
+            ).addTo(feature_group_885af36faedf5c36cf132af05ca96e6f);
+        
+    
+            circle_marker_3b0d08a15edbc01f2663a98809f4fabd.bindTooltip(
+                `<div>
+                     
+        <div style="font-size: 14px;">
+            <b>San Bruno</b><br>
+            Startups: 14<br>
+            Avg. Funding: $16,490,241<br>
+            Top Market:  E-Commerce <br><br>
+            <b>Top-Funded Startup:</b><br>
+            Stella & Dot ($37,000,000)
+        </div>
+    
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_e9b3c878be7a754261a72eb5c2fa09a3 = L.circleMarker(
+                [37.504936, -122.261823],
+                {"bubblingMouseEvents": true, "color": "#9ecae1", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#9ecae1", "fillOpacity": 0.85, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 19.91759469228055, "stroke": true, "weight": 3}
+            ).addTo(feature_group_885af36faedf5c36cf132af05ca96e6f);
+        
+    
+            circle_marker_e9b3c878be7a754261a72eb5c2fa09a3.bindTooltip(
+                `<div>
+                     
+        <div style="font-size: 14px;">
+            <b>San Carlos</b><br>
+            Startups: 35<br>
+            Avg. Funding: $21,382,415<br>
+            Top Market:  Biotechnology <br><br>
+            <b>Top-Funded Startup:</b><br>
+            Alvine Pharmaceuticals ($138,012,000)
+        </div>
+    
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_37551f9f77f3d22e13d6e9af3e726de9 = L.circleMarker(
+                [37.7792588, -122.4193286],
+                {"bubblingMouseEvents": true, "color": "#9ecae1", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#9ecae1", "fillOpacity": 0.85, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 40.14501944826479, "stroke": true, "weight": 3}
+            ).addTo(feature_group_885af36faedf5c36cf132af05ca96e6f);
+        
+    
+            circle_marker_37551f9f77f3d22e13d6e9af3e726de9.bindTooltip(
+                `<div>
+                     
+        <div style="font-size: 14px;">
+            <b>San Francisco</b><br>
+            Startups: 2056<br>
+            Avg. Funding: $18,522,429<br>
+            Top Market:  Software <br><br>
+            <b>Top-Funded Startup:</b><br>
+            Uber ($1,507,450,000)
+        </div>
+    
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_5ee6b780281330bb3b680a6b8cf8c490 = L.circleMarker(
+                [37.3361663, -121.890591],
+                {"bubblingMouseEvents": true, "color": "#4292c6", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#4292c6", "fillOpacity": 0.85, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 30.31480240067973, "stroke": true, "weight": 3}
+            ).addTo(feature_group_885af36faedf5c36cf132af05ca96e6f);
+        
+    
+            circle_marker_5ee6b780281330bb3b680a6b8cf8c490.bindTooltip(
+                `<div>
+                     
+        <div style="font-size: 14px;">
+            <b>San Jose</b><br>
+            Startups: 287<br>
+            Avg. Funding: $28,629,186<br>
+            Top Market:  Software <br><br>
+            <b>Top-Funded Startup:</b><br>
+            Nanosolar ($520,000,000)
+        </div>
+    
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_cc4340deefb0d7abe964e35ada2d48d4 = L.circleMarker(
+                [37.7249296, -122.1560768],
+                {"bubblingMouseEvents": true, "color": "#4292c6", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#4292c6", "fillOpacity": 0.85, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 13.51292546497023, "stroke": true, "weight": 3}
+            ).addTo(feature_group_885af36faedf5c36cf132af05ca96e6f);
+        
+    
+            circle_marker_cc4340deefb0d7abe964e35ada2d48d4.bindTooltip(
+                `<div>
+                     
+        <div style="font-size: 14px;">
+            <b>San Leandro</b><br>
+            Startups: 9<br>
+            Avg. Funding: $32,477,500<br>
+            Top Market:  Health Care <br><br>
+            <b>Top-Funded Startup:</b><br>
+            OSIsoft ($139,500,000)
+        </div>
+    
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_381e755a8f4c89088f243a507deb017a = L.circleMarker(
+                [37.496904, -122.3330573],
+                {"bubblingMouseEvents": true, "color": "#4292c6", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#4292c6", "fillOpacity": 0.85, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 28.339290795316643, "stroke": true, "weight": 3}
+            ).addTo(feature_group_885af36faedf5c36cf132af05ca96e6f);
+        
+    
+            circle_marker_381e755a8f4c89088f243a507deb017a.bindTooltip(
+                `<div>
+                     
+        <div style="font-size: 14px;">
+            <b>San Mateo</b><br>
+            Startups: 193<br>
+            Avg. Funding: $28,775,015<br>
+            Top Market:  Software <br><br>
+            <b>Top-Funded Startup:</b><br>
+            SolarCity ($1,045,040,000)
+        </div>
+    
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_ce2c7f4a0ef8d77f717d20742a67d4e2 = L.circleMarker(
+                [37.9621457, -122.3455263],
+                {"bubblingMouseEvents": true, "color": "#deebf7", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#deebf7", "fillOpacity": 0.85, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 5.465735902799727, "stroke": true, "weight": 3}
+            ).addTo(feature_group_885af36faedf5c36cf132af05ca96e6f);
+        
+    
+            circle_marker_ce2c7f4a0ef8d77f717d20742a67d4e2.bindTooltip(
+                `<div>
+                     
+        <div style="font-size: 14px;">
+            <b>San Pablo</b><br>
+            Startups: 1<br>
+            Avg. Funding: $250,000<br>
+            Top Market:  Software <br><br>
+            <b>Top-Funded Startup:</b><br>
+            2DOLife.com ($250,000)
+        </div>
+    
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_6e29e2b7cf0805bf8a8282692aa5b5ba = L.circleMarker(
+                [37.9747795, -122.5316686],
+                {"bubblingMouseEvents": true, "color": "#deebf7", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#deebf7", "fillOpacity": 0.85, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 15.862943611198906, "stroke": true, "weight": 3}
+            ).addTo(feature_group_885af36faedf5c36cf132af05ca96e6f);
+        
+    
+            circle_marker_6e29e2b7cf0805bf8a8282692aa5b5ba.bindTooltip(
+                `<div>
+                     
+        <div style="font-size: 14px;">
+            <b>San Rafael</b><br>
+            Startups: 15<br>
+            Avg. Funding: $4,930,002<br>
+            Top Market:  Education <br><br>
+            <b>Top-Funded Startup:</b><br>
+            IntelliBatt ($22,000,000)
+        </div>
+    
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_f9f1b06c766ebec93d5081fb354a3365 = L.circleMarker(
+                [37.7648021, -121.9544387],
+                {"bubblingMouseEvents": true, "color": "#9ecae1", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#9ecae1", "fillOpacity": 0.85, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 19.328679513998633, "stroke": true, "weight": 3}
+            ).addTo(feature_group_885af36faedf5c36cf132af05ca96e6f);
+        
+    
+            circle_marker_f9f1b06c766ebec93d5081fb354a3365.bindTooltip(
+                `<div>
+                     
+        <div style="font-size: 14px;">
+            <b>San Ramon</b><br>
+            Startups: 31<br>
+            Avg. Funding: $17,810,220<br>
+            Top Market:  Biotechnology <br><br>
+            <b>Top-Funded Startup:</b><br>
+            Five9 ($114,100,000)
+        </div>
+    
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_e51a3649e7556ea5c41bb671f65e054b = L.circleMarker(
+                [37.3541132, -121.955174],
+                {"bubblingMouseEvents": true, "color": "#4292c6", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#4292c6", "fillOpacity": 0.85, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 28.68769039850659, "stroke": true, "weight": 3}
+            ).addTo(feature_group_885af36faedf5c36cf132af05ca96e6f);
+        
+    
+            circle_marker_e51a3649e7556ea5c41bb671f65e054b.bindTooltip(
+                `<div>
+                     
+        <div style="font-size: 14px;">
+            <b>Santa Clara</b><br>
+            Startups: 207<br>
+            Avg. Funding: $25,660,570<br>
+            Top Market:  Software <br><br>
+            <b>Top-Funded Startup:</b><br>
+            Palo Alto Networks ($328,600,000)
+        </div>
+    
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_384135e28cf692d71ed7b298f2cd015b = L.circleMarker(
+                [37.050096, -121.99059],
+                {"bubblingMouseEvents": true, "color": "#deebf7", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#deebf7", "fillOpacity": 0.85, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 15.54025100551105, "stroke": true, "weight": 3}
+            ).addTo(feature_group_885af36faedf5c36cf132af05ca96e6f);
+        
+    
+            circle_marker_384135e28cf692d71ed7b298f2cd015b.bindTooltip(
+                `<div>
+                     
+        <div style="font-size: 14px;">
+            <b>Santa Cruz</b><br>
+            Startups: 14<br>
+            Avg. Funding: $2,842,605<br>
+            Top Market:  Consumer Electronics <br><br>
+            <b>Top-Funded Startup:</b><br>
+            Looker ($18,000,000)
+        </div>
+    
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_4a874c1f126c339ca1d75b0872a870ae = L.circleMarker(
+                [37.2638324, -122.0230146],
+                {"bubblingMouseEvents": true, "color": "#4292c6", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#4292c6", "fillOpacity": 0.85, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 14.424533248940001, "stroke": true, "weight": 3}
+            ).addTo(feature_group_885af36faedf5c36cf132af05ca96e6f);
+        
+    
+            circle_marker_4a874c1f126c339ca1d75b0872a870ae.bindTooltip(
+                `<div>
+                     
+        <div style="font-size: 14px;">
+            <b>Saratoga</b><br>
+            Startups: 11<br>
+            Avg. Funding: $25,324,295<br>
+            Top Market:  Health Care <br><br>
+            <b>Top-Funded Startup:</b><br>
+            Roku, Inc. ($153,100,000)
+        </div>
+    
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_635b9c16e75529f404c7762512cda8e9 = L.circleMarker(
+                [37.8590272, -122.485469],
+                {"bubblingMouseEvents": true, "color": "#9ecae1", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#9ecae1", "fillOpacity": 0.85, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 15.54025100551105, "stroke": true, "weight": 3}
+            ).addTo(feature_group_885af36faedf5c36cf132af05ca96e6f);
+        
+    
+            circle_marker_635b9c16e75529f404c7762512cda8e9.bindTooltip(
+                `<div>
+                     
+        <div style="font-size: 14px;">
+            <b>Sausalito</b><br>
+            Startups: 14<br>
+            Avg. Funding: $14,843,081<br>
+            Top Market:  E-Commerce <br><br>
+            <b>Top-Funded Startup:</b><br>
+            Glassdoor ($91,500,000)
+        </div>
+    
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_1b34230cf8c5742e6eb46c8d509a103e = L.circleMarker(
+                [37.0510595, -122.014684],
+                {"bubblingMouseEvents": true, "color": "#9ecae1", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#9ecae1", "fillOpacity": 0.85, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 12.39720770839918, "stroke": true, "weight": 3}
+            ).addTo(feature_group_885af36faedf5c36cf132af05ca96e6f);
+        
+    
+            circle_marker_1b34230cf8c5742e6eb46c8d509a103e.bindTooltip(
+                `<div>
+                     
+        <div style="font-size: 14px;">
+            <b>Scotts Valley</b><br>
+            Startups: 7<br>
+            Avg. Funding: $12,279,997<br>
+            Top Market:  Automotive <br><br>
+            <b>Top-Funded Startup:</b><br>
+            Zero Motorcycles ($63,659,978)
+        </div>
+    
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_499bf5255843164345c98d8043a79c95 = L.circleMarker(
+                [37.6535403, -122.4168664],
+                {"bubblingMouseEvents": true, "color": "#08519c", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#08519c", "fillOpacity": 0.85, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 21.356005054539455, "stroke": true, "weight": 3}
+            ).addTo(feature_group_885af36faedf5c36cf132af05ca96e6f);
+        
+    
+            circle_marker_499bf5255843164345c98d8043a79c95.bindTooltip(
+                `<div>
+                     
+        <div style="font-size: 14px;">
+            <b>South San Francisco</b><br>
+            Startups: 47<br>
+            Avg. Funding: $46,885,229<br>
+            Top Market:  Biotechnology <br><br>
+            <b>Top-Funded Startup:</b><br>
+            Hyperion Therapeutics ($165,961,509)
+        </div>
+    
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_d10b1a2be49a8f29c865c5de830004d3 = L.circleMarker(
+                [37.426540700000004, -122.17030545534064],
+                {"bubblingMouseEvents": true, "color": "#deebf7", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#deebf7", "fillOpacity": 0.85, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 10.047189562170502, "stroke": true, "weight": 3}
+            ).addTo(feature_group_885af36faedf5c36cf132af05ca96e6f);
+        
+    
+            circle_marker_d10b1a2be49a8f29c865c5de830004d3.bindTooltip(
+                `<div>
+                     
+        <div style="font-size: 14px;">
+            <b>Stanford</b><br>
+            Startups: 4<br>
+            Avg. Funding: $618,500<br>
+            Top Market:  Kids <br><br>
+            <b>Top-Funded Startup:</b><br>
+            NeoReach ($1,800,000)
+        </div>
+    
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_4aec329aa43166332ad2973b77a0a18d = L.circleMarker(
+                [37.3688301, -122.036349],
+                {"bubblingMouseEvents": true, "color": "#4292c6", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#4292c6", "fillOpacity": 0.85, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 29.7453804244761, "stroke": true, "weight": 3}
+            ).addTo(feature_group_885af36faedf5c36cf132af05ca96e6f);
+        
+    
+            circle_marker_4aec329aa43166332ad2973b77a0a18d.bindTooltip(
+                `<div>
+                     
+        <div style="font-size: 14px;">
+            <b>Sunnyvale</b><br>
+            Startups: 256<br>
+            Avg. Funding: $26,259,618<br>
+            Top Market:  Software <br><br>
+            <b>Top-Funded Startup:</b><br>
+            Bloom Energy ($980,000,000)
+        </div>
+    
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_32a12c35401f12a0d89a82547ad8c85f = L.circleMarker(
+                [37.5872576, -122.0215737],
+                {"bubblingMouseEvents": true, "color": "#deebf7", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#deebf7", "fillOpacity": 0.85, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 7.493061443340549, "stroke": true, "weight": 3}
+            ).addTo(feature_group_885af36faedf5c36cf132af05ca96e6f);
+        
+    
+            circle_marker_32a12c35401f12a0d89a82547ad8c85f.bindTooltip(
+                `<div>
+                     
+        <div style="font-size: 14px;">
+            <b>Union City</b><br>
+            Startups: 2<br>
+            Avg. Funding: $6,137,982<br>
+            Top Market:  Hospitality <br><br>
+            <b>Top-Funded Startup:</b><br>
+            Moasis ($6,137,982)
+        </div>
+    
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_59a96df8a2b8842c3c30f3c3cbfb363b = L.circleMarker(
+                [37.9020731, -122.0618702],
+                {"bubblingMouseEvents": true, "color": "#deebf7", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#deebf7", "fillOpacity": 0.85, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 15.195286648076292, "stroke": true, "weight": 3}
+            ).addTo(feature_group_885af36faedf5c36cf132af05ca96e6f);
+        
+    
+            circle_marker_59a96df8a2b8842c3c30f3c3cbfb363b.bindTooltip(
+                `<div>
+                     
+        <div style="font-size: 14px;">
+            <b>Walnut Creek</b><br>
+            Startups: 13<br>
+            Avg. Funding: $6,149,554<br>
+            Top Market:  Finance Technology <br><br>
+            <b>Top-Funded Startup:</b><br>
+            YapStone ($53,400,000)
+        </div>
+    
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            feature_group_885af36faedf5c36cf132af05ca96e6f.addTo(map_431764e8ccb9ea9e86439d6e6b9e4aa9);
+        
+    
+            var feature_group_d23fa0e03a12f7a1a03e91875e684a4b = L.featureGroup(
+                {
+}
+            );
+        
+    
+            var heat_map_8bb152be70cf66f12f7a4ab39236a9cc = L.heatLayer(
+                [[36.9941295, -121.89033677231834, 3.0], [37.0065078, -121.5631723, 1.0], [37.050096, -121.99059, 14.0], [37.0510595, -122.014684, 7.0], [37.130408, -121.6544974, 5.0], [37.226611, -121.9746797, 49.0], [37.2638324, -122.0230146, 11.0], [37.2870626, -121.944881, 46.0], [37.3228934, -122.0322895, 47.0], [37.3361663, -121.890591, 287.0], [37.3541132, -121.955174, 207.0], [37.3688301, -122.036349, 256.0], [37.3736298, -122.219047, 5.0], [37.3790629, -122.116578, 46.0], [37.3796627, -122.137463, 7.0], [37.3893889, -122.0832101, 365.0], [37.426540700000004, -122.17030545534064, 4.0], [37.4332273, -121.8989248, 33.0], [37.4443293, -122.1598465, 445.0], [37.4519671, -122.177992, 169.0], [37.453773, -122.2058272, 1.0], [37.4688273, -122.141075, 3.0], [37.4863239, -122.232523, 190.0], [37.496904, -122.3330573, 193.0], [37.504936, -122.261823, 35.0], [37.5164926, -122.2941914, 10.0], [37.5296593, -122.0402399, 19.0], [37.5318804, -122.2480219, 8.0], [37.5482697, -121.988571, 83.0], [37.5600336, -122.2688522, 29.0], [37.5780965, -122.3473099, 45.0], [37.5872576, -122.0215737, 2.0], [37.598958, -122.400941, 5.0], [37.6090291, -121.899142, 15.0], [37.6248536, -122.4145986, 14.0], [37.6535403, -122.4168664, 47.0], [37.6624312, -121.8746789, 44.0], [37.6688205, -122.080796, 25.0], [37.6820583, -121.768053, 14.0], [37.687165, -122.402794, 7.0], [37.6904826, -122.47267, 1.0], [37.7021521, -121.9357918, 4.0], [37.7249296, -122.1560768, 9.0], [37.7648021, -121.9544387, 31.0], [37.7792588, -122.4193286, 2056.0], [37.8044557, -122.271356, 65.0], [37.8225892, -122.0008254, 3.0], [37.8243715, -122.231635, 1.0], [37.8314089, -122.2865266, 37.0], [37.834897, -122.12883, 2.0], [37.85513505, -122.00668905178806, 2.0], [37.8590272, -122.485469, 14.0], [37.8708393, -122.272863, 67.0], [37.8770247, -122.4614566, 7.0], [37.8771476, -122.1796888, 2.0], [37.8857582, -122.1180201, 6.0], [37.9020731, -122.0618702, 13.0], [37.9060368, -122.5449763, 13.0], [37.9154056, -122.301411, 2.0], [37.9254806, -122.527475, 8.0], [37.9317766, -121.696026, 4.0], [37.9340915, -122.5352539, 5.0], [37.9357576, -122.347748, 10.0], [37.9479786, -122.0607963, 2.0], [37.9485356, -122.5247031, 1.0], [37.9621457, -122.3455263, 1.0], [37.9744323, -122.561503, 1.0], [37.9747795, -122.5316686, 15.0], [37.9768525, -122.0335624, 2.0], [37.9872935, -122.587967, 1.0], [38.0138934, -122.1338674, 2.0], [38.0171441, -122.2885808, 1.0], [38.0181745, -121.8901232, 1.0], [38.049365, -122.1585777, 1.0], [38.1061979, -122.5681191, 7.0]],
+                {
+  "minOpacity": 0.5,
+  "maxZoom": 12,
+  "radius": 18,
+  "blur": 15,
+  "gradient": {
+  "0.4": "blue",
+  "0.65": "lime",
+  "1": "red",
+},
+}
+            );
+        
+    
+            heat_map_8bb152be70cf66f12f7a4ab39236a9cc.addTo(feature_group_d23fa0e03a12f7a1a03e91875e684a4b);
+        
+    
+            feature_group_d23fa0e03a12f7a1a03e91875e684a4b.addTo(map_431764e8ccb9ea9e86439d6e6b9e4aa9);
+        
+    
+            var layer_control_1184bc0d2905709481986d5beabce7d8_layers = {
+                base_layers : {
+                    "cartodbpositron" : tile_layer_c0dff39be6c8d321febc2ae4eea698f4,
+                },
+                overlays :  {
+                    "Startup Markers" : feature_group_885af36faedf5c36cf132af05ca96e6f,
+                    "Startup Heatmap" : feature_group_d23fa0e03a12f7a1a03e91875e684a4b,
+                },
+            };
+            let layer_control_1184bc0d2905709481986d5beabce7d8 = L.control.layers(
+                layer_control_1184bc0d2905709481986d5beabce7d8_layers.base_layers,
+                layer_control_1184bc0d2905709481986d5beabce7d8_layers.overlays,
+                {
+  "position": "topright",
+  "collapsed": false,
+  "autoZIndex": true,
+}
+            ).addTo(map_431764e8ccb9ea9e86439d6e6b9e4aa9);
+
+        
+</script>
+</html>
