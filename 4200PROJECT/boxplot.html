@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <title>Startup Funding Amounts by Stage</title>
+  <title>Startup Funding by Round </title>
   <script src="https://d3js.org/d3.v7.min.js"></script>
   <script src="boxplot.js" defer></script>
   <style>
@@ -10,6 +10,11 @@
       font-family: Arial, sans-serif;
       padding: 20px;
     }
+
+    h2 {
+      margin-bottom: 10px;
+    }
+
     .tooltip {
       font-size: 13px;
       position: absolute;
@@ -22,22 +27,47 @@
       box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
       transition: opacity 0.3s ease;
     }
+
     .controls {
-      margin-bottom: 20px;
+      margin-bottom: 15px;
     }
+
+    label {
+      font-weight: bold;
+      margin-right: 8px;
+    }
+
+    select {
+      padding: 4px 10px;
+      font-size: 14px;
+      margin-right: 10px;
+    }
+
+    svg {
+      width: 100%;
+      height: auto;
+    }
+
     .box {
       fill: steelblue;
+      fill-opacity: 0.6;
       stroke: #333;
       stroke-width: 1px;
       cursor: pointer;
+      transition: all 0.3s ease;
     }
+
     .box:hover {
-      fill: #4682b4;
+      fill: #1f77b4;
+      stroke-width: 2px;
     }
+
     .median-line {
       stroke: black;
       stroke-width: 2px;
+      transition: all 0.3s ease;
     }
+
     .outlier-dot {
       fill: orangered;
       opacity: 0.7;
@@ -45,43 +75,31 @@
       stroke-width: 0.5;
       transition: transform 0.3s ease, opacity 0.3s ease;
     }
+
     .outlier-dot:hover {
       transform: scale(1.4);
       opacity: 1;
     }
+
+    .legend {
+      font-size: 14px;
+      margin-top: 10px;
+    }
   </style>
 </head>
 <body>
-  <h2>Startup Funding by Round</h2>
-  
-  <!-- Controls placed above the chart -->
+  <h2>Startup Funding by Round (Enhanced Box Plot)</h2>
+
   <div class="controls">
     <label for="statusFilter">Filter by Status:</label>
-    <select id="statusFilter">
-      <option value="all">All</option>
-    </select>
+    <select id="statusFilter"><option value="all">All</option></select>
   </div>
-  
-  <!-- Single SVG for the box plot -->
-  <svg width="1090" height="710"></svg>
-  
-  <!-- Tooltip element -->
+
+  <svg width="960" height="600"></svg>
   <div class="tooltip"></div>
-  
-  <!-- D3 script for drawing the chart -->
-  <script>
-    const margin = { top: 50, right: 30, bottom: 60, left: 100 },
-          width = 960,   // inner width
-          height = 600;  // inner height
-    
-    // Append a <g> element to account for margins inside the svg
-    const svg = d3.select("svg")
-      .append("g")
-      .attr("transform", `translate(${margin.left},${margin.top})`);
-    
-   
-  </script>
+
+ 
+
 </body>
 </html>
-
 
