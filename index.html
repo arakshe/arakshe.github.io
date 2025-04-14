@@ -15,6 +15,19 @@
       line-height: 1.6;
     }
 
+    header {
+      text-align: center;
+      margin-bottom: 20px;
+    }
+
+    header img {
+      width: 100%;
+      max-width: 1200px;
+      height: auto;
+      display: block;
+      margin: 0 auto;
+    }
+
     .container {
       max-width: 1200px;
       margin: 0 auto;
@@ -72,6 +85,11 @@
   </style>
 </head>
 <body>
+
+  <header>
+    <img src="header.png" alt="Header Image">
+  </header>
+
   <div class="container">
     <h1>Startup Funding Analysis Report</h1>
     <p><strong>Group Members:</strong> Anvi Rakshe, Manika Sakulsureeyadej, Mehek Daga</p>
@@ -90,7 +108,7 @@
     <h2>Line Plot – Funding Over Time</h2>
     <p>This line plot presents the total amount of startup funding by first funding year, from 1985 to 2014. The chart reveals important trends in venture capital investment over the decades...</p>
     <div class="viz-container">
-      <iframe src="4200PROJECT/funding_time_lineplot.html" title="Line Plot - Funding Over Time"></iframe>
+      <iframe src="4200PROJECT/funding_timeline_vertical_labels_offset.html" title="Line Plot - Funding Over Time"></iframe>
     </div>
 
     <h2>Treemap – Funding Sources by Rounds</h2>
@@ -99,6 +117,7 @@
     <div class="viz-container">
       <iframe src="4200PROJECT/treemap_funding_sources.html" title="Treemap - Funding Sources by Rounds"></iframe>
     </div>
+    <p>This treemap reveals how funding types shift as startups progress through different stages of fundraising. Venture capital is the dominant funding source in the early and middle stages, particularly within the 1–3 and 4–6 rounds groups. However, in the 7+ rounds category, while venture capital is still present, its overall volume declines compared to earlier stages. This can be due to several factors. First, fewer startups reach such late stages, naturally lowering the total funding volume. Second, as companies mature, they gain access to other financing options such as private equity or debt financing that can either supplement or replace venture capital. As companies move forward in the process, there is a shift towards more complex and institutional funding sources. Also, venture capital firms often aim to exit their investments before or around this stage, especially if the company is heading toward an IPO (when a company goes public) or acquisition (when a company is acquired by another firm). Finally, mature companies may prefer funding options that don’t require giving up ownership, such as debt, since they may already be generating revenue. The 7+ rounds group reflects a more diversified and strategic funding structure, while early-stage companies rely on seed and angel investments, which shrink towards the later stages.</p>
 
     <h2>Bar Chart – Funding by Market</h2>
     <p>Software is the highest-funded market, with total funding nearing $7 billion. This bar chart highlights funding distribution across markets, with clear emphasis on leading categories like biotechnology, mobile, and health care...</p>
