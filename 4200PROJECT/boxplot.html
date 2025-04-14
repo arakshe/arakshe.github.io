@@ -49,31 +49,39 @@
       transform: scale(1.4);
       opacity: 1;
     }
-
-   </style>
+  </style>
 </head>
 <body>
-   <h2>Startup Funding by Round</h2>
-  <svg width="1090" height="710"></svg>
-  <script>
-    const margin = { top: 50, right: 30, bottom: 60, left: 100 },
-          width = 960,
-          height = 600;
-    
-    // Append a <g> element to account for margins
-    const svg = d3.select("svg")
-      .append("g")
-      .attr("transform", `translate(${margin.left},${margin.top})`);
-
+  <h2>Startup Funding by Round</h2>
+  
+  <!-- Controls placed above the chart -->
   <div class="controls">
     <label for="statusFilter">Filter by Status:</label>
     <select id="statusFilter">
       <option value="all">All</option>
     </select>
   </div>
-
-  <svg width="600" height="960"></svg>
+  
+  <!-- Single SVG for the box plot -->
+  <svg width="1090" height="710"></svg>
+  
+  <!-- Tooltip element -->
   <div class="tooltip"></div>
+  
+  <!-- D3 script for drawing the chart -->
+  <script>
+    const margin = { top: 50, right: 30, bottom: 60, left: 100 },
+          width = 960,   // inner width
+          height = 600;  // inner height
+    
+    // Append a <g> element to account for margins inside the svg
+    const svg = d3.select("svg")
+      .append("g")
+      .attr("transform", `translate(${margin.left},${margin.top})`);
+    
+    // Your D3 code to create the box plot goes here...
+  </script>
 </body>
 </html>
+
 
