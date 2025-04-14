@@ -49,10 +49,21 @@
       transform: scale(1.4);
       opacity: 1;
     }
-  </style>
+
+   </style>
 </head>
 <body>
-  <h2>Startup Funding by Round</h2>
+   <h2>Startup Funding by Round</h2>
+  <svg width="1090" height="710"></svg>
+  <script>
+    const margin = { top: 50, right: 30, bottom: 60, left: 100 },
+          width = 960,
+          height = 600;
+    
+    // Append a <g> element to account for margins
+    const svg = d3.select("svg")
+      .append("g")
+      .attr("transform", `translate(${margin.left},${margin.top})`);
 
   <div class="controls">
     <label for="statusFilter">Filter by Status:</label>
