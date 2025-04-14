@@ -1,8 +1,8 @@
 //
 
 const margin = { top: 50, right: 30, bottom: 60, left: 100 },
-      width = 960,
-      height = 600;
+      width = 960 - margin.left - margin.right,
+      height = 600 - margin.top - margin.bottom;
 
 const svg = d3.select("svg")
   .append("g")
@@ -45,7 +45,7 @@ function update() {
     if (selectedStatus === "all" || d.status === selectedStatus) {
       rounds.forEach(round => {
         const value = +d[round];
-        if (!isNaN(value) && value > 0) {
+        if (value > 0) {
           longData.push({ round, funding: value });
         }
       });
@@ -60,7 +60,7 @@ function update() {
     const iqr = q3 - q1;
     const min = d3.max([d3.min(fundings), q1 - 1.5 * iqr]);
     const max = d3.min([d3.max(fundings), q3 + 1.5 * iqr]);
-    const outliers = values.filter(d => d.funding < min || d.funding > max);
+    const outliers = fundings.filter(f => f < min || f > max);
     return { round: key, q1, median, q3, min, max, outliers };
   });
 
@@ -164,7 +164,7 @@ function update() {
     .attr("stroke", "black");
 
   svg.selectAll(".outlier-dot")
-    .data(grouped.flatMap(d => d.outliers.map(v => ({ round: d.round, value: v.funding }))))
+    .data(grouped.flatMap(d => d.outliers.map(v => ({ round: d.round, value: v }))))
     .enter()
     .append("circle")
     .attr("class", "outlier-dot")
@@ -177,33 +177,9 @@ function update() {
         .style("left", (event.pageX + 10) + "px")
         .style("top", (event.pageY - 30) + "px");
     })
-    .on("mouseout", () => tooltip.transition().duration(300).style("opacity", 0));
-
-  // Regression Line
-  const lineData = grouped.map(d => ({
-    x: x(d.round) + x.bandwidth() / 2,
-    y: y(d.median)
-  }));
-
-  const line = d3.line()
-    .x(d => d.x)
-    .y(d => d.y)
-    .curve(d3.curveMonotoneX);
-
-  svg.append("path")
-    .datum(lineData)
-    .attr("fill", "none")
-    .attr("stroke", "darkred")
-    .attr("stroke-width", 2)
-    .attr("d", line);
-
-  svg.selectAll(".median-dot")
-    .data(lineData)
-    .enter()
-    .append("circle")
-    .attr("cx", d => d.x)
-    .attr("cy", d => d.y)
-    .attr("r", 3)
-    .attr("fill", "darkred");
+    .on("mouseout", () => {
+      tooltip.transition().duration(300).style("opacity", 0);
+    });
 }
+
 
